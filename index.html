@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Keychron thiết kế và sản xuất các thiết bị ngoại vi máy tính không dây và tùy chỉnh hiệu suất cao cho Mac, Windows, iPhone và Android." />
+    <script src="https://unpkg.com/@tailwindcss/browser@4" rel="preload" as="style"></script>
+    <link rel="icon" href="./ico/ico.png" type="image/png">
+    <link rel="stylesheet" href="./css/font-face.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Keychron | Bàn phím cơ tùy chỉnh cho Mac, Windows và Điện thoại</title>
+</head>
+
+<body>
+    <div class="bg-black">
+        <p class="m-auto text-white flex items-center justify-center font-semibold pt-2 pb-2">Việc vận chuyển sẽ bắt đầu
+            trong vòng 2 ngày làm việc.</p>
+    </div>
+    <nav class="max-w-screen flex m-auto justify-center sticky top-0 z-50 bg-white">
+        <div class="container flex flex-col text-white font-bold ">
+            <div class="flex justify-between items-center pt-4 pb-4 ">
+                <div>
+                    <a href="./index.html"><img src="./img/logo.webp" alt="Keychron Logo"></a>
+                </div>
+                <div class="relative w-[200px] md:w-[400px] lg:w-[800px] hidden md:block">
+                    <input type="text" class="w-full text-black bg-gray-100 p-2 pl-10 pr-10 rounded-md"
+                        placeholder="Tìm kiếm sản phẩm..." />
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <img class="w-[20px]" src="./svg/search.svg" alt="search" />
+                    </div>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                        <img class="w-[20px]" src="./svg/voice.svg" alt="voice" />
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="relative group ml-[16px] py-3 -my-3">
+                        <button id="profile-button" class="focus:outline-none">
+                            <img id="profile-icon" class="w-6" src="/svg/profile.svg"
+                                data-logged-in-src="/svg/profile-logged.svg" data-logged-out-src="/svg/profile.svg"
+                                alt="Tài khoản">
+                        </button>
+                        <div id="profile-dropdown"
+                            class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 ring-1 ring-black ring-opacity-5 text-black font-normal text-sm">
+                        </div>
+                    </div>
+                    <a href="./cart.html" id="cart-link" class="ml-[16px]"><img class="w-[24px]" src="./svg/cart.svg"
+                            alt="Giỏ hàng"></a>
+                    <button id="menu-toggle" class="md:hidden ml-[16px] focus:outline-none">
+                        <img class="w-[24px]" src="./svg/menu.svg" alt="Danh mục">
+                    </button>
+                </div>
+            </div>
+            <div id="menu" class="hidden md:flex justify-center items-center text-black gap-4 pb-3">
+                <a href="#" class="link pb-1 ">Tất cả sản phẩm</a>
+                <a href="#" class="link pb-1">Bàn phím</a>
+                <a href="#" class="link pb-1">Bàn phím mỏng</a>
+                <a href="#" class="link pb-1">Chuột</a>
+                <a href="#" class="link pb-1">Phụ kiện</a>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu-overlay" class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50 z-[90]"></div>
+    <div id="mobile-menu"
+        class="md:hidden fixed top-0 left-0 w-4/5 max-w-sm h-full bg-white shadow-md z-[100] transform -translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="flex flex-col items-center py-4 relative">
+            <button id="close-menu" class="absolute top-2 right-2 focus:outline-none">
+                <img class="w-6 h-6" src="./svg/x-mark.svg" alt="Đóng">
+            </button>
+            <a href="#" class="block py-2 ">Tất cả sản phẩm</a>
+            <a href="#" class="block py-2 ">Bàn phím</a>
+            <a href="#" class="block py-2 ">Bàn phím mỏng</a>
+            <a href="#" class="block py-2 ">Chuột</a>
+            <a href="#" class="block py-2 ">Phụ kiện</a>
+        </div>
+    </div>
+    <header class="relative w-full h-[70vh] overflow-hidden group">
+        <div id="slider-container" class="relative w-full h-full">
+            <div class="slider-item absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out opacity-100"
+                style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img/banner.webp');">
+                <div class="container mx-auto h-full flex items-center">
+                    <div class="text-white font-bold w-full md:w-1/2 lg:w-1/3 p-4 md:p-0">
+                        <h1 class="text-4xl lg:text-5xl mb-6">Keychron M5 8K</h1>
+                        <p class="text-xl lg:text-2xl mb-6">Switch từ tính | 2.4 GHz & Bluetooth</p>
+                        <a href="./html/product/product-slider-1.html"
+                            class="button left border-solid border-1 pt-2 pb-2 pr-4 pl-4 mt-3 overflow-hidden"><span>Tìm
+                                hiểu
+                                thêm</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-item absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out opacity-0"
+                style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img/wukong-banner.webp');">
+                <div class="container mx-auto h-full flex items-center justify-end">
+                    <div class="text-white font-bold w-full md:w-1/2 lg:w-1/3 p-4 md:p-0 text-right">
+                        <h1 class="text-4xl lg:text-5xl mb-6">Black Myth Wukong</h1>
+                        <p class="text-xl lg:text-2xl mb-6">2.4GHz & Bluetooth | Thân kim loại nguyên khối | Keycap PBT
+                            Dye-Sub
+                        </p>
+                        <a href="./html/product/product-slider-2.html"
+                            class="button left border-solid border-1 pt-2 pb-2 pr-4 pl-4 mt-3"><span>Tìm hiểu
+                                ngay</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="prev-slide"
+            class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-30 text-white p-3 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <button id="next-slide"
+            class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-30 text-white p-3 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+        <div id="slider-dots" class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+        </div>
+    </header>
+    <section class="max-w-screen flex m-auto justify-center">
+        <div class="container flex flex-col text-white font-bold mt-20 mb-20">
+            <p class="text-black text-4xl mb-20">Sản phẩm nổi bật</p>
+            <div class="flex-col">
+                <div class="flex flex-col md:flex-row justify-start items-start gap-8 mb-12">
+                    <div class="flex-[0.2] flex flex-col items-start justify-start">
+                        <img class="w-full" src="./img/Product-1.webp" alt="">
+                        <a href="./html/product/product-1.html">
+                            <p class="text-xl text-black mt-2 mb-3">Bàn phím cơ tùy chỉnh không dây Keychron K2 HE
+                                Magnetic
+                                Switch
+                            </p>
+                        </a>
+                        <div class="text-black flex justify-center items-start gap-3 mb-3">
+                            <div class="flex mt-[4px]">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                            </div>
+                            <p class="font-normal">(13)</p>
+                        </div>
+                        <p class="text-black mb-4 font-normal">Từ
+                            <span class="text-black text-xl font-bold">$129.99</span>
+                        </p>
+                        <div class="flex text-black gap-2">
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Đen</div>
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Trắng</div>
+                        </div>
+                    </div>
+                    <div class="flex-[0.2] flex flex-col items-start justify-start">
+                        <img class="w-full" src="./img/Product-2.webp" alt="">
+                        <a href="./html/product/product-2.html">
+                            <p class="text-xl text-black mt-2 mb-3">Bàn phím số tùy chỉnh không dây Keychron K0 Max QMK
+                            </p>
+                        </a>
+                        <span class="text-black text-xl font-bold mb-2">$64.99</span>
+                        </p>
+                        <div class="flex text-black gap-2">
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Đỏ</div>
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Nâu</div>
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Chuối</div>
+                        </div>
+                    </div>
+                    <div class="flex-[0.2] flex flex-col items-start justify-start">
+                        <img class="w-full" src="./img/Product-3.webp" alt="">
+                        <a href="./html/product/product-3.html">
+                            <p class="text-xl text-black mt-2 mb-3">Bàn phím cơ tùy chỉnh không dây Keychron Q6 Max
+                                QMK/VIA
+                            </p>
+                        </a>
+                        <div class="text-black flex justify-center items-start gap-3 mb-3">
+                            <div class="flex mt-[4px]">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                            </div>
+                            <p class="font-normal">(11)</p>
+                        </div>
+                        <p class="text-black mb-4 font-normal">Từ
+                            <span class="text-black text-xl font-bold">$219.99</span>
+                        </p>
+                        <div class="flex text-black gap-2">
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Đen Carbon</div>
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Trắng Vỏ Sò</div>
+                        </div>
+                    </div>
+                    <div class="flex-[0.2] flex flex-col items-start justify-start">
+                        <img class="w-full" src="./img/Product-4.webp" alt="">
+                        <a href="./html/product/product-4.html">
+                            <p class="text-xl text-black mt-2 mb-3">Bàn phím cơ tùy chỉnh không dây Keychron K4 Max
+                                QMK/VIA
+                            </p>
+                        </a>
+
+                        <div class="text-black flex justify-center items-start gap-3 mb-3">
+                            <div class="flex mt-[4px]">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                            </div>
+                            <p class="font-normal">(17)</p>
+                        </div>
+                        <p class="text-black mb-4 font-normal">Từ
+                            <span class="text-black text-xl font-bold">$134.99</span>
+                        </p>
+                        <div class="flex text-black gap-2">
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Đen</div>
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Trắng</div>
+                        </div>
+                    </div>
+                    <div class="flex-[0.2] flex flex-col items-start justify-start">
+                        <img class="w-full" src="./img/Product-5.webp" alt="">
+                        <a href="./html/product/product-5.html">
+                            <p class="text-xl text-black mt-2 mb-3">Bàn phím cơ tùy chỉnh không dây Keychron K5 Max
+                                QMK/VIA
+                            </p>
+                        </a>
+                        <div class="text-black flex justify-center items-start gap-3 mb-3">
+                            <div class="flex mt-[4px]">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-half.svg" alt="">
+                                <img class="w-4" src="./svg/star-no.svg" alt="">
+                            </div>
+                            <p class="font-normal">(21)</p>
+                        </div>
+                        <p class="text-black mb-4 font-normal">Từ
+                            <span class="text-black text-xl font-bold">$94.99</span>
+                        </p>
+                        <div class="flex text-black gap-2">
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Đỏ</div>
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 transition-all duration-300 opacity-55">
+                                Nâu</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row justify-start items-start gap-8 mb-12">
+                    <div class="flex-[0.2] flex flex-col items-start justify-start">
+                        <img class="w-full" src="./img/Product-6.webp" alt="">
+                        <a href="product-6.html">
+                            <p class="text-xl text-black mt-2 mb-3">Đệm kê tay silicon Keychron
+                            </p>
+                        </a>
+
+                        <div class="text-black flex justify-center items-start gap-3 mb-3">
+                            <div class="flex mt-[4px]">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                            </div>
+                            <p class="font-normal">(10)</p>
+                        </div>
+                        <p class="text-black mb-4 font-normal">Từ
+                            <span class="text-black text-xl font-bold">$9.99</span>
+                        </p>
+                        <div class="flex text-black gap-2">
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Đen</div>
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Xám</div>
+                        </div>
+                    </div>
+                    <div class="flex-[0.2] flex flex-col items-start justify-start">
+                        <img class="w-full" src="./img/Product-7.webp" alt="">
+                        <a href="./html/product/product-7.html">
+                            <p class="text-xl text-black mt-2 mb-3">Chuột không dây Keychron M3
+                            </p>
+                        </a>
+                        <div class="text-black flex justify-center items-start gap-3 mb-3">
+                            <div class="flex mt-[4px]">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-half.svg" alt="">
+                            </div>
+                            <p class="font-normal">(33)</p>
+                        </div>
+                        <p class="text-black mb-4 font-normal">Từ
+                            <span class="text-black text-xl font-bold">$39.99</span>
+                        </p>
+                        <div class="flex text-black gap-2">
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Đen</div>
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Trắng</div>
+                        </div>
+                    </div>
+                    <div class="flex-[0.2] flex flex-col items-start justify-start">
+                        <img class="w-full" src="./img/Product-8.webp" alt="">
+                        <a href="./html/product/product-8.html">
+                            <p class="text-xl text-black mt-2 mb-3">Bàn phím số tùy chỉnh không dây Keychron Q0 Max QMK
+                            </p>
+                        </a>
+                        <div class="text-black flex justify-center items-start gap-3 mb-3">
+                            <div class="flex mt-[4px]">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-half.svg" alt="">
+                                <img class="w-4" src="./svg/star-no.svg" alt="">
+                            </div>
+                            <p class="font-normal">(21)</p>
+                        </div>
+                        <p class="text-black mb-4 font-normal">Từ
+                            <span class="text-black text-xl font-bold">$119.99</span>
+                        </p>
+                        <div class="flex text-black gap-2">
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Đen</div>
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Trắng</div>
+                        </div>
+                    </div>
+                    <div class="flex-[0.2] flex flex-col items-start justify-start">
+                        <img class="w-full" src="./img/Product-9.webp" alt="">
+                        <a href="./html/product/product-9.html">
+                            <p class="text-xl text-black mt-2 mb-3">Cáp xoắn Keychron Coiled Aviator
+                            </p>
+                        </a>
+                        <div class="text-black flex justify-center items-start gap-3 mb-3">
+                            <div class="flex mt-[4px]">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                                <img class="w-4" src="./svg/star-full.svg" alt="">
+                            </div>
+                            <p class="font-normal">(17)</p>
+                        </div>
+                        <p class="text-black mb-4 font-normal">Từ
+                            <span class="text-black text-xl font-bold">$13.99</span>
+                        </p>
+                        <div class="flex flex-wrap text-black gap-2">
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border border-zinc-100 hover:border-black transition-all duration-300">
+                                Đen
+                            </div>
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border border-zinc-100 hover:border-black transition-all duration-300">
+                                Trắng
+                            </div>
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border border-zinc-100 hover:border-black transition-all duration-300">
+                                Xanh dương
+                            </div>
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border border-zinc-100 transition-all duration-300 opacity-40">
+                                Xám
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-[0.2] flex flex-col items-start justify-start">
+                        <img class="w-full" src="./img/Product-10.webp" alt="">
+                        <a href="./html/product/product-10.html">
+                            <p class="text-xl text-black mt-2 mb-3">Keycap Artisan Kim loại Búp bê Daruma Keychron
+                            </p>
+                        </a>
+                        <span class="text-black text-xl font-bold mb-2">$13.99</span>
+                        <div class="flex text-black gap-2">
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Đen</div>
+                            <div
+                                class="font-normal pt-1 pb-1 pl-2 pr-2 border-1 border-zinc-100 hover:border-black transition-all duration-300">
+                                Trắng</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-screen flex m-auto justify-center">
+        <div class="container flex flex-col text-white font-bold mt-20 mb-20">
+            <div class="flex-col">
+                <div class="flex flex-row justify-between items-center gap-8 mb-12">
+                    <div class="flex-[0.25] flex flex-col items-center justify-center ">
+                        <img class="w-[200px]" src="./img/the-verge-logo.avif" alt="">
+                    </div>
+                    <div class="flex-[0.25] flex flex-col items-center justify-center ">
+                        <img class="w-[200px]" src="./img/tech_crunch.avif" alt="">
+                    </div>
+                    <div class="flex-[0.25] flex flex-col items-center justify-center ">
+                        <img class="w-[200px]" src="./img/unbox_therapy.avif" alt="">
+                    </div>
+                    <div class="flex-[0.25] flex flex-col items-center justify-center ">
+                        <img class="w-[200px]" src="./img/MKBHD_logo.avif" alt="">
+                    </div>
+                    <div class="flex-[0.25] flex flex-col items-center justify-center ">
+                        <img class="w-[200px]" src="./img/Wirecutter-Logo.webp" alt="">
+                    </div>
+                </div>
+                <div class="flex flex-row justify-between items-center gap-8 mb-12">
+                    <div class="flex-[0.25] flex flex-col items-center justify-center ">
+                        <img class="w-[200px]" src="./img/Linus_tech_tips_logo.avif" alt="">
+                    </div>
+                    <div class="flex-[0.25] flex flex-col items-center justify-center ">
+                        <img class="w-[200px]" src="./img/Forbes-Logo_349cdb56-71d9-4ee7-b12e-bbaac339bc58.webp" alt="">
+                    </div>
+                    <div class="flex-[0.25] flex flex-col items-center justify-center ">
+                        <img class="w-[200px]" src="./img/Wired-Logo_c6ff7cf8-e254-422f-b14f-cd930aa165d7.avif" alt="">
+                    </div>
+                    <div class="flex-[0.25] flex flex-col items-center justify-center ">
+                        <img class="w-[200px]" src="./img/digital_trends.avif" alt="">
+                    </div>
+                    <div class="flex-[0.25] flex flex-col items-center justify-center ">
+                        <img class="w-[200px]" src="./img/CNN-Logo_1419cbb7-969d-448c-8014-20977e467523.webp" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-screen flex m-auto justify-center">
+        <div class="container flex flex-col text-white font-bold mt-20 mb-20">
+            <p class="text-black text-4xl mb-20">Bài viết
+            </p>
+            <div class="flex-col">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+
+                    <div class="flex-[0.33] flex flex-col items-start justify-start ">
+                        <img class="w-full h-80 object-cover" src="./img/keychron-k4he-wireless-keyboard-review.webp"
+                            alt="">
+                        <a href="./html/blog/blog-1.html">
+                            <p class="text-xl text-black mt-4 mb-1">Đánh giá Bàn phím Keychron - Tháng 7 2025 - Top 5
+                                Bàn
+                                phím</p>
+                        </a>
+                        <p class="text-normal font-normal text-black">Ngày 17 tháng 7 năm 2025</p>
+                    </div>
+                    <div class="flex-[0.33] flex flex-col items-start justify-start ">
+                        <img class="w-full h-80 object-cover" src="./img/blog-2.webp" alt="">
+                        <a href="./html/blog/blog-2.html">
+                            <p class="text-xl text-black mt-4 mb-1">Bạn có thể dùng Bàn phím và Chuột trên PS5 không?
+                                Hướng
+                                dẫn Toàn diện
+                            </p>
+                        </a>
+                        <p class="text-normal font-normal text-black">Ngày 16 tháng 7 năm 2025</p>
+                    </div>
+                    <div class="flex-[0.33] flex flex-col items-start justify-start ">
+                        <img class="w-full h-80 object-cover" src="./img/blog-3.webp" alt="">
+                        <a href="./html/blog/blog-3.html">
+                            <p class="text-xl text-black mt-4 mb-1">Keycap có ảnh hưởng đến âm thanh không? Mẹo để có
+                                tiếng
+                                gõ hay hơn
+                            </p>
+                        </a>
+                        <p class="text-normal font-normal text-black">Ngày 15 tháng 7 năm 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="max-w-screen flex m-auto justify-center bg-zinc-200 pb-20 pt-10">
+        <div class="container flex flex-col text-white font-bold">
+            <div
+                class="flex flex-col md:flex-row items-center md:items-start text-center md:text-start justify-start gap-10">
+                <div class="flex-[0.3] flex flex-col items-center md:items-start">
+                    <img class="ml-[-12px] mb-4" src="./img/logo.webp" alt="">
+                    <p class="text-black font-normal mb-4">Keychron thiết kế và sản xuất các thiết bị ngoại vi máy tính
+                        không dây và tùy chỉnh hiệu suất cao cho Mac,
+                        Windows, iPhone và Android.
+                    </p>
+                    <div class="flex flex-row justify-start item-center ml-[-8px]">
+                        <img class="w-8" src="./svg/facebook.svg" alt="">
+                        <img class="w-10" src="./svg/youtube.svg" alt="">
+                        <img class="w-6" src="./svg/tiktok.svg" alt="">
+                    </div>
+                </div>
+                <div class="flex-[0.2] flex flex-col gap-3 text-black font-normal">
+                    <p class="font-bold">Trung tâm Keychron</p>
+                    <a href="https://www.keychron.com/pages/about-us">Về chúng tôi</a>
+                    <a href="https://www.keychron.com/products/keychron-gift-card">Thẻ quà tặng</a>
+                    <a href="https://www.keychron.com/pages/get-10-off-your-next-keychron-purchase">Nhận giảm giá
+                        10%</a>
+                    <a href="https://www.keychron.com/pages/where-to-buy">Nơi mua hàng</a>
+                    <a href="https://www.keychron.com/blogs/news">Bài viết</a>
+                    <a href="https://www.keychron.com/pages/customize-the-keychron-keyboards-with-your-branding">Tùy
+                        chỉnh với Thương hiệu của
+                        bạn</a>
+                    <a href="https://www.keychron.com/pages/influencer-recruit">Tuyển dụng Influencer</a>
+                    <a href="https://affiliate.keychron.com/">Dự án liên kết</a>
+                </div>
+                <div class="flex-[0.2] flex flex-col gap-3 text-black font-normal">
+                    <p class="font-bold">Trung tâm Keychron</p>
+                    <a href="https://www.keychron.com/pages/about-us">Về chúng tôi</a>
+                    <a href="https://www.keychron.com/products/keychron-gift-card">Thẻ quà tặng</a>
+                    <a href="https://www.keychron.com/pages/get-10-off-your-next-keychron-purchase">Nhận giảm giá
+                        10%</a>
+                    <a href="https://www.keychron.com/pages/where-to-buy">Nơi mua hàng</a>
+                    <a href="https://www.keychron.com/blogs/news">Bài viết</a>
+                    <a href="https://www.keychron.com/pages/customize-the-keychron-keyboards-with-your-branding">Tùy
+                        chỉnh với Thương hiệu của
+                        bạn</a>
+                    <a href="https://www.keychron.com/pages/influencer-recruit">Tuyển dụng Influencer</a>
+                    <a href="https://affiliate.keychron.com/">Dự án liên kết</a>
+                </div>
+                <div class="flex-[0.3] flex flex-col gap-3 text-black font-normal">
+                    <p class="font-bold">Bản tin</p>
+                    <p>Đăng ký để nhận ưu đãi độc quyền, những câu chuyện gốc, sự kiện và hơn thế nữa. </p>
+                    <div class="relative">
+                        <input type="text" class="w-full text-black bg-gray-100 p-2 pl-3 pr-10 rounded-md"
+                            placeholder="Email của bạn" />
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                            <img class="w-[20px]" src="./svg/right-arrow.svg" alt="voice" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="./js/mobileNav.js"></script>
+<script src="./js/slider.js"></script>
+<script src="./js/auth.js"></script>
+
+</html>

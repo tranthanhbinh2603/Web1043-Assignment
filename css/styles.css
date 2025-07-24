@@ -1,0 +1,236 @@
+body {
+	font-family: "Product Sans", sans-serif;
+}
+
+.link {
+	display: inline-block;
+	position: relative;
+	text-decoration: none;
+}
+
+.link::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 2px;
+	bottom: 0;
+	left: 0;
+	background-color: black;
+	border-radius: 3px;
+	transition: width 0.5s ease-out;
+}
+
+.link:hover::after {
+	width: 100%;
+}
+
+.header {
+	background: no-repeat fixed center;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url("../img/banner.webp");
+	background-size: cover;
+}
+
+.button {
+	position: relative;
+}
+
+.button.left {
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+	transition: 0.35s;
+}
+
+.button.left::before {
+	content: "";
+	position: absolute;
+	background-color: #fff;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: -100%;
+	transition: 0.35s left;
+	z-index: 1;
+}
+
+.button.left:hover {
+	transform: scale(1.05);
+	color: black;
+	border-color: #fff;
+}
+
+.button.left:hover::before {
+	left: 0;
+}
+
+.button.left span {
+	position: relative;
+	z-index: 2;
+}
+
+.button-black {
+	position: relative;
+}
+
+.button-black.left-black {
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+	transition: 0.35s;
+}
+
+.button-black.left-black::before {
+	content: "";
+	position: absolute;
+	background-color: black;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: -100%;
+	transition: 0.35s left;
+	z-index: 1;
+}
+
+.button-black.left-black:hover {
+	transform: scale(1.05);
+	color: white;
+	font-weight: 600;
+}
+
+.button-black.left-black:hover::before {
+	left: 0;
+}
+
+.button-black.left-black span {
+	position: relative;
+	z-index: 2;
+}
+
+.keyboard_buying_guide {
+	background: no-repeat fixed center;
+	background-image: url("../img/Keyboard-buying-guide.webp");
+	background-size: cover;
+}
+
+.slider-item {
+	pointer-events: none;
+}
+
+.slider-item.opacity-100 {
+	pointer-events: auto;
+}
+
+.input-group {
+	position: relative;
+	margin-bottom: 2rem;
+}
+
+.input-field {
+	width: 100%;
+	border: 0;
+	border-bottom: 2px solid #d1d5db;
+	outline: 0;
+	font-size: 1rem;
+	color: #111827;
+	padding: 7px 0;
+	background: transparent;
+	transition: border-color 0.2s;
+}
+
+.input-field.has-icon {
+	padding-right: 2rem;
+}
+
+.input-field:focus,
+.input-field:not(:placeholder-shown) {
+	border-bottom-color: #000;
+}
+
+.input-label {
+	position: absolute;
+	top: 0;
+	display: block;
+	transition: 0.2s;
+	font-size: 1rem;
+	color: #6b7280;
+	pointer-events: none;
+}
+
+.input-field:focus ~ .input-label,
+.input-field:not(:placeholder-shown) ~ .input-label {
+	top: -20px;
+	font-size: 0.875rem;
+	color: #000;
+	font-weight: 600;
+}
+
+.password-container {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.eye-icon {
+	position: absolute;
+	right: 5px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	color: #9ca3af;
+}
+
+#toast-notification {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background-color: #fff;
+	color: #111827;
+	padding: 16px;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	transform: translateX(calc(100% + 20px));
+	transition: transform 0.5s ease-in-out;
+	z-index: 1000;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	border: 1px solid #e5e7eb;
+}
+
+#toast-notification.show {
+	transform: translateX(0);
+}
+
+#toast-notification a {
+	background-color: #111827;
+	color: white;
+	text-decoration: none;
+	padding: 8px 12px;
+	border-radius: 6px;
+	font-weight: 500;
+	transition: background-color 0.2s;
+}
+
+#toast-notification a:hover {
+	background-color: #374151;
+}
+
+#profile-dropdown::before {
+	content: "";
+	border-width: 20px;
+	border-style: solid;
+	border-color: transparent transparent transparent transparent;
+	position: absolute;
+	right: 8px;
+	top: -29px;
+	z-index: 100;
+}
+
+#map {
+	height: 250px;
+	border-radius: 0.5rem;
+	z-index: 10;
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Tìm hiểu cách chất liệu, profile, và độ dày của keycap ảnh hưởng đến âm thanh của bàn phím cơ, cùng các mẹo để có tiếng gõ hay hơn." />
+    <script src="https://cdn.tailwindcss.com" rel="preload" as="style"></script>
+    <link rel="icon" href="../../ico/ico.png" type="image/png">
+    <link rel="stylesheet" href="../../css/font-face.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <title>Keycap có ảnh hưởng đến âm thanh không? | Keychron Việt Nam</title>
+</head>
+
+<body>
+    <div class="bg-black">
+        <p class="m-auto text-white flex items-center justify-center font-semibold pt-2 pb-2">Việc vận chuyển sẽ bắt đầu
+            trong vòng 2 ngày làm việc.</p>
+    </div>
+    <nav class="max-w-screen flex m-auto justify-center sticky top-0 z-50 bg-white">
+        <div class="container flex flex-col text-white font-bold ">
+            <div class="flex justify-between items-center pt-4 pb-4 ">
+                <div>
+                    <a href="../../index.html"><img src="../../img/logo.webp" alt="Keychron Logo"></a>
+                </div>
+                <div class="relative w-[200px] md:w-[400px] lg:w-[800px] hidden md:block">
+                    <input type="text" class="w-full text-black bg-gray-100 p-2 pl-10 pr-10 rounded-md"
+                        placeholder="Tìm kiếm sản phẩm..." />
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <img class="w-[20px]" src="../../svg/search.svg" alt="search" />
+                    </div>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                        <img class="w-[20px]" src="../../svg/voice.svg" alt="voice" />
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="relative group ml-[16px] py-3 -my-3">
+                        <button id="profile-button" class="focus:outline-none">
+                            <img id="profile-icon" class="w-[24px]" src="../../svg/profile.svg"
+                                data-logged-in-src="../../svg/profile-logged.svg"
+                                data-logged-out-src="../../svg/profile.svg" alt="Tài khoản">
+                        </button>
+                        <div id="profile-dropdown"
+                            class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 ring-1 ring-black ring-opacity-5 text-black font-normal text-sm">
+                        </div>
+                    </div>
+                    <a href="../../cart.html" id="cart-link" class="ml-[16px]"><img class="w-[24px]"
+                            src="../../svg/cart.svg" alt="Giỏ hàng"></a>
+                    <button id="menu-toggle" class="md:hidden ml-[16px] focus:outline-none">
+                        <img class="w-[24px]" src="../../svg/menu.svg" alt="Danh mục">
+                    </button>
+                </div>
+            </div>
+            <div id="menu" class="hidden md:flex justify-center items-center text-black gap-4 pb-3">
+                <a href="#" class="link pb-1 ">Tất cả sản phẩm</a>
+                <a href="#" class="link pb-1">Bàn phím</a>
+                <a href="#" class="link pb-1">Bàn phím mỏng</a>
+                <a href="#" class="link pb-1">Chuột</a>
+                <a href="#" class="link pb-1">Phụ kiện</a>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu-overlay" class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50 z-[90]"></div>
+    <div id="mobile-menu"
+        class="md:hidden fixed top-0 left-0 w-4/5 max-w-sm h-full bg-white shadow-md z-[100] transform -translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="flex flex-col items-center py-4 relative">
+            <button id="close-menu" class="absolute top-2 right-2 focus:outline-none">
+                <img class="w-6 h-6" src="../../svg/x-mark.svg" alt="Đóng">
+            </button>
+            <a href="#" class="block py-2 ">Tất cả sản phẩm</a>
+            <a href="#" class="block py-2 ">Bàn phím</a>
+            <a href="#" class="block py-2 ">Bàn phím mỏng</a>
+            <a href="#" class="block py-2 ">Chuột</a>
+            <a href="#" class="block py-2 ">Phụ kiện</a>
+        </div>
+    </div>
+
+    <main class="max-w-screen flex m-auto justify-center">
+        <div class="container mt-12 mb-20">
+            <h1 class="text-3xl md:text-5xl font-bold text-black mb-4 text-center">
+                Keycap có ảnh hưởng đến âm thanh không? Mẹo để có tiếng gõ hay hơn dù qua năm tháng
+            </h1>
+            <p class="text-base font-normal text-gray-500 mb-8 text-center">
+                Ngày 15 tháng 7 năm 2025
+            </p>
+
+            <img class="w-full h-[300px] md:h-[400px] object-cover rounded-lg mb-12" src="../../img/blog-3.webp"
+                alt="Các bộ keycap khác nhau ảnh hưởng đến âm thanh bàn phím">
+
+            <div class="prose lg:prose-xl max-w-none text-black ml-0 md:ml-48 md:mr-48">
+                <p>Đối với những người đam mê bàn phím cơ, âm thanh khi gõ là một phần quan trọng của trải nghiệm. Một
+                    câu hỏi thường gặp là: "Liệu thay keycap có thực sự thay đổi âm thanh không?". Câu trả lời là một
+                    tiếng <b>Có</b> vang dội. Keycap là một trong những yếu tố ảnh hưởng lớn nhất đến "sound profile"
+                    của
+                    bàn phím. Hãy cùng tìm hiểu tại sao.</p>
+
+                <h2 class="text-2xl md:text-3xl font-bold mt-8 mb-4">1. Chất liệu Keycap: PBT và ABS</h2>
+                <p>Đây là yếu tố quan trọng nhất. Hai chất liệu phổ biến nhất là PBT và ABS:</p>
+                <ul class="list-disc pl-5">
+                    <li><strong>ABS (Acrylonitrile Butadiene Styrene):</strong> Là loại nhựa phổ biến, nhẹ hơn và mềm
+                        hơn. Keycap ABS thường mỏng hơn, tạo ra âm thanh có âm vực cao, trong và đanh hơn, thường được
+                        mô tả là "clacky".</li>
+                    <li><strong>PBT (Polybutylene Terephthalate):</strong> Là loại nhựa cứng hơn, đặc và nặng hơn.
+                        Keycap PBT thường dày hơn, tạo ra một buồng âm lớn hơn bên trong, dẫn đến âm thanh có âm vực
+                        thấp, trầm và ấm hơn, hay được gọi là "thocky".</li>
+                </ul>
+
+                <h2 class="text-2xl md:text-3xl font-bold mt-8 mb-4">2. Profile (Kiểu dáng và Chiều cao)</h2>
+                <p>Profile của keycap quyết định hình dạng và chiều cao của nó. Các profile khác nhau tạo ra không gian
+                    cộng hưởng âm thanh khác nhau bên trong keycap.</p>
+                <ul class="list-disc pl-5">
+                    <li><strong>Profile cao (ví dụ: SA, MT3):</strong> Những keycap này có chiều cao lớn và thành keycap
+                        cong, tạo ra một không gian lớn bên trong. Điều này làm cho âm thanh cộng hưởng nhiều hơn, tạo
+                        ra tiếng gõ trầm và sâu hơn.</li>
+                    <li><strong>Profile thấp (ví dụ: Cherry, OEM, XDA):</strong> Các keycap này thấp hơn và có không
+                        gian bên trong nhỏ hơn. Kết quả là âm thanh phát ra sẽ gọn, sắc và có âm vực cao hơn. Profile
+                        Cherry rất phổ biến vì sự cân bằng giữa cảm giác gõ và âm thanh.</li>
+                </ul>
+
+                <h2 class="text-2xl md:text-3xl font-bold mt-8 mb-4">3. Độ dày của Keycap</h2>
+                <p>Một quy tắc chung là keycap càng dày, âm thanh càng trầm. Keycap dày (khoảng 1.4mm - 1.5mm) hấp thụ
+                    nhiều tần số cao hơn, chỉ để lại những âm thanh trầm ấm. Ngược lại, keycap mỏng hơn sẽ cho phép
+                    nhiều tần số cao đi qua, tạo ra âm thanh đanh và sắc nét hơn.</p>
+
+                <h2 class="text-2xl md:text-3xl font-bold mt-8 mb-4">Mẹo để có tiếng gõ hay hơn</h2>
+                <p>Dựa trên những yếu tố trên, bạn có thể "điều chỉnh" âm thanh bàn phím của mình:</p>
+                <ul class="list-disc pl-5">
+                    <li><strong>Muốn âm "thocky", trầm ấm?</strong> Hãy thử một bộ keycap PBT dày với profile Cherry
+                        hoặc một profile cao hơn như SA.</li>
+                    <li><strong>Thích âm "clacky", trong trẻo?</strong> Keycap ABS với profile OEM hoặc Cherry sẽ là lựa
+                        chọn phù hợp.</li>
+                    <li><strong>Đừng quên các mod khác!</strong> Việc thay keycap sẽ hiệu quả hơn khi kết hợp với các
+                        mod khác như lube switch, foam case, và tape mod để tinh chỉnh âm thanh đến mức hoàn hảo.</li>
+                </ul>
+
+                <p class="mt-8">Thay đổi keycap là một trong những cách dễ dàng và thú vị nhất để cá nhân hóa không chỉ
+                    ngoại hình mà cả âm thanh của chiếc bàn phím cơ. Đừng ngần ngại thử nghiệm để tìm ra sự kết hợp hoàn
+                    hảo cho riêng bạn!</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="max-w-screen flex m-auto justify-center bg-zinc-200 pb-20 pt-10">
+        <div class="container flex flex-col text-white font-bold">
+            <div
+                class="flex flex-col md:flex-row items-center md:items-start text-center md:text-start justify-start gap-10">
+                <div class="flex-[0.3] flex flex-col items-center md:items-start">
+                    <img class="ml-[-12px] mb-4" src="../../img/logo.webp" alt="">
+                    <p class="text-black font-normal mb-4">Keychron thiết kế và sản xuất các thiết bị ngoại vi máy tính
+                        không dây và tùy chỉnh hiệu suất cao cho Mac,
+                        Windows, iPhone và Android.
+                    </p>
+                    <div class="flex flex-row justify-start item-center ml-[-8px]">
+                        <img class="w-8" src="../../svg/facebook.svg" alt="">
+                        <img class="w-10" src="../../svg/youtube.svg" alt="">
+                        <img class="w-6" src="../../svg/tiktok.svg" alt="">
+                    </div>
+                </div>
+                <div class="flex-[0.2] flex flex-col gap-3 text-black font-normal">
+                    <p class="font-bold">Trung tâm Keychron</p>
+                    <a href="https://www.keychron.com/pages/about-us">Về chúng tôi</a>
+                    <a href="https://www.keychron.com/products/keychron-gift-card">Thẻ quà tặng</a>
+                    <a href="https://www.keychron.com/pages/get-10-off-your-next-keychron-purchase">Nhận giảm giá
+                        10%</a>
+                    <a href="https://www.keychron.com/pages/where-to-buy">Nơi mua hàng</a>
+                    <a href="https://www.keychron.com/blogs/news">Bài viết</a>
+                    <a href="https://www.keychron.com/pages/customize-the-keychron-keyboards-with-your-branding">Tùy
+                        chỉnh với Thương hiệu của
+                        bạn</a>
+                    <a href="https://www.keychron.com/pages/influencer-recruit">Tuyển dụng Influencer</a>
+                    <a href="https://affiliate.keychron.com/">Dự án liên kết</a>
+                </div>
+                <div class="flex-[0.2] flex flex-col gap-3 text-black font-normal">
+                    <p class="font-bold">Trung tâm Keychron</p>
+                    <a href="https://www.keychron.com/pages/about-us">Về chúng tôi</a>
+                    <a href="https://www.keychron.com/products/keychron-gift-card">Thẻ quà tặng</a>
+                    <a href="https://www.keychron.com/pages/get-10-off-your-next-keychron-purchase">Nhận giảm giá
+                        10%</a>
+                    <a href="https://www.keychron.com/pages/where-to-buy">Nơi mua hàng</a>
+                    <a href="https://www.keychron.com/blogs/news">Bài viết</a>
+                    <a href="https://www.keychron.com/pages/customize-the-keychron-keyboards-with-your-branding">Tùy
+                        chỉnh với Thương hiệu của
+                        bạn</a>
+                    <a href="https://www.keychron.com/pages/influencer-recruit">Tuyển dụng Influencer</a>
+                    <a href="https://affiliate.keychron.com/">Dự án liên kết</a>
+                </div>
+                <div class="flex-[0.3] flex flex-col gap-3 text-black font-normal">
+                    <p class="font-bold">Bản tin</p>
+                    <p>Đăng ký để nhận ưu đãi độc quyền, những câu chuyện gốc, sự kiện và hơn thế nữa. </p>
+                    <div class="relative">
+                        <input type="text" class="w-full text-black bg-gray-100 p-2 pl-3 pr-10 rounded-md"
+                            placeholder="Email của bạn" />
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                            <img class="w-[20px]" src="../../svg/right-arrow.svg" alt="voice" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="../../js/mobileNav.js"></script>
+<script src="../../js/auth.js"></script>
+
+
+</html>

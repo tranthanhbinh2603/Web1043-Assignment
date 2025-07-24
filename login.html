@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Đăng nhập vào tài khoản Keychron của bạn để mua sắm và nhận các ưu đãi độc quyền." />
+    <script src="https://cdn.tailwindcss.com" rel="preload" as="style"></script>
+    <link rel="icon" href="./ico/ico.png" type="image/png">
+    <link rel="stylesheet" href="./css/font-face.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Đăng nhập | Keychron Việt Nam</title>
+</head>
+
+<body class="bg-white text-gray-900">
+    <div class="bg-black">
+        <p class="m-auto text-white flex items-center justify-center font-semibold pt-2 pb-2">Việc vận chuyển sẽ bắt đầu
+            trong vòng 2 ngày làm việc.</p>
+    </div>
+
+    <nav class="max-w-screen flex m-auto justify-center sticky top-0 z-50 bg-white">
+        <div class="container flex flex-col text-white font-bold ">
+            <div class="flex justify-between items-center pt-4 pb-4 ">
+                <div>
+                    <a href="./index.html"><img src="./img/logo.webp" alt="Keychron Logo"></a>
+                </div>
+                <div class="relative w-[200px] md:w-[400px] lg:w-[800px] hidden md:block">
+                    <input type="text" class="w-full text-black bg-gray-100 p-2 pl-10 pr-10 rounded-md"
+                        placeholder="Tìm kiếm sản phẩm..." />
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <img class="w-[20px]" src="./svg/search.svg" alt="search" />
+                    </div>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                        <img class="w-[20px]" src="./svg/voice.svg" alt="voice" />
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="relative group ml-[16px] py-3 -my-3">
+                        <button id="profile-button" class="focus:outline-none">
+                            <img id="profile-icon" class="w-6" src="/svg/profile.svg"
+                                data-logged-in-src="/svg/profile-logged.svg" data-logged-out-src="/svg/profile.svg"
+                                alt="Tài khoản">
+                        </button>
+                        <div id="profile-dropdown"
+                            class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 ring-1 ring-black ring-opacity-5 text-black font-normal text-sm">
+                        </div>
+                    </div>
+                    <a href="./product.html" class="ml-[16px]"><img class="w-[24px]" src="./svg/cart.svg" alt=""></a>
+                    <button id="menu-toggle" class="md:hidden ml-[16px] focus:outline-none">
+                        <img class="w-[24px]" src="./svg/menu.svg" alt="Danh mục">
+                    </button>
+                </div>
+            </div>
+            <div id="menu" class="hidden md:flex justify-center items-center text-black gap-4 pb-3">
+                <a href="./product.html" class="link pb-1 ">Tất cả sản phẩm</a>
+                <a href="./product.html" class="link pb-1">Bàn phím</a>
+                <a href="./product.html" class="link pb-1">Bàn phím mỏng</a>
+                <a href="./product.html" class="link pb-1">Chuột</a>
+                <a href="./product.html" class="link pb-1">Phụ kiện</a>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu-overlay" class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50 z-[90]"></div>
+    <div id="mobile-menu"
+        class="md:hidden fixed top-0 left-0 w-4/5 max-w-sm h-full bg-white shadow-md z-[100] transform -translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="flex flex-col items-center py-4 relative">
+            <button id="close-menu" class="absolute top-2 right-2 focus:outline-none">
+                <img class="w-6 h-6" src="./svg/x-mark.svg" alt="Đóng">
+            </button>
+            <a href="./product.html" class="block py-2 ">Tất cả sản phẩm</a>
+            <a href="./product.html" class="block py-2 ">Bàn phím</a>
+            <a href="./product.html" class="block py-2 ">Bàn phím mỏng</a>
+            <a href="./product.html" class="block py-2 ">Chuột</a>
+            <a href="./product.html" class="block py-2 ">Phụ kiện</a>
+        </div>
+    </div>
+
+    <main class="container mx-auto my-12 px-4 flex items-center justify-center min-h-[60vh]">
+        <div class="w-full max-w-md">
+            <!-- Login Form -->
+            <div class="flex flex-col">
+                <h2 class="text-3xl font-bold mb-8 text-center">Đăng nhập</h2>
+                <form id="login-form">
+                    <div class="input-group">
+                        <input type="email" placeholder=" " required class="input-field" id="login-email">
+                        <label for="login-email" class="input-label">Email</label>
+                    </div>
+                    <div class="input-group">
+                        <div class="password-container relative">
+                            <input type="password" placeholder=" " required class="input-field pr-12"
+                                id="login-password">
+                            <label for="login-password" class="input-label">Mật khẩu</label>
+                            <img src="./svg/show-password.svg"
+                                class="w-6 absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer toggle-password"
+                                alt="Hiện mật khẩu">
+                        </div>
+                    </div>
+                    <button
+                        class="mt-6 w-full bg-black text-white py-3 rounded-md font-semibold hover:bg-gray-800 transition-colors">Đăng
+                        nhập</button>
+                    <p class="mt-8 text-center text-sm text-gray-600">
+                        Chưa có tài khoản? <a href="./register.html"
+                            class="font-semibold text-black hover:underline">Đăng ký ngay</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="max-w-screen flex m-auto justify-center bg-zinc-200 pb-20 pt-10">
+        <div class="container flex flex-col text-white font-bold">
+            <div
+                class="flex flex-col md:flex-row items-center md:items-start text-center md:text-start justify-start gap-10">
+                <div class="flex-[0.3] flex flex-col items-center md:items-start">
+                    <img class="ml-[-12px] mb-4" src="./img/logo.webp" alt="">
+                    <p class="text-black font-normal mb-4">Keychron thiết kế và sản xuất các thiết bị ngoại vi máy tính
+                        không dây và tùy chỉnh hiệu suất cao cho Mac,
+                        Windows, iPhone và Android.
+                    </p>
+                    <div class="flex flex-row justify-start item-center ml-[-8px]">
+                        <img class="w-8" src="./svg/facebook.svg" alt="">
+                        <img class="w-10" src="./svg/youtube.svg" alt="">
+                        <img class="w-6" src="./svg/tiktok.svg" alt="">
+                    </div>
+                </div>
+                <div class="flex-[0.2] flex flex-col gap-3 text-black font-normal">
+                    <p class="font-bold">Trung tâm Keychron</p>
+                    <a href="#">Về chúng tôi</a>
+                    <a href="#">Thẻ quà tặng</a>
+                    <a href="#">Nhận giảm giá 10%</a>
+                    <a href="#">Nơi mua hàng</a>
+                    <a href="#">Bài viết</a>
+                    <a href="#">Tùy chỉnh với Thương hiệu của bạn</a>
+                    <a href="#">Tuyển dụng Influencer</a>
+                    <a href="#">Dự án liên kết</a>
+                </div>
+                <div class="flex-[0.2] flex flex-col gap-3 text-black font-normal">
+                    <p class="font-bold">Hỗ trợ</p>
+                    <a href="#">Trung tâm trợ giúp</a>
+                    <a href="#">Chính sách vận chuyển</a>
+                    <a href="#">Chính sách bảo hành</a>
+                    <a href="#">Liên hệ chúng tôi</a>
+                    <a href="#">Tải xuống</a>
+                    <a href="#">Câu hỏi thường gặp</a>
+                </div>
+                <div class="flex-[0.3] flex flex-col gap-3 text-black font-normal">
+                    <p class="font-bold">Bản tin</p>
+                    <p>Đăng ký để nhận ưu đãi độc quyền, những câu chuyện gốc, sự kiện và hơn thế nữa. </p>
+                    <div class="relative">
+                        <input type="text" class="w-full text-black bg-gray-100 p-2 pl-3 pr-10 rounded-md"
+                            placeholder="Email của bạn" />
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                            <img class="w-[20px]" src="./svg/right-arrow.svg" alt="voice" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUser = JSON.parse(localStorage.getItem('user-current'));
+            if (currentUser) {
+                window.location.href = './index.html';
+                return;
+            }
+        });
+    </script>
+    <script src="./js/mobileNav.js"></script>
+    <script src="./js/auth.js"></script>
+    <script src="./js/passwordToggle.js"></script>
+    <script src="./js/login.js"></script>
+</body>
+
+</html>
