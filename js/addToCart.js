@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const toastNotification = document.getElementById("toast-notification");
 	let toastTimeout;
 	function showToast() {
-		// Tạo nội dung cho toast
 		toastNotification.innerHTML = `
                     <span class="font-medium">✅ Đã thêm vào giỏ hàng!</span>
                     <a href="../../cart.html">Xem giỏ hàng</a>
@@ -34,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				localStorage.setItem("cart", JSON.stringify(cart));
 				showToast();
 			} else {
-				alert("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.");
 				window.location.href = "../../login.html";
 			}
 		});

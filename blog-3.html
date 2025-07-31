@@ -18,35 +18,39 @@
         <div class="container flex flex-col text-white font-bold ">
             <div class="flex justify-between items-center pt-4 pb-4 ">
                 <div>
-                    <a href="../../index.html"><img src="../../img/logo.webp" alt="Keychron Logo"></a>
+                    <a href="./index.html"><img src="./img/logo.webp" alt="Keychron Logo"></a>
                 </div>
                 <div class="relative w-[200px] md:w-[400px] lg:w-[800px] hidden md:block">
                     <input type="text" class="w-full text-black bg-gray-100 p-2 pl-10 pr-10 rounded-md"
                         placeholder="Tìm kiếm sản phẩm..." />
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <img class="w-[20px]" src="../../svg/search.svg" alt="search" />
-                    </div>
-                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                        <img class="w-[20px]" src="../../svg/voice.svg" alt="voice" />
+                        <img class="w-[20px]" src="./svg/search.svg" alt="search" />
                     </div>
                 </div>
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="relative group ml-[16px] py-3 -my-3">
                         <button id="profile-button" class="focus:outline-none">
-                            <img id="profile-icon" class="w-[24px]" src="../../svg/profile.svg"
-                                data-logged-in-src="../../svg/profile-logged.svg"
-                                data-logged-out-src="../../svg/profile.svg" alt="Tài khoản">
+                            <img id="profile-icon" class="w-6" src="./svg/profile.svg"
+                                data-logged-in-src="./img/Banner-3.webp" data-logged-out-src="./svg/profile.svg"
+                                alt="Tài khoản">
                         </button>
                         <div id="profile-dropdown"
                             class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 ring-1 ring-black ring-opacity-5 text-black font-normal text-sm">
                         </div>
                     </div>
-                    <a href="../../cart.html" id="cart-link" class="ml-[16px]"><img class="w-[28px] mt-[-2px]"
-                            src="../../svg/cart.svg" alt="Giỏ hàng"></a>
+                    <a href="./cart.html" id="cart-link" class="ml-[16px]"><img class="w-[28px] mt-[-6px]"
+                            src="./svg/cart.svg" alt="Giỏ hàng"></a>
                     <button id="menu-toggle" class="md:hidden ml-[16px] focus:outline-none">
-                        <img class="w-[24px]" src="../../svg/menu.svg" alt="Danh mục">
+                        <img class="w-[24px]" src="./svg/menu.svg" alt="Danh mục">
                     </button>
                 </div>
+            </div>
+            <div id="menu" class="hidden md:flex justify-center items-center text-black gap-4 pb-3">
+                <a href="#" class="link pb-1 ">Tất cả sản phẩm</a>
+                <a href="#" class="link pb-1">Bàn phím</a>
+                <a href="#" class="link pb-1">Bàn phím mỏng</a>
+                <a href="#" class="link pb-1">Chuột</a>
+                <a href="#" class="link pb-1">Phụ kiện</a>
             </div>
         </div>
     </nav>

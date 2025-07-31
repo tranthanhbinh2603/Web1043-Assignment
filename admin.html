@@ -4,17 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Đăng nhập vào tài khoản Keychron của bạn để mua sắm và nhận các ưu đãi độc quyền." />
+    <meta name="description" content="Quản lý người dùng hệ thống Keychron Việt Nam.">
     <script src="https://cdn.tailwindcss.com" rel="preload" as="style"></script>
     <link rel="icon" href="./ico/ico.png" type="image/png">
     <link rel="stylesheet" href="./css/font-face.css">
     <link rel="stylesheet" href="./css/styles.css">
-    <title>Đăng nhập | Keychron Việt Nam</title>
+    <title>Quản lý người dùng | Keychron Việt Nam</title>
 </head>
 
-<body class="bg-white text-gray-900">
-
+<body class="bg-gray-50 text-gray-900">
     <nav class="max-w-screen flex m-auto justify-center sticky top-0 z-50 bg-white">
         <div class="container flex flex-col text-white font-bold ">
             <div class="flex justify-between items-center pt-4 pb-4 ">
@@ -46,37 +44,16 @@
         </div>
     </nav>
 
-    <main class="container mx-auto my-12 px-4 flex items-center justify-center min-h-[60vh]">
-        <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
-            <div class="flex flex-col">
-                <h2 class="text-3xl font-bold mb-8 text-center">Đăng nhập</h2>
-                <form id="login-form" novalidate>
-                    <div class="input-group">
-                        <input type="email" placeholder=" " required class="input-field" id="login-email">
-                        <label for="login-email" class="input-label">Email</label>
-                        <div class="error-message text-sm text-red-600 italic mt-1 h-5"></div>
-                    </div>
-                    <div class="input-group">
-                        <div class="password-container relative">
-                            <input type="password" placeholder=" " required class="input-field pr-16"
-                                id="login-password">
-                            <label for="login-password" class="input-label">Mật khẩu</label>
-                            <img src="./svg/show-password.svg"
-                                class="w-6 absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer toggle-password"
-                                alt="Hiện mật khẩu">
-                        </div>
-                        <div class="error-message text-sm text-red-600 italic mt-1 h-5"></div>
-                    </div>
-                    <div id="login-general-error" class="text-center text-sm text-red-600 mb-4 h-5"></div>
-                    <button
-                        class="w-full bg-black text-white py-3 rounded-md font-semibold hover:bg-gray-800 transition-colors">Đăng
-                        nhập</button>
-                    <p class="mt-8 text-center text-sm text-gray-600">
-                        Chưa có tài khoản? <a href="./register.html"
-                            class="font-semibold text-black hover:underline">Đăng ký ngay</a>
-                    </p>
-                </form>
-            </div>
+    <main class="container mx-auto my-12 px-4">
+        <h1 class="text-3xl md:text-4xl font-bold mb-4">Quản lý người dùng</h1>
+        <p class="text-gray-600 mb-8">Thay đổi thông tin hoặc đặt lại mật khẩu cho người dùng trong hệ thống.</p>
+        <div id="admin-info-banner" class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md mb-8"
+            role="alert">
+            <p>Bạn đang quản lý với tư cách quản trị viên. Để thay đổi thông tin của chính bạn, vui lòng truy cập <a
+                    href="./profile.html" class="font-bold underline hover:text-blue-800">trang thông tin cá nhân</a>.
+            </p>
+        </div>
+        <div id="user-list-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         </div>
     </main>
 
@@ -130,18 +107,9 @@
             </div>
         </div>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentUser = JSON.parse(localStorage.getItem('user-current'));
-            if (currentUser) {
-                window.location.href = './index.html';
-                return;
-            }
-        });
-    </script>
+
     <script src="./js/auth.js"></script>
-    <script src="./js/passwordToggle.js"></script>
-    <script src="./js/login.js"></script>
+    <script src="./js/admin.js"></script>
 </body>
 
 </html>

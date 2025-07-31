@@ -1,6 +1,6 @@
-const registerForm = document.getElementById("register-form");
-
-if (registerForm) {
+document.addEventListener("DOMContentLoaded", () => {
+	const registerForm = document.getElementById("register-form");
+	if (!registerForm) return;
 	const nameInput = document.getElementById("reg-name");
 	const emailInput = document.getElementById("reg-email");
 	const passwordInput = document.getElementById("reg-password");
@@ -8,111 +8,101 @@ if (registerForm) {
 	const generalError = document.getElementById("register-general-error");
 	const showError = (input, message) => {
 		const inputGroup = input.closest(".input-group");
-		if (inputGroup) {
-			const errorDisplay = inputGroup.querySelector(".error-message");
-			if (errorDisplay) {
-				errorDisplay.innerText = message;
-			}
-		}
-		input.classList.add("error");
-		input.classList.remove("success");
+		const errorDisplay = inputGroup.querySelector(".error-message");
+		errorDisplay.innerText = message;
+		input.classList.add("border-red-500");
 	};
 	const showSuccess = (input) => {
 		const inputGroup = input.closest(".input-group");
-		if (inputGroup) {
-			const errorDisplay = inputGroup.querySelector(".error-message");
-			if (errorDisplay) {
-				errorDisplay.innerText = "";
-			}
-		}
-		input.classList.add("success");
-		input.classList.remove("error");
+		const errorDisplay = inputGroup.querySelector(".error-message");
+		errorDisplay.innerText = "";
+		input.classList.remove("border-red-500");
 	};
-	const checkRequired = (input) => {
+	const checkRequired = (input, fieldName) => {
 		if (input.value.trim() === "") {
-			showError(input, `Vui lòng không để trống trường này.`);
+			showError(input, `${fieldName} không được để trống.`);
 			return false;
 		}
 		return true;
 	};
-	const checkEmail = (input) => {
-		if (!checkRequired(input)) return false;
-		const email = input.value.trim();
-		if (!email.endsWith("@gmail.com")) {
-			showError(input, "Vui lòng chỉ sử dụng email có đuôi @gmail.com.");
+	const checkEmail = () => {
+		if (!checkRequired(emailInput, "Email")) return false;
+		const email = emailInput.value.trim();
+		const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+		if (!re.test(String(email).toLowerCase())) {
+			showError(emailInput, "Email không đúng định dạng.");
 			return false;
 		}
 		const users = JSON.parse(localStorage.getItem("users")) || [];
-		const userExists = users.some((user) => user.email === email);
-		if (userExists) {
-			showError(input, "Email này đã được đăng ký.");
+		if (users.some((user) => user.email === email)) {
+			showError(emailInput, "Email này đã được đăng ký.");
 			return false;
 		}
-		showSuccess(input);
+		showSuccess(emailInput);
 		return true;
 	};
-	const checkPassword = (input) => {
-		if (!checkRequired(input)) return false;
-		showSuccess(input);
-		return true;
-	};
-	const checkConfirmPassword = (password, confirmPassword) => {
-		if (!checkRequired(confirmPassword)) return false;
-		if (password.value !== confirmPassword.value) {
-			showError(confirmPassword, "Mật khẩu xác nhận không khớp.");
+	const checkPasswordStrength = () => {
+		if (!checkRequired(passwordInput, "Mật khẩu")) return false;
+		const password = passwordInput.value;
+		const errors = [];
+		if (password.length < 8) errors.push("phải có ít nhất 8 ký tự");
+		if (!/[A-Z]/.test(password)) errors.push("phải chứa 1 chữ hoa");
+		if (!/\d/.test(password)) errors.push("phải chứa 1 chữ số");
+		if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password))
+			errors.push("phải chứa 1 ký tự đặc biệt");
+		if (errors.length > 0) {
+			showError(passwordInput, `Mật khẩu ${errors.join(", ")}.`);
 			return false;
 		}
-		showSuccess(confirmPassword);
+		showSuccess(passwordInput);
+		checkConfirmPasswordMatch();
 		return true;
 	};
-	nameInput.addEventListener("blur", () => {
-		if (checkRequired(nameInput)) {
-			showSuccess(nameInput);
+	const checkConfirmPasswordMatch = () => {
+		if (!checkRequired(confirmPasswordInput, "Xác nhận mật khẩu")) return false;
+		if (passwordInput.value !== confirmPasswordInput.value) {
+			showError(confirmPasswordInput, "Mật khẩu xác nhận không khớp.");
+			return false;
 		}
-	});
-	emailInput.addEventListener("blur", () => {
-		checkEmail(emailInput);
-	});
-	passwordInput.addEventListener("blur", () => {
-		checkPassword(passwordInput);
-	});
-	confirmPasswordInput.addEventListener("blur", () => {
-		checkConfirmPassword(passwordInput, confirmPasswordInput);
-	});
+		showSuccess(confirmPasswordInput);
+		return true;
+	};
+	nameInput.addEventListener(
+		"blur",
+		() => checkRequired(nameInput, "Họ và tên") && showSuccess(nameInput)
+	);
+	emailInput.addEventListener("blur", checkEmail);
+	passwordInput.addEventListener("blur", checkPasswordStrength);
+	confirmPasswordInput.addEventListener("blur", checkConfirmPasswordMatch);
 	registerForm.addEventListener("submit", (e) => {
 		e.preventDefault();
-		if (generalError) generalError.innerText = "";
-		const isNameValid = checkRequired(nameInput);
-		const isEmailValid = checkEmail(emailInput);
-		const isPasswordValid = checkPassword(passwordInput);
-		const isConfirmPasswordValid = checkConfirmPassword(
-			passwordInput,
-			confirmPasswordInput
-		);
-		const isFormValid =
-			isNameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid;
-		if (isFormValid) {
-			const name = nameInput.value.trim();
-			const email = emailInput.value.trim();
-			const password = passwordInput.value;
+		generalError.innerText = "";
+		const isNameValid = checkRequired(nameInput, "Họ và tên");
+		const isEmailValid = checkEmail();
+		const isPasswordStrong = checkPasswordStrength();
+		const isConfirmPasswordValid = checkConfirmPasswordMatch();
+		if (
+			isNameValid &&
+			isEmailValid &&
+			isPasswordStrong &&
+			isConfirmPasswordValid
+		) {
+			const newUser = {
+				name: nameInput.value.trim(),
+				email: emailInput.value.trim(),
+				password: passwordInput.value,
+			};
 			const users = JSON.parse(localStorage.getItem("users")) || [];
-			const newUser = { name, email, password };
 			users.push(newUser);
 			localStorage.setItem("users", JSON.stringify(users));
-			if (generalError) {
-				generalError.classList.remove("text-red-600");
-				generalError.classList.add("text-green-600");
-				generalError.innerText = "Đăng ký thành công! Đang chuyển hướng...";
-			}
-			setTimeout(function () {
+			generalError.classList.remove("text-red-600");
+			generalError.classList.add("text-green-600");
+			generalError.innerText = "Đăng ký thành công! Đang chuyển hướng...";
+			setTimeout(() => {
 				window.location.href = "./login.html";
-			}, 3000);
+			}, 2000);
 		} else {
-			if (generalError) {
-				generalError.innerText = "Vui lòng kiểm tra lại các thông tin đã nhập.";
-			} else {
-				alert("Vui lòng kiểm tra lại các thông tin đã nhập.");
-			}
+			generalError.innerText = "Vui lòng kiểm tra lại các thông tin đã nhập.";
 		}
 	});
-}
+});

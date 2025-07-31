@@ -25,25 +25,20 @@
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <img class="w-[20px]" src="./svg/search.svg" alt="search" />
                     </div>
-                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                        <img class="w-[20px]" src="./svg/voice.svg" alt="voice" />
-                    </div>
                 </div>
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="relative group ml-[16px] py-3 -my-3">
                         <button id="profile-button" class="focus:outline-none">
                             <img id="profile-icon" class="w-6" src="./svg/profile.svg"
-                                data-logged-in-src="./svg/profile-logged.svg" data-logged-out-src="./svg/profile.svg"
+                                data-logged-in-src="./img/Banner-3.webp" data-logged-out-src="./svg/profile.svg"
                                 alt="Tài khoản">
                         </button>
                         <div id="profile-dropdown"
                             class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 ring-1 ring-black ring-opacity-5 text-black font-normal text-sm">
                         </div>
                     </div>
-                    <a href="./cart.html" class="ml-[16px]"><img class="w-[24px]" src="./svg/cart.svg" alt=""></a>
-                    <button id="menu-toggle" class="md:hidden ml-[16px] focus:outline-none">
-                        <img class="w-[24px]" src="./svg/menu.svg" alt="Danh mục">
-                    </button>
+                    <a href="./cart.html" id="cart-link" class="ml-[16px]"><img class="w-[28px] mt-[-6px]"
+                            src="./svg/cart.svg" alt="Giỏ hàng"></a>
                 </div>
             </div>
         </div>
@@ -144,6 +139,15 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUser = JSON.parse(localStorage.getItem('user-current'));
+            if (!currentUser) {
+                window.location.href = './login.html';
+                return;
+            }
+        });
+    </script>
     <script src="./js/auth.js"></script>
     <script src="./js/orderSuccess.js"></script>
 </body>
