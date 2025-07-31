@@ -48,54 +48,45 @@
             </div>
         </div>
     </nav>
-    <div id="mobile-menu-overlay" class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50 z-[90]"></div>
-    <div id="mobile-menu"
-        class="md:hidden fixed top-0 left-0 w-4/5 max-w-sm h-full bg-white shadow-md z-[100] transform -translate-x-full transition-transform duration-300 ease-in-out">
-        <div class="flex flex-col items-center py-4 relative">
-            <button id="close-menu" class="absolute top-2 right-2 focus:outline-none">
-                <img class="w-6 h-6" src="./svg/x-mark.svg" alt="Đóng">
-            </button>
-            <a href="./product.html" class="block py-2 ">Tất cả sản phẩm</a>
-            <a href="./product.html" class="block py-2 ">Bàn phím</a>
-            <a href="./product.html" class="block py-2 ">Bàn phím mỏng</a>
-            <a href="./product.html" class="block py-2 ">Chuột</a>
-            <a href="./product.html" class="block py-2 ">Phụ kiện</a>
-        </div>
-    </div>
     <main class="container mx-auto my-12 px-4 flex items-center justify-center min-h-[60vh]">
         <div class="w-full max-w-md">
             <div class="flex flex-col">
                 <h2 class="text-3xl font-bold mb-8 text-center">Tạo tài khoản</h2>
-                <form id="register-form">
+                <form id="register-form" novalidate>
                     <div class="input-group">
                         <input type="text" placeholder=" " required class="input-field" id="reg-name">
                         <label for="reg-name" class="input-label">Họ và tên</label>
+                        <div class="error-message text-sm text-red-600 italic mt-1 h-5"></div>
                     </div>
                     <div class="input-group">
                         <input type="email" placeholder=" " required class="input-field" id="reg-email">
                         <label for="reg-email" class="input-label">Email</label>
+                        <div class="error-message text-sm text-red-600 italic mt-1 h-5"></div>
                     </div>
                     <div class="input-group">
                         <div class="password-container relative">
-                            <input type="password" placeholder=" " required class="input-field pr-12" id="reg-password">
+                            <input type="password" placeholder=" " required class="input-field pr-16" id="reg-password">
                             <label for="reg-password" class="input-label">Mật khẩu</label>
                             <img src="./svg/show-password.svg"
                                 class="w-6 absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer toggle-password"
                                 alt="Hiện mật khẩu">
                         </div>
+                        <div class="error-message text-sm text-red-600 italic mt-1 h-5"></div>
                     </div>
                     <div class="input-group">
                         <div class="password-container relative">
-                            <input type="password" placeholder=" " required class="input-field pr-12"
+                            <input type="password" placeholder=" " required class="input-field pr-16"
                                 id="reg-confirm-password">
                             <label for="reg-confirm-password" class="input-label">Xác nhận Mật khẩu</label>
                             <img src="./svg/show-password.svg"
                                 class="w-6 absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer toggle-password"
                                 alt="Hiện mật khẩu">
                         </div>
+                        <div class="error-message text-sm text-red-600 italic mt-1 h-5"></div>
                     </div>
+                    <div id="register-general-error" class="text-center text-sm text-red-600 mb-4 h-5"></div>
                     <button
-                        class="mt-6 w-full bg-black text-white py-3 rounded-md font-semibold hover:bg-gray-800 transition-colors">Đăng
+                        class="w-full bg-black text-white py-3 rounded-md font-semibold hover:bg-gray-800 transition-colors">Đăng
                         ký</button>
                     <p class="mt-8 text-center text-sm text-gray-600">
                         Đã có tài khoản? <a href="./login.html" class="font-semibold text-black hover:underline">Đăng
@@ -165,7 +156,6 @@
             }
         });
     </script>
-    <script src="./js/mobileNav.js"></script>
     <script src="./js/auth.js"></script>
     <script src="./js/passwordToggle.js"></script>
     <script src="./js/register.js"></script>
