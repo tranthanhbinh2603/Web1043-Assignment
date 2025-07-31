@@ -3,8 +3,8 @@ if (ratingStarsContainer) {
 	const stars = ratingStarsContainer.querySelectorAll("img");
 	let currentRating = 0;
 
-	const starFullSrc = "../../svg/star-full.svg";
-	const starNoSrc = "../../svg/star-no.svg";
+	const starFullSrc = "../svg/star-full.svg";
+	const starNoSrc = "../svg/star-no.svg";
 
 	function updateStars(rating) {
 		stars.forEach((star, index) => {

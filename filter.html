@@ -4,16 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Quản lý người dùng hệ thống Keychron Việt Nam.">
-    <script src="https://cdn.tailwindcss.com" rel="preload" as="style"></script>
+    <meta name="description" content="Lọc và tìm kiếm các sản phẩm Keychron theo nhu cầu của bạn." />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="./ico/ico.png" type="image/png">
     <link rel="stylesheet" href="./css/font-face.css">
     <link rel="stylesheet" href="./css/styles.css">
-    <title>Quản lý người dùng | Keychron Việt Nam</title>
+    <title>Lọc sản phẩm | Keychron Việt Nam</title>
 </head>
 
-<body class="bg-gray-50 text-gray-900">
-    <nav class="max-w-screen flex m-auto justify-center sticky top-0 z-50 bg-white">
+<body class="bg-gray-50">
+    <nav class="max-w-screen flex m-auto justify-center sticky top-0 z-50 bg-white shadow-sm">
         <div class="container flex flex-col text-white font-bold ">
             <div class="flex justify-between items-center pt-4 pb-4 ">
                 <div>
@@ -39,25 +39,54 @@
                     </div>
                     <a href="./cart.html" id="cart-link" class="ml-[16px]"><img class="w-[28px] mt-[-6px]"
                             src="./svg/cart.svg" alt="Giỏ hàng"></a>
+                    <button id="menu-toggle" class="md:hidden ml-[16px] focus:outline-none">
+                        <img class="w-[24px]" src="./svg/menu.svg" alt="Danh mục">
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
-
-    <main class="container mx-auto my-12 px-4">
-        <h1 class="text-3xl md:text-4xl font-bold mb-4">Quản lý người dùng</h1>
-        <p class="text-gray-600 mb-8">Thay đổi thông tin hoặc đặt lại mật khẩu cho người dùng trong hệ thống.</p>
-        <div id="admin-info-banner" class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md mb-8"
-            role="alert">
-            <p>Bạn đang quản lý với tư cách quản trị viên. Để thay đổi thông tin của chính bạn, vui lòng truy cập <a
-                    href="./profile.html" class="font-bold underline hover:text-blue-800">trang thông tin cá nhân</a>.
-            </p>
-        </div>
-        <div id="user-list-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <main class="container mx-auto my-12 px-4 min-h-screen">
+        <div class="flex flex-col md:flex-row gap-8">
+            <aside class="w-full md:w-1/4 lg:w-1/5">
+                <div class="bg-white p-6 rounded-lg shadow-sm sticky top-28">
+                    <h2 class="text-2xl font-bold mb-6 border-b pb-3">Bộ lọc</h2>
+                    <div id="filters-form" class="space-y-6">
+                        <div>
+                            <label for="search-input" class="font-semibold block mb-2">Tìm theo tên</label>
+                            <input type="text" id="search-input" placeholder="Tên sản phẩm..."
+                                class="w-full p-2 border rounded-md focus:ring-2 focus:ring-black focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="price-range" class="font-semibold block mb-2">Khoảng giá</label>
+                            <input type="range" id="price-range" min="0" max="250" value="250"
+                                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-sm text-gray-600 mt-1">
+                                <span>$0</span>
+                                <span id="price-value">$250</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div id="category-filters" class="space-y-2">
+                            </div>
+                        </div>
+                        <button id="reset-filters"
+                            class="w-full bg-gray-200 text-black py-2 rounded-md font-semibold hover:bg-gray-300 transition-colors">Xóa
+                            bộ lọc</button>
+                    </div>
+                </div>
+            </aside>
+            <section class="w-full md:w-3/4 lg:w-4/5">
+                <div class="mb-4">
+                    <p id="product-count" class="text-gray-600">Đang hiển thị ... sản phẩm.</p>
+                </div>
+                <div id="filtered-products-container"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                </div>
+            </section>
         </div>
     </main>
-
-    <footer class="max-w-screen flex m-auto justify-center bg-zinc-200 pb-20 pt-10">
+    <footer class="max-w-screen flex m-auto justify-center bg-zinc-200 pb-20 pt-10 mt-20">
         <div class="container flex flex-col text-white font-bold">
             <div
                 class="flex flex-col md:flex-row items-center md:items-start text-center md:text-start justify-start gap-10">
@@ -75,29 +104,13 @@
                 </div>
                 <div class="flex-[0.2] flex flex-col gap-3 text-black font-normal">
                     <p class="font-bold">Trung tâm Keychron</p>
-                    <a href="https://www.keychron.com/pages/about-us">Về chúng tôi</a>
-                    <a href="https://www.keychron.com/products/keychron-gift-card">Thẻ quà tặng</a>
-                    <a href="https://www.keychron.com/pages/get-10-off-your-next-keychron-purchase">Nhận giảm giá
-                        10%</a>
-                    <a href="https://www.keychron.com/pages/where-to-buy">Nơi mua hàng</a>
-                    <a href="https://www.keychron.com/blogs/news">Bài viết</a>
-                    <a href="https://www.keychron.com/pages/customize-the-keychron-keyboards-with-your-branding">Tùy
-                        chỉnh với Thương hiệu của
-                        bạn</a>
-                    <a href="https://www.keychron.com/pages/influencer-recruit">Tuyển dụng Influencer</a>
-                    <a href="https://affiliate.keychron.com/">Dự án liên kết</a>
+                    <a href="#">Về chúng tôi</a>
+                    <a href="#">Thẻ quà tặng</a>
                 </div>
                 <div class="flex-[0.2] flex flex-col gap-3 text-black font-normal">
                     <p class="font-bold">Trợ giúp & Hỗ trợ</p>
-                    <a href="https://launcher.keychron.com/">Trình khởi chạy Keychron</a>
-                    <a href="https://www.keychron.com/pages/contact-us">Liên hệ chúng tôi</a>
-                    <a href="https://www.keychron.com/pages/user-manual">Hướng dẫn sử dụng</a>
-                    <a href="https://www.keychron.com/pages/firmware">Firmware</a>
-                    <a href="https://keychronsupport.zendesk.com/hc/en-us">Trung tâm trợ giúp</a>
-                    <a href="https://www.keychron.com/pages/keychron-policy">Chính sách mua hàng</a>
-                    <a href="https://www.keychron.com/pages/data-processing-and-privacy-policy">Chính sách bảo mật</a>
-                    <a href="https://www.keychron.com/policies/refund-policy">Chính sách hoàn tiền</a>
-                    <a href="https://www.keychron.com/policies/terms-of-service">Điều khoản dịch vụ</a>
+                    <a href="#">Liên hệ chúng tôi</a>
+                    <a href="#">Hướng dẫn sử dụng</a>
                 </div>
                 <div class="flex-[0.3] flex flex-col gap-3 text-black font-normal">
                     <p class="font-bold">Bản tin</p>
@@ -113,9 +126,9 @@
             </div>
         </div>
     </footer>
-
+    <script src="./js/dataProduct.js"></script>
+    <script src="./js/filterProducts.js"></script>
     <script src="./js/auth.js"></script>
-    <script src="./js/admin.js"></script>
 </body>
 
 </html>
