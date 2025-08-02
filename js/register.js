@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				name: nameInput.value.trim(),
 				email: emailInput.value.trim(),
 				password: passwordInput.value,
+				isAdmin: false,
 			};
 			const users = JSON.parse(localStorage.getItem("users")) || [];
 			users.push(newUser);
