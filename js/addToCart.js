@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	function showToast() {
 		toastNotification.innerHTML = `
                     <span class="font-medium">✅ Đã thêm vào giỏ hàng!</span>
-                    <a href="../../cart.html">Xem giỏ hàng</a>
+                    <a href="./cart.html" class="underline hover:text-blue-500">Xem giỏ hàng</a>
                 `;
 		toastNotification.classList.add("show");
 		clearTimeout(toastTimeout);
@@ -19,21 +19,28 @@ document.addEventListener("DOMContentLoaded", () => {
 			const currentUser = JSON.parse(localStorage.getItem("user-current"));
 			if (currentUser) {
 				const productName = document.querySelector("h1").innerText;
-				const productPrice = document.querySelector(
-					".text-3xl.font-bold.text-gray-800"
-				).innerText;
-				const productImage = document.querySelector(".md\\:w-1\\/3 img").src;
+				const productPriceElement = document.getElementById("product-price");
+				const productImageElement = document.getElementById("product-image");
+				if (!productName || !productPriceElement || !productImageElement) {
+					console.error(
+						"Không thể tìm thấy thông tin sản phẩm để thêm vào giỏ."
+					);
+					return;
+				}
 				const product = {
 					name: productName,
-					price: productPrice,
-					image: productImage,
+					price: productPriceElement.innerText,
+					image: productImageElement.src,
 				};
 				let cart = JSON.parse(localStorage.getItem("cart")) || [];
 				cart.push(product);
 				localStorage.setItem("cart", JSON.stringify(cart));
 				showToast();
+				if (typeof show_number_item_in_cart === "function") {
+					show_number_item_in_cart();
+				}
 			} else {
-				window.location.href = "../../login.html";
+				window.location.href = "./login.html";
 			}
 		});
 	}

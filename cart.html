@@ -29,8 +29,13 @@
                     </div>
                 </div>
                 <div class="flex items-center">
-                    <a href="./cart.html" id="cart-link" class="ml-[16px]"><img class="w-[28px] mt-[-6px]"
-                            src="./svg/cart.svg" alt="Giỏ hàng" loading="lazy"></a>
+                    <div class="relative ml-[16px]">
+                        <a href="./cart.html" id="cart-link">
+                            <img class="w-[28px] mt-[-6px]" src="./svg/cart.svg" alt="Giỏ hàng" loading="lazy">
+                        </a>
+                        <span id="cart-count"
+                            class="absolute -top-3 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                    </div>
                     <div class="relative group ml-[16px] py-3 -my-3">
                         <button id="profile-button" class="focus:outline-none">
                             <img id="profile-icon" class="w-6" src="./svg/profile.svg"

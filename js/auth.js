@@ -1,6 +1,22 @@
 const profileIcon = document.getElementById("profile-icon");
 const profileDropdown = document.getElementById("profile-dropdown");
 
+function show_number_item_in_cart() {
+	const cartCountElement = document.getElementById("cart-count");
+	if (cartCountElement) {
+		const cart = JSON.parse(localStorage.getItem("cart")) || [];
+		const cartItemCount = cart.length;
+		if (cartItemCount > 0) {
+			cartCountElement.textContent = cartItemCount;
+			cartCountElement.classList.remove("hidden");
+		} else {
+			cartCountElement.classList.add("hidden");
+		}
+	} else if (cartCountElement) {
+		cartCountElement.classList.add("hidden");
+	}
+}
+
 if (profileIcon) {
 	const currentUser = JSON.parse(localStorage.getItem("user-current"));
 	const loggedInSrc = profileIcon.dataset.loggedInSrc;
@@ -38,6 +54,7 @@ if (profileIcon) {
 				window.location.reload();
 			});
 		}
+		show_number_item_in_cart();
 	} else {
 		profileIcon.src = loggedOutSrc;
 		profileDropdown.innerHTML = `
