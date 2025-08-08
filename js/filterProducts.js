@@ -31,11 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			let starsHTML = "";
 			for (let i = 0; i < 5; i++) {
 				if (product.star_rate >= i + 1)
-					starsHTML += `<img class="w-4 h-4" src="./svg/star-full.svg" alt="Sao đầy">`;
+					starsHTML += `<img loading="lazy" class="w-4 h-4" src="./svg/star-full.svg" alt="Sao đầy">`;
 				else if (product.star_rate >= i + 0.5)
-					starsHTML += `<img class="w-4 h-4" src="./svg/star-half.svg" alt="Nửa sao">`;
+					starsHTML += `<img loading="lazy" class="w-4 h-4" src="./svg/star-half.svg" alt="Nửa sao">`;
 				else
-					starsHTML += `<img class="w-4 h-4" src="./svg/star-no.svg" alt="Sao rỗng">`;
+					starsHTML += `<img loading="lazy" class="w-4 h-4" src="./svg/star-no.svg" alt="Sao rỗng">`;
 			}
 			const productCard = document.createElement("a");
 			productCard.href = `./product.html?index=${product.id}`;
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const imagePath = product.image_path.replace("../../", "./");
 			productCard.innerHTML = `
                 <div class="overflow-hidden">
-                    <img class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    <img loading="lazy" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                         src="${imagePath}" alt="${product.title}">
                 </div>
                 <div class="p-4 flex flex-col flex-grow">

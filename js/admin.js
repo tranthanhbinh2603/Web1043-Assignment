@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 								}" novalidate>
                     <div class="flex items-center gap-6 mb-6">
                         <div class="drop-zone flex-shrink-0">
-                            <img class="profile-preview" id="profile-icon" src="${
+                            <img loading="lazy" class="profile-preview" id="profile-icon" src="${
 															user.image_user_data || "./svg/profile.svg"
 														}" alt="Ảnh đại diện của ${user.name}">
                         </div>
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <div class="password-container relative">
                                 <input type="password" placeholder=" " class="input-field pr-10" name="password">
                                 <label class="input-label">Mật khẩu mới (để trống nếu không đổi)</label>
-                                <img src="./svg/show-password.svg" class="w-6 absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer toggle-password" alt="Hiện mật khẩu">
+                                <img loading="lazy" src="./svg/show-password.svg" class="w-6 absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer toggle-password" alt="Hiện mật khẩu">
                             </div>
                             <div class="error-message text-sm text-red-600 mt-1"></div>
                         </div>
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
                              <div class="password-container relative">
                                 <input type="password" placeholder=" " class="input-field pr-10" name="confirm_password">
                                 <label class="input-label">Xác nhận mật khẩu mới</label>
-                                <img src="./svg/show-password.svg" class="w-6 absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer toggle-password" alt="Hiện mật khẩu">
+                                <img loading="lazy" src="./svg/show-password.svg" class="w-6 absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer toggle-password" alt="Hiện mật khẩu">
                             </div>
                             <div class="error-message text-sm text-red-600 mt-1"></div>
                         </div>

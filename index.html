@@ -18,56 +18,35 @@
         <div class="container flex flex-col text-white font-bold ">
             <div class="flex justify-between items-center pt-4 pb-4 ">
                 <div>
-                    <a href="./index.html"><img src="./img/logo.webp" alt="Keychron Logo"></a>
+                    <a href="./index.html"><img src="./img/logo.webp" alt="Keychron Logo" loading="lazy"></a>
                 </div>
                 <div class="relative w-[200px] md:w-[400px] lg:w-[800px] hidden md:block">
                     <input type="text" id="searchInput" class="w-full text-black bg-gray-100 p-2 pl-10 pr-10 rounded-md"
                         placeholder="Tìm kiếm sản phẩm..." />
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <img class="w-[20px]" src="./svg/search.svg" alt="search" />
+                        <img class="w-[20px]" src="./svg/search.svg" alt="search" loading="lazy" />
                     </div>
                 </div>
                 <div class="flex items-center">
                     <a href="./cart.html" id="cart-link" class="ml-[16px]"><img class="w-[28px] mt-[-6px]"
-                            src="./svg/cart.svg" alt="Giỏ hàng"></a>
+                            src="./svg/cart.svg" alt="Giỏ hàng" loading="lazy"></a>
                     <div class="relative group ml-[16px] py-3 -my-3">
                         <button id="profile-button" class="focus:outline-none">
                             <img id="profile-icon" class="w-6" src="./svg/profile.svg"
                                 data-logged-in-src="./img/Banner-3.webp" data-logged-out-src="./svg/profile.svg"
-                                alt="Tài khoản">
+                                alt="Tài khoản" loading="lazy">
                         </button>
                         <div id="profile-dropdown"
                             class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 ring-1 ring-black ring-opacity-5 text-black font-normal text-sm">
                         </div>
                     </div>
                     <button id="menu-toggle" class="md:hidden ml-[16px] focus:outline-none">
-                        <img class="w-[24px]" src="./svg/menu.svg" alt="Danh mục">
+                        <img class="w-[24px]" src="./svg/menu.svg" alt="Danh mục" loading="lazy">
                     </button>
                 </div>
             </div>
-            <!-- <div id="menu" class="hidden md:flex justify-center items-center text-black gap-4 pb-3">
-                <a href="#" class="link pb-1 ">Tất cả sản phẩm</a>
-                <a href="#" class="link pb-1">Bàn phím</a>
-                <a href="#" class="link pb-1">Bàn phím mỏng</a>
-                <a href="#" class="link pb-1">Chuột</a>
-                <a href="#" class="link pb-1">Phụ kiện</a>
-            </div> -->
         </div>
     </nav>
-    <div id="mobile-menu-overlay" class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50 z-[90]"></div>
-    <div id="mobile-menu"
-        class="md:hidden fixed top-0 left-0 w-4/5 max-w-sm h-full bg-white shadow-md z-[100] transform -translate-x-full transition-transform duration-300 ease-in-out">
-        <div class="flex flex-col items-center py-4 relative">
-            <button id="close-menu" class="absolute top-2 right-2 focus:outline-none">
-                <img class="w-6 h-6" src="./svg/x-mark.svg" alt="Đóng">
-            </button>
-            <a href="#" class="block py-2 ">Tất cả sản phẩm</a>
-            <a href="#" class="block py-2 ">Bàn phím</a>
-            <a href="#" class="block py-2 ">Bàn phím mỏng</a>
-            <a href="#" class="block py-2 ">Chuột</a>
-            <a href="#" class="block py-2 ">Phụ kiện</a>
-        </div>
-    </div>
     <header class="relative w-full h-[70vh] overflow-hidden group">
         <div id="slider-container" class="relative w-full h-full">
         </div>
@@ -100,42 +79,46 @@
         <div class="container flex flex-col text-white font-bold my-20">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
                 <div class="flex items-center justify-center">
-                    <img class="w-[150px] md:w-[200px]" src="./img/the-verge-logo.avif" alt="The Verge">
+                    <img class="w-[150px] md:w-[200px]" src="./img/the-verge-logo.avif" alt="The Verge" loading="lazy">
                 </div>
                 <div class="flex items-center justify-center">
-                    <img class="w-[150px] md:w-[200px]" src="./img/tech_crunch.avif" alt="TechCrunch">
+                    <img class="w-[150px] md:w-[200px]" src="./img/tech_crunch.avif" alt="TechCrunch" loading="lazy">
                 </div>
                 <div class="flex items-center justify-center">
-                    <img class="w-[150px] md:w-[200px]" src="./img/unbox_therapy.avif" alt="Unbox Therapy">
+                    <img class="w-[150px] md:w-[200px]" src="./img/unbox_therapy.avif" alt="Unbox Therapy"
+                        loading="lazy">
                 </div>
                 <div class="flex items-center justify-center">
-                    <img class="w-[150px] md:w-[200px]" src="./img/MKBHD_logo.avif" alt="MKBHD">
+                    <img class="w-[150px] md:w-[200px]" src="./img/MKBHD_logo.avif" alt="MKBHD" loading="lazy">
                 </div>
                 <div class="flex items-center justify-center">
-                    <img class="w-[150px] md:w-[200px]" src="./img/Wirecutter-Logo.webp" alt="Wirecutter">
+                    <img class="w-[150px] md:w-[200px]" src="./img/Wirecutter-Logo.webp" alt="Wirecutter"
+                        loading="lazy">
                 </div>
-                <div class="flex items-center justify-center">
-                    <img class="w-[150px] md:w-[200px]" src="./img/Linus_tech_tips_logo.avif" alt="Linus Tech Tips">
+                <div class=" flex items-center justify-center">
+                    <img class="w-[150px] md:w-[200px]" src="./img/Linus_tech_tips_logo.avif" alt="Linus Tech Tips"
+                        loading="lazy">
                 </div>
-                <div class="flex items-center justify-center">
+                <div class=" flex items-center justify-center">
                     <img class="w-[150px] md:w-[200px]"
-                        src="./img/Forbes-Logo_349cdb56-71d9-4ee7-b12e-bbaac339bc58.webp" alt="Forbes">
+                        src="./img/Forbes-Logo_349cdb56-71d9-4ee7-b12e-bbaac339bc58.webp" alt="Forbes" loading="lazy">
                 </div>
-                <div class="flex items-center justify-center">
+                <div class=" flex items-center justify-center">
                     <img class="w-[150px] md:w-[200px]" src="./img/Wired-Logo_c6ff7cf8-e254-422f-b14f-cd930aa165d7.avif"
-                        alt="Wired">
+                        alt="Wired" loading="lazy">
                 </div>
-                <div class="flex items-center justify-center">
-                    <img class="w-[150px] md:w-[200px]" src="./img/digital_trends.avif" alt="Digital Trends">
+                <div class=" flex items-center justify-center">
+                    <img class="w-[150px] md:w-[200px]" src="./img/digital_trends.avif" alt="Digital Trends"
+                        loading="lazy">
                 </div>
-                <div class="flex items-center justify-center">
+                <div class=" flex items-center justify-center">
                     <img class="w-[150px] md:w-[200px]" src="./img/CNN-Logo_1419cbb7-969d-448c-8014-20977e467523.webp"
-                        alt="CNN">
+                        alt="CNN" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
-    <section class="max-w-screen flex m-auto justify-center bg-zinc-100">
+    <section class=" max-w-screen flex m-auto justify-center bg-zinc-100">
         <div class="container flex flex-col text-white font-bold mt-20 mb-20">
             <p class="text-black text-4xl mb-20">Bài viết
             </p>
@@ -143,18 +126,20 @@
                 <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
                     <div class="flex-[0.33] flex flex-col items-start justify-start ">
                         <img class="w-full h-80 object-cover" src="./img/keychron-k4he-wireless-keyboard-review.webp"
-                            alt="">
-                        <a href="./blog-1.html">
-                            <p class="text-xl text-black mt-4 mb-1">Đánh giá Bàn phím Keychron - Tháng 7 2025 - Top 5
+                            alt="Đánh giá bàn phím Keychron tháng 7" loading="lazy"> <a href="./blog-1.html">
+                            <p class="text-xl text-black mt-4 mb-1">Đánh giá Bàn phím Keychron - Tháng 7
+                                2025 - Top 5
                                 Bàn
                                 phím</p>
                         </a>
                         <p class="text-normal font-normal text-black">Ngày 17 tháng 7 năm 2025</p>
                     </div>
                     <div class="flex-[0.33] flex flex-col items-start justify-start ">
-                        <img class="w-full h-80 object-cover" src="./img/blog-2.webp" alt="">
+                        <img class="w-full h-80 object-cover" src="./img/blog-2.webp" alt="Hướng dẫn toàn diện PS5"
+                            loading="lazy">
                         <a href="./blog-2.html">
-                            <p class="text-xl text-black mt-4 mb-1">Bạn có thể dùng Bàn phím và Chuột trên PS5 không?
+                            <p class="text-xl text-black mt-4 mb-1">Bạn có thể dùng Bàn phím và Chuột trên
+                                PS5 không?
                                 Hướng
                                 dẫn Toàn diện
                             </p>
@@ -162,9 +147,11 @@
                         <p class="text-normal font-normal text-black">Ngày 16 tháng 7 năm 2025</p>
                     </div>
                     <div class="flex-[0.33] flex flex-col items-start justify-start ">
-                        <img class="w-full h-80 object-cover" src="./img/blog-3.webp" alt="">
+                        <img class="w-full h-80 object-cover" src="./img/blog-3.webp"
+                            alt="Keycap có ảnh hưởng tới chất lượng âm thanh không?" loading="lazy">
                         <a href="./blog-3.html">
-                            <p class="text-xl text-black mt-4 mb-1">Keycap có ảnh hưởng đến âm thanh không? Mẹo để có
+                            <p class="text-xl text-black mt-4 mb-1">Keycap có ảnh hưởng đến âm thanh không?
+                                Mẹo để có
                                 tiếng
                                 gõ hay hơn
                             </p>
@@ -180,15 +167,15 @@
             <div
                 class="flex flex-col md:flex-row items-center md:items-start text-center md:text-start justify-start gap-10">
                 <div class="flex-[0.3] flex flex-col items-center md:items-start">
-                    <img class="ml-[-12px] mb-4" src="./img/logo.webp" alt="">
+                    <img class="ml-[-12px] mb-4" src="./img/logo.webp" alt="logo" loading="lazy">
                     <p class="text-black font-normal mb-4">Keychron thiết kế và sản xuất các thiết bị ngoại vi máy tính
                         không dây và tùy chỉnh hiệu suất cao cho Mac,
                         Windows, iPhone và Android.
                     </p>
                     <div class="flex flex-row justify-start item-center ml-[-8px]">
-                        <img class="w-8" src="./svg/facebook.svg" alt="">
-                        <img class="w-10" src="./svg/youtube.svg" alt="">
-                        <img class="w-6" src="./svg/tiktok.svg" alt="">
+                        <img class="w-8" src="./svg/facebook.svg" alt="facebook" loading="lazy">
+                        <img class="w-10" src="./svg/youtube.svg" alt="youtube" loading="lazy">
+                        <img class="w-6" src="./svg/tiktok.svg" alt="tiktok" loading="lazy">
                     </div>
                 </div>
                 <div class="flex-[0.2] flex flex-col gap-3 text-black font-normal">
@@ -214,7 +201,7 @@
                         <input type="text" class="w-full text-black bg-gray-100 p-2 pl-3 pr-10 rounded-md"
                             placeholder="Email của bạn" />
                         <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                            <img class="w-[20px]" src="./svg/right-arrow.svg" alt="voice" />
+                            <img class="w-[20px]" src="./svg/right-arrow.svg" alt="voice" loading="lazy" />
                         </div>
                     </div>
                 </div>

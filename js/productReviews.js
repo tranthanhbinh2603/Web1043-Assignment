@@ -49,13 +49,13 @@ document.addEventListener("DOMContentLoaded", () => {
 			let starsHTML = "";
 			for (let i = 0; i < 5; i++) {
 				if (i < review.rating) {
-					starsHTML += `<img class="w-4" src="./svg/star-full.svg" alt="Sao đầy">`;
+					starsHTML += `<img loading="lazy" class="w-4" src="./svg/star-full.svg" alt="Sao đầy">`;
 				} else {
-					starsHTML += `<img class="w-4" src="./svg/star-no.svg" alt="Sao rỗng">`;
+					starsHTML += `<img loading="lazy" class="w-4" src="./svg/star-no.svg" alt="Sao rỗng">`;
 				}
 			}
 			reviewElement.innerHTML = `
-                <img src="./svg/profile.svg" alt="Reviewer Avatar" class="w-12 h-12 rounded-full flex-shrink-0">
+                <img loading="lazy" src="./svg/profile.svg" alt="Reviewer Avatar" class="w-12 h-12 rounded-full flex-shrink-0 icon-reviewer">
                 <div class="w-full">
                     <div class="flex justify-between items-center">
                         <h3 class="font-bold">${review.name}</h3>
