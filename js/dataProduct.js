@@ -1,6 +1,7 @@
 var dataProduct = [
 	{
 		title: "Bàn phím Keychron K2 HE màu đen",
+		short_url: "keychron-k2-he",
 		sort_description: "",
 		description: `<p>Giới thiệu <b>Keychron K2 HE</b>, một cuộc cách mạng trong thế giới bàn phím cơ không dây. Với bố cục 75% nhỏ gọn nhưng đầy đủ chức năng, K2 HE là sự cân bằng hoàn hảo giữa không gian làm việc tối giản và hiệu suất tối đa. Đây không chỉ là một bản nâng cấp, mà là một định nghĩa lại hoàn toàn về trải nghiệm gõ phím nhờ vào công nghệ Switch Từ tính (Magnetic Switch) Hall Effect đột phá.<p><b>Công nghệ Switch Từ tính Hall Effect:</b> Trái tim của K2 HE là các switch từ tính tiên tiến. Khác với switch cơ học truyền thống, switch từ tính sử dụng hiệu ứng Hall để phát hiện vị trí của phím bấm với độ chính xác tuyệt đối. Điều này mở ra những khả năng tùy chỉnh chưa từng có:<ul class="list-disc pl-5"><li><strong>Tùy chỉnh điểm kích hoạt:</strong> Dễ dàng điều chỉnh khoảng cách nhận phím trong khoảng từ 0.1mm đến 4.0mm. Thiết lập một hành trình siêu ngắn (0.1mm) để có phản ứng tức thì trong game, hoặc một hành trình sâu hơn cho việc gõ văn bản chính xác và ít lỗi hơn.<li><strong>Rapid Trigger:</strong> Tính năng thay đổi cuộc chơi cho game thủ. Phím sẽ được reset ngay khi bạn bắt đầu nhấc ngón tay lên, cho phép lặp lại các thao tác nhấn phím với tốc độ cực nhanh, mang lại lợi thế vượt trội trong các game đối kháng và FPS.<li><strong>Độ bền vượt trội:</strong> Với ít tiếp xúc vật lý hơn, switch từ tính có tuổi thọ lên đến 100 triệu lần nhấn, gấp đôi so với các switch cơ học thông thường.</ul><p><b>Kết nối linh hoạt & Tương thích toàn diện:</b> Keychron K2 HE hỗ trợ kết nối qua Bluetooth 5.1 và 2.4GHz không dây, cũng như chế độ có dây USB-C. Dễ dàng chuyển đổi giữa tối đa 3 thiết bị qua Bluetooth. Bàn phím hoàn toàn tương thích với cả macOS và Windows, với bộ keycap đi kèm cho cả hai hệ điều hành.<p><b>Thiết kế cao cấp:</b> Bàn phím được trang bị keycap PBT double-shot cao cấp, chống mài mòn và chống bám dầu, đảm bảo vẻ ngoài luôn như mới. Bên trong, nhiều lớp foam tiêu âm được tích hợp để loại bỏ các âm thanh không mong muốn, mang lại trải nghiệm gõ êm ái và thỏa mãn.</p>`,
 		image_path: "./img/Product-1.webp",
@@ -12,6 +13,7 @@ var dataProduct = [
 	{
 		title: "Bàn phím số tùy chỉnh không dây Keychron Q0 Max QMK",
 		sort_description: "",
+		short_url: "keychron-q0-max-qmk",
 		description: `<p><b>Keychron Q0 Max</b>là mảnh ghép còn thiếu để hoàn thiện không gian làm việc chuyên nghiệp của bạn. Đây không chỉ là một bàn phím số thông thường, mà là một công cụ năng suất mạnh mẽ, được chế tác tinh xảo và trang bị những công nghệ hàng đầu. Với thân máy hoàn toàn bằng kim loại, kết nối không dây và khả năng tùy chỉnh vô hạn qua QMK/VIA, Q0 Max được sinh ra để tối ưu hóa mọi quy trình làm việc.</p><p><b>Thiết kế kim loại nguyên khối và Gasket Mount:</b>Q0 Max kế thừa chất lượng xây dựng đỉnh cao của dòng Q-series với thân máy được gia công từ nhôm CNC 6063, mang lại sự chắc chắn, đầm tay và vẻ ngoài cao cấp. Cấu trúc Gasket Mount, với các miếng đệm silicon giữa plate và vỏ, giúp hấp thụ rung động, tạo ra trải nghiệm gõ linh hoạt và âm thanh "thocky" đầy thỏa mãn mà các tín đồ phím cơ yêu thích.</p><p><b>Sức mạnh của QMK/VIA:</b>Giải phóng toàn bộ tiềm năng của bạn với phần mềm QMK/VIA. Bạn có thể dễ dàng lập trình lại bất kỳ phím nào trên Q0 Max. Gán các chuỗi lệnh phức tạp, các phím tắt chuyên dụng cho phần mềm (Excel, Photoshop, AutoCAD, v.v.), hoặc tạo các lớp phím chức năng khác nhau. Núm xoay (knob) cũng có thể được tùy chỉnh để điều khiển âm lượng, độ sáng, cuộn trang, zoom, hoặc bất kỳ chức năng nào bạn có thể nghĩ ra, giúp tăng tốc công việc một cách đáng kinh ngạc.</p><p><b>Kết nối không dây 2.4GHz & Bluetooth:</b>Tận hưởng sự tự do và một bàn làm việc gọn gàng với kết nối không dây kép. Sử dụng kết nối 2.4GHz với polling rate 1000Hz để có độ trễ cực thấp, hoặc kết nối qua Bluetooth 5.1 với tối đa 3 thiết bị và chuyển đổi liền mạch giữa chúng. Tất nhiên, chế độ có dây USB-C vẫn luôn sẵn sàng.</p>`,
 		image_path: "./img/Product-2.webp",
 		banner_image_path: "",
@@ -22,6 +24,7 @@ var dataProduct = [
 	{
 		title: "Bàn phím cơ Keychron Q6 Max",
 		sort_description: "",
+		short_url: "keychron-q6-max",
 		description: `<p><b>Keychron Q6 Max</b>là đỉnh cao của dòng bàn phím cơ full-size, mang đến một trải nghiệm gõ không thể so sánh và chất lượng xây dựng ở một đẳng cấp hoàn toàn khác. Được thiết kế cho những người đam mê thực thụ và các chuyên gia yêu cầu những gì tốt nhất, Q6 Max kết hợp thân máy hoàn toàn bằng kim loại, kết nối không dây 2.4GHz và Bluetooth, cùng khả năng tùy biến vô hạn với QMK/VIA.</p><p><b>Chất lượng xây dựng đỉnh cao:</b>Toàn bộ thân máy của Q6 Max được chế tác từ một khối nhôm 6063 duy nhất, trải qua 24 công đoạn sản xuất bao gồm CNC, đánh bóng, và anodizing. Điều này không chỉ tạo ra một chiếc bàn phím cực kỳ bền bỉ và chắc chắn mà còn mang lại trọng lượng đầm tay, giúp ổn định trên bàn làm việc và nâng cao trải nghiệm gõ.</p><p><b>Trải nghiệm gõ tuyệt hảo với Gasket Mount:</b>Thiết kế Double Gasket Mount cải tiến mang lại cảm giác gõ linh hoạt và âm thanh trong trẻo, thỏa mãn. Bằng cách đặt các miếng đệm silicon trên cả vỏ trên và dưới, cấu trúc này cho phép plate và PCB có độ uốn lượn nhẹ, giảm thiểu các rung động tần số cao và tạo ra một sound profile độc đáo, êm ái hơn.</p><p><b>Kết nối không dây mạnh mẽ cho năng suất tối đa:</b>Với kết nối không dây 2.4GHz có polling rate 1000 Hz, Q6 Max mang lại hiệu suất phản hồi tức thì, lý tưởng cho cả công việc và chơi game. Ngoài ra, bạn có thể kết nối với tối đa 3 thiết bị qua Bluetooth 5.1, dễ dàng chuyển đổi giữa máy tính, laptop và máy tính bảng chỉ bằng một nút bấm.</p>`,
 		image_path: "./img/Product-3.webp",
 		banner_image_path: "",
@@ -32,6 +35,7 @@ var dataProduct = [
 	{
 		title: "Bàn phím cơ Keychron K4 Max",
 		sort_description: "",
+		short_url: "keychron-k4-max",
 		description: `<p><b>Keychron K4 Max</b>là giải pháp tối ưu cho những ai cần đầy đủ các phím của một bàn phím full-size nhưng lại muốn tiết kiệm không gian bàn làm việc. Với bố cục 96% thông minh, K4 Max giữ lại gần như toàn bộ các phím chức năng và cụm phím số trong một thiết kế nhỏ gọn hơn đáng kể. Được nâng cấp với kết nối không dây 2.4GHz và Bluetooth 5.1, cùng với khả năng tùy chỉnh QMK/VIA, K4 Max là một cỗ máy năng suất thực thụ.</p><p><b>Bố cục 96% - Hiệu quả tối đa:</b>Thiết kế 96% loại bỏ các khoảng trống không cần thiết, giúp K4 Max nhỏ gọn hơn 20% so với bàn phím full-size truyền thống mà vẫn giữ lại cụm phím số tiện lợi. Đây là sự lựa chọn hoàn hảo cho việc nhập liệu, lập trình, và các công việc văn phòng đòi hỏi hiệu suất cao.</p><p><b>Nâng cao trải nghiệm gõ:</b>K4 Max được trang bị nhiều lớp foam tiêu âm, bao gồm IXPE switch pad và foam đáy, giúp giảm thiểu đáng kể các âm thanh rỗng và tạo ra một trải nghiệm gõ êm ái, chắc chắn hơn. Cấu trúc được gia cố bằng khung nhôm mang lại sự ổn định và bền bỉ.</p><p><b>Tùy chỉnh không giới hạn với QMK/VIA:</b>Giống như các dòng cao cấp, K4 Max giờ đây cũng hỗ trợ QMK/VIA. Điều này cho phép bạn lập trình lại mọi phím, tạo các macro phức tạp, và cá nhân hóa bàn phím để phù hợp hoàn hảo với quy trình làm việc của bạn. Thay đổi keymap, gán các phím tắt, tất cả đều có thể thực hiện một cách trực quan và dễ dàng.</p>`,
 		image_path: "./img/Product-4.webp",
 		banner_image_path: "",
@@ -42,6 +46,7 @@ var dataProduct = [
 	{
 		title: "Bàn phím cơ low-profile Keychron K5 Max",
 		sort_description: "",
+		short_url: "keychron-k5-max",
 		description: `<p><b>Keychron K5 Max</b>định nghĩa lại khái niệm về bàn phím cơ mỏng nhẹ. Với thiết kế low-profile siêu mỏng, K5 Max mang lại cảm giác gõ thoải mái và nhanh nhạy mà không chiếm nhiều diện tích, lý tưởng cho những người thường xuyên di chuyển hoặc yêu thích một không gian làm việc tối giản. Dù mỏng nhẹ, K5 Max vẫn được trang bị đầy đủ sức mạnh với kết nối không dây và khả năng tùy chỉnh QMK/VIA.</p><p><b>Thiết kế siêu mỏng, hiệu suất tối đa:</b>K5 Max sử dụng switch Gateron low-profile, giúp giảm đáng kể chiều cao tổng thể của bàn phím mà vẫn giữ được cảm giác gõ cơ học đặc trưng. Bố cục full-size 100% đảm bảo bạn không bỏ lỡ bất kỳ phím chức năng nào, giúp tối ưu hóa năng suất làm việc.</p><p><b>Linh hoạt và di động:</b>Khung nhôm gia cố mang lại sự chắc chắn cần thiết trong một thân hình mỏng nhẹ. Dễ dàng mang theo K5 Max bên mình và kết nối với laptop, máy tính bảng hay điện thoại qua Bluetooth 5.1.</p><p><b>Sức mạnh tùy chỉnh trong tầm tay:</b>Lần đầu tiên, một bàn phím low-profile của Keychron được trang bị khả năng tùy chỉnh QMK/VIA. Giờ đây bạn có thể lập trình lại mọi phím, tạo macro, và cá nhân hóa bàn phím theo cách bạn muốn, biến K5 Max thành một công cụ độc nhất dành riêng cho bạn.</p>`,
 		image_path: "./img/Product-5.webp",
 		banner_image_path: "",
@@ -52,6 +57,7 @@ var dataProduct = [
 	{
 		title: "Đệm kê tay silicon Keychron",
 		sort_description: "",
+		short_url: "keychron-silicon",
 		description: `<p><b>Nâng cao sự thoải mái, tối ưu hóa công thái học.</b>Đệm kê tay silicon của Keychron là phụ kiện không thể thiếu cho bất kỳ ai dành nhiều giờ làm việc hoặc chơi game trên bàn phím. Được thiết kế để cung cấp sự hỗ trợ tối ưu cho cổ tay, sản phẩm này giúp duy trì tư thế gõ tự nhiên, giảm thiểu căng thẳng và ngăn ngừa các vấn đề về cổ tay trong dài hạn.</p><p><b>Chất liệu Silicon cao cấp:</b>Được làm từ silicon chất lượng cao, đệm kê tay mang lại cảm giác mềm mại, êm ái nhưng vẫn đủ chắc chắn để nâng đỡ cổ tay của bạn. Bề mặt mịn màng, dễ dàng vệ sinh và chống bám bụi bẩn.</p><p><b>Thiết kế chống trượt:</b>Mặt dưới của đệm kê tay được thiết kế với bề mặt chống trượt, đảm bảo nó luôn cố định trên bàn làm việc của bạn, ngay cả trong những phiên chơi game căng thẳng nhất. Bạn có thể tập trung hoàn toàn vào công việc mà không bị phân tâm.</p><p><b>Tương thích hoàn hảo:</b>Với nhiều kích thước khác nhau, đệm kê tay silicon Keychron được thiết kế để phù hợp hoàn hảo với các dòng bàn phím của hãng, từ layout 65% nhỏ gọn đến full-size, tạo nên một tổng thể thẩm mỹ và liền mạch cho không gian làm việc của bạn.</p>`,
 		image_path: "./img/Product-6.webp",
 		banner_image_path: "",
@@ -62,6 +68,7 @@ var dataProduct = [
 	{
 		title: "Chuột không dây Keychron M3",
 		sort_description: "",
+		short_url: "keychron-silicon",
 		description: `<p><b>Keychron M3</b>được thiết kế để trở thành con chuột toàn năng, đáp ứng mọi nhu cầu từ công việc văn phòng đòi hỏi sự chính xác đến những trận game đỉnh cao. Với trọng lượng chỉ 79g và trang bị cảm biến hàng đầu, M3 mang lại sự thoải mái, tốc độ và độ chính xác vượt trội để bạn luôn làm chủ tình hình.</p><p><b>Cảm biến PixArt 3395 hàng đầu:</b>Trung tâm của M3 là cảm biến quang học PixArt 3395, một trong những cảm biến tốt nhất trên thị trường. Với DPI lên đến 26,000, polling rate 1000 Hz và IPS 650, M3 đảm bảo khả năng tracking 1:1 hoàn hảo, không gia tốc, không trễ, mang lại độ chính xác tuyệt đối trong mọi cú di chuột.</p><p><b>Kết nối không dây kép, ổn định tuyệt đối:</b>Tận hưởng sự tự do với hai chế độ kết nối không dây. Chế độ 2.4GHz mang lại kết nối ổn định với độ trễ cực thấp, lý tưởng cho gaming. Chế độ Bluetooth 5.1 cho phép bạn dễ dàng kết nối với nhiều thiết bị khác nhau.</p><p><b>Thiết kế công thái học siêu nhẹ:</b>Với trọng lượng chỉ 79 gram, M3 giúp giảm thiểu mỏi tay khi sử dụng trong thời gian dài. Thiết kế công thái học đối xứng phù hợp với nhiều kiểu cầm chuột khác nhau, đảm bảo sự thoải mái và khả năng kiểm soát tối ưu.</p>`,
 		image_path: "./img/Product-7.webp",
 		banner_image_path: "",
@@ -71,6 +78,7 @@ var dataProduct = [
 	},
 	{
 		title: "Bàn phím số tùy chỉnh không dây Keychron Q0 Max QMK",
+		short_url: "keychron-q0-max-qmk",
 		sort_description: "",
 		description: `<p><b>Keychron Q0 Max</b>là người bạn đồng hành không thể thiếu cho chiếc bàn phím tenkeyless hoặc 65% của bạn. Được thiết kế như một bàn phím số (numpad) độc lập, Q0 Max không chỉ giúp bạn xử lý các con số một cách nhanh chóng mà còn là một công cụ macro mạnh mẽ nhờ vào khả năng tùy chỉnh vô hạn với QMK/VIA.</p><p><b>Chất lượng xây dựng đỉnh cao:</b>Giống như các sản phẩm dòng Q Max khác, Q0 Max được chế tác từ một khối nhôm CNC 6063, mang lại cảm giác cực kỳ chắc chắn và cao cấp. Cấu trúc Gasket Mount đảm bảo trải nghiệm gõ êm ái, linh hoạt và giảm thiểu tiếng ồn không mong muốn.</p><p><b>Biến thành bảng điều khiển Macro:</b>Sức mạnh thực sự của Q0 Max nằm ở khả năng tùy chỉnh. Với phần mềm VIA, bạn có thể dễ dàng gán các chuỗi lệnh phức tạp, các phím tắt cho ứng dụng, hoặc các chức năng đặc biệt cho từng phím. Biến nó thành một bảng điều khiển cho công việc thiết kế, chỉnh sửa video, hoặc thậm chí là chơi game.</p><p><b>Kết nối không dây, đồng bộ hoàn hảo:</b>Kết nối Q0 Max với máy tính của bạn qua Bluetooth 5.1 hoặc 2.4GHz để có một bàn làm việc hoàn toàn không dây. Đặt nó ở bất cứ đâu bạn cảm thấy thuận tiện nhất, bên trái hoặc bên phải bàn phím chính của bạn.</p>`,
 		image_path: "./img/Product-8.webp",
@@ -82,6 +90,7 @@ var dataProduct = [
 	{
 		title: "Cáp xoắn Keychron Coiled Aviator",
 		sort_description: "",
+		short_url: "keychron-q0-max-qmk",
 		description: `<p><b>Nâng tầm thẩm mỹ cho góc làm việc của bạn.</b>Cáp xoắn Keychron Coiled Aviator là một phụ kiện cao cấp được thiết kế để mang lại vẻ ngoài chuyên nghiệp, gọn gàng và đầy phong cách cho bàn phím cơ của bạn. Đoạn cáp xoắn không chỉ đẹp mắt mà còn giúp quản lý dây cáp hiệu quả, giữ cho bàn làm việc luôn ngăn nắp.</p><p><b>Đầu nối Aviator có thể tháo rời:</b>Điểm nhấn của sợi cáp là đầu nối Aviator 5-pin có thể tháo rời. Đầu nối kim loại chắc chắn này không chỉ tạo điểm nhấn thẩm mỹ mà còn mang lại sự tiện lợi, cho phép bạn nhanh chóng thay đổi hoặc tháo rời bàn phím mà không cần phải rút dây khỏi máy tính.</p><p><b>Bền bỉ và linh hoạt:</b>Cáp được bọc bằng chất liệu Thermoplastic Elastomer (TPE) linh hoạt và bền bỉ, bên trong là lớp vỏ bện chắc chắn, đảm bảo tuổi thọ cao và khả năng chống rối. Sợi cáp được thiết kế để cung cấp nguồn điện ổn định và truyền dữ liệu đáng tin cậy.</p>`,
 		image_path: "./img/Product-9.webp",
 		banner_image_path: "",
@@ -91,6 +100,7 @@ var dataProduct = [
 	},
 	{
 		title: "Keycap Artisan Kim loại Búp bê Daruma",
+		short_url: "keycap-daruma",
 		sort_description: "",
 		description: `<p><b>Thể hiện cá tính, mang lại may mắn.</b>Keycap artisan búp bê Daruma của Keychron không chỉ là một món đồ trang trí, mà còn là một tác phẩm nghệ thuật mang đậm ý nghĩa văn hóa. Được chế tác từ hợp kim kẽm cao cấp, mỗi keycap là một điểm nhấn độc đáo, thể hiện sự tinh tế và cá tính của người sở hữu.</p><p><b>Biểu tượng của sự kiên trì và may mắn:</b>Trong văn hóa Nhật Bản, búp bê Daruma là biểu tượng cho sự kiên trì, quyết tâm và may mắn. Đặt keycap này lên phím Escape hoặc bất kỳ phím chức năng nào bạn yêu thích như một lời nhắc nhở về mục tiêu của mình và một lá bùa may mắn cho công việc và cuộc sống.</p><p><b>Chế tác tinh xảo:</b>Mỗi keycap được đúc và sơn thủ công một cách tỉ mỉ, đảm bảo độ chi tiết cao và chất lượng hoàn thiện vượt trội. Chất liệu kim loại mang lại cảm giác gõ đầm tay và âm thanh độc đáo.</p><p><b>Tương thích rộng rãi:</b>Keycap Daruma tương thích với hầu hết các switch cơ học có stem hình chữ thập (cross-stem) như Gateron, Cherry, Kailh, v.v. Đây là món quà hoàn hảo cho bản thân hoặc cho bất kỳ người bạn nào đam mê bàn phím cơ.</p>`,
 		image_path: "./img/Product-10.webp",
@@ -101,6 +111,7 @@ var dataProduct = [
 	},
 	{
 		title: "Chuột không dây Keychron M5 8K",
+		short_url: "keychron-m5-8k",
 		sort_description: "Switch từ tính | 2.4 GHz & Bluetooth",
 		description: `<p><b>Keychron M5 8K</b>là vũ khí tối thượng dành cho game thủ chuyên nghiệp. Được trang bị những công nghệ tiên tiến nhất, M5 8K mang lại tốc độ, độ chính xác và khả năng phản hồi chưa từng có. Với polling rate 8000Hz, switch từ tính siêu bền và kết nối không dây kép, đây là con chuột được sinh ra để chiến thắng.</p><p><b>Polling Rate 8000Hz - Tốc độ ánh sáng:</b>Trải nghiệm sự mượt mà tuyệt đối với polling rate 8K ở chế độ có dây và 4K ở chế độ không dây 2.4GHz. Tốc độ truyền dữ liệu siêu nhanh giúp giảm độ trễ xuống mức gần như bằng không, mang lại lợi thế quyết định trong mọi pha xử lý.</p><p><b>Switch từ tính quang học:</b>Các nút bấm chính sử dụng switch từ tính quang học, mang lại tốc độ phản hồi tức thì và độ bền lên đến 100 triệu lần nhấn. Loại bỏ hoàn toàn hiện tượng double-click không mong muốn và đảm bảo mọi cú click của bạn đều được ghi nhận một cách chính xác.</p><p><b>Kết nối 2.4GHz & Bluetooth:</b>Tự do lựa chọn giữa kết nối 2.4GHz độ trễ thấp cho gaming hoặc Bluetooth 5.1 tiện lợi cho công việc hàng ngày. Dễ dàng chuyển đổi giữa các thiết bị để tối ưu hóa quy trình làm việc của bạn.</p>`,
 		image_path: "./img/Product-7.webp",
@@ -111,6 +122,7 @@ var dataProduct = [
 	},
 	{
 		title: "Bàn phím cơ Black Myth: Wukong Edition",
+		short_url: "keychron-wukong-editon",
 		sort_description:
 			"2.4GHz & Bluetooth | Thân kim loại nguyên khối | Keycap PBT",
 		description: `<p><b>Một huyền thoại tái sinh.</b>Hợp tác cùng tựa game được mong chờ nhất, Keychron tự hào giới thiệu phiên bản đặc biệt<b>Black Myth: Wukong</b>. Đây không chỉ là một chiếc bàn phím, mà là một tác phẩm nghệ thuật, kết hợp giữa công nghệ đỉnh cao và cảm hứng từ một trong những câu chuyện vĩ đại nhất.</p><p><b>Thân kim loại nguyên khối:</b>Cảm nhận sức mạnh của Ngộ Không qua thân máy được chế tác từ nhôm nguyên khối, mang lại sự chắc chắn và vẻ ngoài uy nghiêm. Các họa tiết được khắc laser tinh xảo, lấy cảm hứng từ các yếu tố trong game, biến chiếc bàn phím thành một vật phẩm sưu tầm độc đáo.</p><p><b>Keycap PBT Dye-Sub Huyền Thoại:</b>Bộ keycap được làm từ nhựa PBT siêu bền với công nghệ in Dye-Sublimation, đảm bảo các ký tự và họa tiết không bao giờ phai mờ. Font chữ và các biểu tượng được thiết kế riêng, mang đậm không khí thần thoại của Black Myth: Wukong.</p><p><b>Hiệu suất đỉnh cao:</b>Bên trong vẻ ngoài huyền thoại là hiệu suất hiện đại. Bàn phím hỗ trợ kết nối không dây 2.4GHz và Bluetooth, cùng với cấu trúc Gasket Mount cho trải nghiệm gõ êm ái, thỏa mãn. Sẵn sàng cùng bạn chinh phục mọi thử thách, từ công việc đến những trận chiến cam go nhất.</p>`,
@@ -122,6 +134,7 @@ var dataProduct = [
 	},
 	{
 		title: "Keychron B33",
+		short_url: "keychron-b33",
 		sort_description: "Cơ chế cắt kéo | 2,4 GHz & Bluetooth | Phím Slient",
 		description:
 			"<p><b>Sự tĩnh lặng tinh tế.</b> Keychron B33 là hiện thân của sự tinh tế và hiệu quả, được thiết kế đặc biệt cho những ai tìm kiếm một không gian làm việc yên tĩnh. Điểm nhấn cốt lõi của sản phẩm này nằm ở <b>cơ chế phím cắt kéo (scissor-switch)</b> tiên tiến, mang lại phản hồi nhanh nhạy nhưng vẫn đảm bảo sự êm ái gần như không tiếng động, lý tưởng cho môi trường văn phòng mở hoặc làm việc đêm khuya.</p><p><b>Kết nối đa năng.</b> Không chỉ dừng lại ở trải nghiệm gõ tĩnh lặng, Keychron B33 còn mang đến sự linh hoạt vượt trội với <b>kết nối kép mạnh mẽ</b>. Bạn có thể dễ dàng chuyển đổi giữa kết nối không dây <b>2.4GHz</b> độ trễ thấp và kết nối <b>Bluetooth</b> tiện lợi để ghép nối với nhiều thiết bị. Đây là sự lựa chọn hoàn hảo cho những ai ưu tiên sự yên tĩnh và một không gian làm việc gọn gàng, hiệu quả.</p>",
@@ -132,6 +145,7 @@ var dataProduct = [
 		price: 249.99,
 	},
 	{
+		short_url: "keychron-b36",
 		title: "Keychron B36",
 		sort_description:
 			"2.4GHz & Bluetooth | Thân kim loại nguyên khối | Keycap PBT",
@@ -145,6 +159,7 @@ var dataProduct = [
 	},
 	{
 		title: "Keychron C2 Pro 8K",
+		short_url: "keychron-c2-pro-8k",
 		sort_description: "Switch từ tính | 2.4 GHz & Bluetooth",
 		description:
 			"<p><b>Vũ khí tối thượng cho game thủ.</b> Keychron C2 Pro 8K được sinh ra để thống trị về tốc độ và độ nhạy, dành cho các game thủ chuyên nghiệp và người dùng đòi hỏi sự chính xác tuyệt đối. Trái tim của nó là <b>công nghệ switch từ tính (magnetic switch)</b> đột phá, cho phép tùy chỉnh điểm nhận phím và đăng ký lệnh với tốc độ cực nhanh, mang lại lợi thế cạnh tranh rõ rệt.</p><p><b>Tốc độ ánh sáng.</b> Đẩy hiệu suất lên một tầm cao mới là <b>tần số lấy mẫu 8000Hz</b> ở chế độ không dây <b>2.4GHz</b>, giúp giảm độ trễ xuống gần như bằng không. Mọi lệnh đều được thực thi tức thì, đảm bảo không có khoảnh khắc nào ảnh hưởng đến kết quả. Dù được tối ưu cho tốc độ đỉnh cao, C2 Pro 8K vẫn giữ lại sự linh hoạt của kết nối <b>Bluetooth</b> cho các tác vụ hàng ngày.</p>",

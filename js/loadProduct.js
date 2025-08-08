@@ -1,17 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
-	const params = new URLSearchParams(window.location.search);
-	const productIndex = parseInt(params.get("index"), 10);
-	if (
-		typeof dataProduct === "undefined" ||
-		isNaN(productIndex) ||
-		productIndex < 0 ||
-		productIndex >= dataProduct.length
-	) {
+	const productShortUrl = window.location.hash.substring(1);
+	if (!productShortUrl) {
+		document.querySelector("main").innerHTML =
+			'<p class="text-center">Vui lòng chọn một sản phẩm.</p>';
+		return;
+	}
+	const product = dataProduct.find((p) => p.short_url === productShortUrl);
+
+	if (typeof dataProduct === "undefined" || !product) {
 		document.querySelector("main").innerHTML =
 			'<p class="text-center text-red-500">Sản phẩm không tồn tại!</p>';
 		return;
 	}
-	const product = dataProduct[productIndex];
 	document.title = `Chi tiết sản phẩm | ${product.title}`;
 	document
 		.getElementById("meta-description")
@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	const productImage = document.getElementById("product-image");
 	productImage.src = product.image_path;
 	productImage.alt = product.title;
+	productImage.loading = "lazy";
 	document.getElementById("product-title").textContent = product.title;
 	document.getElementById("product-price").textContent = `$${product.price}`;
 	document.getElementById(

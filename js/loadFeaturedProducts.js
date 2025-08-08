@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		}
 		const productCard = document.createElement("a");
-		productCard.href = `./product.html?index=${index}`;
+		productCard.href = `./product.html#${product.short_url}`;
 		productCard.className =
 			"group block bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden";
 		const imagePath = product.image_path.startsWith("../../")

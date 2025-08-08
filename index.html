@@ -72,6 +72,45 @@
         <div id="slider-dots" class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
         </div>
     </header>
+    <section class="max-w-screen py-12 md:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-black">Tại sao nên chọn Keychron?</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Trải nghiệm sự khác biệt với bàn phím cơ được
+                    thiết kế cho hiệu suất, sự thoải mái và khả năng tùy biến vô tận.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-4">
+                    <img src="./img/benefit-1.webp" alt="Tương thích Mac và Windows"
+                        class="rounded-lg shadow-md mb-4 w-full h-48 object-cover" loading="lazy">
+                    <h3 class="text-xl font-bold text-black mb-2">Tương Thích Hoàn Hảo</h3>
+                    <p class="text-gray-600">Tối ưu cho cả macOS và Windows. Dễ dàng chuyển đổi giữa các hệ điều hành
+                        chỉ với một nút gạt.</p>
+                </div>
+                <div class="text-center p-4">
+                    <img src="./img/benefit-2.avif" alt="Hiệu suất vượt trội"
+                        class="rounded-lg shadow-md mb-4 w-full h-48 object-cover" loading="lazy">
+                    <h3 class="text-xl font-bold text-black mb-2">Hiệu Suất Vượt Trội</h3>
+                    <p class="text-gray-600">Từ switch cơ học chất lượng cao đến công nghệ tiên tiến, mỗi sản
+                        phẩm đều được chế tạo để mang lại tốc độ và độ chính xác.</p>
+                </div>
+                <div class="text-center p-4">
+                    <img src="./img/benefit-3.webp" alt="Cảm giác gõ đỉnh cao"
+                        class="rounded-lg shadow-md mb-4 w-full h-48 object-cover" loading="lazy">
+                    <h3 class="text-xl font-bold text-black mb-2">Cảm Giác Gõ Đỉnh Cao</h3>
+                    <p class="text-gray-600">Cấu trúc Gasket Mount, keycap PBT double-shot và các tùy chọn switch đa
+                        dạng mang lại trải nghiệm gõ êm ái, thỏa mãn.</p>
+                </div>
+                <div class="text-center p-4">
+                    <img src="./img/benefit-4.avif" alt="Cộng đồng sáng tạo"
+                        class="rounded-lg shadow-md mb-4 w-full h-48 object-cover" loading="lazy">
+                    <h3 class="text-xl font-bold text-black mb-2">Cộng Đồng Sáng Tạo</h3>
+                    <p class="text-gray-600">Tham gia cộng đồng người dùng Keychron đông đảo, chia sẻ kinh nghiệm và tùy
+                        biến không giới hạn với firmware QMK/VIA.</p>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="max-w-screen py-12 md:py-20 bg-zinc-100">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center text-black mb-12">Sản phẩm nổi bật</h2>
@@ -221,33 +260,5 @@
 <script src="./js/loadSlider.js"></script>
 <script src="./js/searchListener.js"></script>
 <script src="./js/initData.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const updateCartCount = () => {
-            const cartCountElement = document.getElementById('cart-count');
-            // Kiểm tra xem người dùng đã đăng nhập chưa
-            const currentUser = localStorage.getItem('user-current');
-
-            if (currentUser && cartCountElement) {
-                // Nếu đã đăng nhập, lấy dữ liệu giỏ hàng từ Local Storage
-                const cart = JSON.parse(localStorage.getItem('cart')) || [];
-                const cartItemCount = cart.length;
-
-                if (cartItemCount > 0) {
-                    // Nếu có sản phẩm trong giỏ, hiển thị số lượng
-                    cartCountElement.textContent = cartItemCount;
-                    cartCountElement.classList.remove('hidden');
-                } else {
-                    // Nếu giỏ hàng trống, ẩn đi
-                    cartCountElement.classList.add('hidden');
-                }
-            } else if (cartCountElement) {
-                // Nếu chưa đăng nhập, ẩn đi
-                cartCountElement.classList.add('hidden');
-            }
-        };
-        updateCartCount();
-    });
-</script>
 
 </html>

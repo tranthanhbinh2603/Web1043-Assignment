@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="text-white font-bold w-full md:w-1/2 lg:w-1/3 p-4 md:p-0 ${textAlign}">
                         <h1 class="text-4xl lg:text-5xl mb-6">${product.title}</h1>
                         <p class="text-xl lg:text-2xl mb-6">${product.sort_description}</p>
-                        <a href="./product.html?index=${product.originalIndex}"
+                        <a href="./product.html#${product.short_url}"
                             class="button left border-solid border-1 pt-2 pb-2 pr-4 pl-4 mt-3 inline-block">
                             <span>Tìm hiểu thêm</span>
                         </a>
