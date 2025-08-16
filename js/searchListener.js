@@ -4,7 +4,9 @@ searchInput.addEventListener("keydown", function (event) {
 		event.preventDefault();
 		const searchTerm = searchInput.value.trim();
 		if (searchTerm) {
-			window.location.href = `/filter.html?s=${encodeURIComponent(searchTerm)}`;
+			window.location.href = `./filter.html?s=${encodeURIComponent(
+				searchTerm
+			)}`;
 		}
 	}
 });
