@@ -1,35 +1,62 @@
 document.addEventListener("DOMContentLoaded", function () {
 	const productShortUrl = window.location.hash.substring(1);
+	const products = JSON.parse(localStorage.getItem("products"));
+
 	if (!productShortUrl) {
 		document.querySelector("main").innerHTML =
 			'<p class="text-center">Vui lòng chọn một sản phẩm.</p>';
 		return;
 	}
-	const product = dataProduct.find((p) => p.short_url === productShortUrl);
 
-	if (typeof dataProduct === "undefined" || !product) {
+	if (!products || !Array.isArray(products)) {
+		document.querySelector("main").innerHTML =
+			'<p class="text-center text-red-500">Lỗi: Không thể tải dữ liệu sản phẩm.</p>';
+		return;
+	}
+
+	const product = products.find((p) => p.short_url === productShortUrl);
+
+	if (!product) {
 		document.querySelector("main").innerHTML =
 			'<p class="text-center text-red-500">Sản phẩm không tồn tại!</p>';
 		return;
 	}
+
+	// Update metadata
 	document.title = `Chi tiết sản phẩm | ${product.title}`;
 	document
 		.getElementById("meta-description")
 		.setAttribute(
 			"content",
-			`Khám phá chi tiết về ${product.title}. Giá: $${product.price}.`
+			`Khám phá chi tiết về ${product.title}. Giá: $${product.discountedPrice}.`
 		);
+
+	// Populate product details
 	const productImage = document.getElementById("product-image");
 	productImage.src = product.image_path;
 	productImage.alt = product.title;
 	productImage.loading = "lazy";
+
+	document.getElementById("product-category").textContent = product.category;
 	document.getElementById("product-title").textContent = product.title;
-	document.getElementById("product-price").textContent = `$${product.price}`;
 	document.getElementById(
 		"product-rate-count"
 	).textContent = `(${product.rate_count} đánh giá)`;
 	document.getElementById("product-description").innerHTML =
 		product.description;
+
+	// Populate price
+	const priceContainer = document.getElementById("product-price");
+	if (product.discountedPrice < product.originalPrice) {
+		priceContainer.innerHTML = `
+            <span class="text-3xl font-bold text-red-600">$${product.discountedPrice}</span>
+            <span class="text-xl text-gray-500 line-through ml-3">$${product.originalPrice}</span>
+        `;
+	} else {
+		priceContainer.innerHTML = `<span class="text-3xl font-bold text-gray-800">$${product.discountedPrice}</span>`;
+	}
+
+	// Populate stars
 	const starsContainer = document.getElementById("product-stars");
 	starsContainer.innerHTML = "";
 	for (let i = 0; i < 5; i++) {
@@ -45,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			starImg.src = "./svg/star-no.svg";
 			starImg.alt = "Sao rỗng";
 		}
-
 		starsContainer.appendChild(starImg);
 	}
 });

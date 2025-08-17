@@ -1,4 +1,5 @@
 (function () {
+	// Initialize admin user
 	const createDefaultAdmin = () => {
 		const adminUser = [
 			{
@@ -26,6 +27,7 @@
 		});
 		return allUsersAreValid;
 	};
+
 	const usersDataString = localStorage.getItem("users");
 	if (!usersDataString) {
 		createDefaultAdmin();
@@ -40,5 +42,18 @@
 			localStorage.removeItem("users");
 			createDefaultAdmin();
 		}
+	}
+
+	// Initialize product data
+	const createProductData = () => {
+		// The dataProduct variable is available globally from dataProduct.js
+		if (typeof dataProduct !== "undefined") {
+			localStorage.setItem("products", JSON.stringify(dataProduct));
+		}
+	};
+
+	const productsDataString = localStorage.getItem("products");
+	if (!productsDataString) {
+		createProductData();
 	}
 })();
