@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quản lý sản phẩm của Keychron Việt Nam.">
+    <script src="https://cdn.tailwindcss.com" rel="preload" as="style"></script>
+    <link rel="icon" href="./ico/ico.png" type="image/png">
+    <link rel="stylesheet" href="./css/font-face.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Quản lý sản phẩm | Keychron Việt Nam</title>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+    <nav class="max-w-screen flex m-auto justify-center sticky top-0 z-50 bg-white shadow-md">
+        <div class="container flex flex-col text-white font-bold ">
+            <div class="flex justify-between items-center py-4">
+                <div>
+                    <a href="./index.html"><img src="./img/logo.webp" alt="Keychron Logo" loading="lazy"></a>
+                </div>
+                <div class="relative w-[200px] md:w-[400px] lg:w-[800px] hidden md:block">
+                    <input type="text" id="searchInput" class="w-full text-black bg-gray-100 p-2 pl-10 pr-10 rounded-md"
+                        placeholder="Tìm kiếm sản phẩm..." />
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <img class="w-[20px]" src="./svg/search.svg" alt="search" loading="lazy" />
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="relative ml-4">
+                        <a href="./cart.html" id="cart-link">
+                            <img class="w-7" src="./svg/cart.svg" alt="Giỏ hàng" loading="lazy">
+                        </a>
+                        <span id="cart-count"
+                            class="absolute -top-3 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                    </div>
+                    <div class="relative group ml-4 py-3 -my-3">
+                        <button id="profile-button" class="focus:outline-none">
+                            <img id="profile-icon" class="w-6" src="./svg/profile.svg"
+                                data-logged-in-src="./img/Banner-3.webp" data-logged-out-src="./svg/profile.svg"
+                                alt="Tài khoản" loading="lazy">
+                        </button>
+                        <div id="profile-dropdown"
+                            class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 ring-1 ring-black ring-opacity-5 text-black font-normal text-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto my-12 px-4 min-h-[70vh]">
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-bold">Quản lý sản phẩm</h1>
+                <p class="text-gray-600">Thêm, sửa hoặc xóa các sản phẩm trong hệ thống.</p>
+            </div>
+            <button id="add-product-btn"
+                class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Thêm sản phẩm mới
+            </button>
+        </div>
+
+        <div class="overflow-x-auto bg-white rounded-lg shadow">
+            <table class="min-w-full">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Ảnh
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tên
+                            sản phẩm</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Loại
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Giá
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Giá
+                            KM</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Hành
+                            động</th>
+                    </tr>
+                </thead>
+                <tbody id="product-table-body" class="divide-y divide-gray-200">
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-10 mx-auto p-5 border w-full max-w-2xl shadow-lg rounded-md bg-white">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modal-title" class="text-2xl font-bold">Chỉnh sửa sản phẩm</h3>
+                <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+            </div>
+            <form id="product-form" class="space-y-4">
+                <input type="hidden" id="product-id">
+                <div>
+                    <label for="product-name" class="block text-sm font-medium text-gray-700">Tên sản phẩm</label>
+                    <input type="text" id="product-name"
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        required>
+                </div>
+                <div>
+                    <label for="product-image" class="block text-sm font-medium text-gray-700">Ảnh sản phẩm</label>
+                    <select id="product-image"
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                    </select>
+                </div>
+                <div>
+                    <label for="product-description" class="block text-sm font-medium text-gray-700">Mô tả</label>
+                    <textarea id="product-description" rows="4"
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        required></textarea>
+                </div>
+                <div>
+                    <label for="product-category" class="block text-sm font-medium text-gray-700">Thể loại</label>
+                    <input type="text" id="product-category"
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        required>
+                </div>
+                <div>
+                    <label for="product-price" class="block text-sm font-medium text-gray-700">Giá (đô)</label>
+                    <input type="number" id="product-price"
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        required min="0">
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="product-sale"
+                        class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                    <label for="product-sale" class="ml-2 block text-sm text-gray-900">Đang khuyến mãi?</label>
+                </div>
+                <div id="sale-price-container" class="hidden">
+                    <label for="product-sale-price" class="block text-sm font-medium text-gray-700">Giá khuyến mãi
+                        (đô)</label>
+                    <input type="number" id="product-sale-price"
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        min="0">
+                </div>
+                <div class="flex justify-end pt-4">
+                    <button type="button" id="cancel-btn"
+                        class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md mr-2 hover:bg-gray-300">Hủy</button>
+                    <button type="submit"
+                        class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="max-w-screen flex m-auto justify-center bg-zinc-200 pb-20 pt-10 mt-12">
+        <div class="container flex flex-col text-white font-bold">
+            <div
+                class="flex flex-col md:flex-row items-center md:items-start text-center md:text-start justify-start gap-10">
+                <div class="flex-[0.3] flex flex-col items-center md:items-start">
+                    <img class="ml-[-12px] mb-4" src="./img/logo.webp" alt="logo" loading="lazy">
+                    <p class="text-black font-normal mb-4">Keychron thiết kế và sản xuất các thiết bị ngoại vi máy tính
+                        không dây và tùy chỉnh hiệu suất cao cho Mac,
+                        Windows, iPhone và Android.
+                    </p>
+                    <div class="flex flex-row justify-start item-center ml-[-8px]">
+                        <img class="w-8" src="./svg/facebook.svg" alt="facebook" loading="lazy">
+                        <img class="w-10" src="./svg/youtube.svg" alt="youtube" loading="lazy">
+                        <img class="w-6" src="./svg/tiktok.svg" alt="tiktok" loading="lazy">
+                    </div>
+                </div>
+                <div class="flex-[0.2] flex flex-col gap-3 text-black font-normal">
+                    <p class="font-bold">Trung tâm Keychron</p>
+                    <a href="#">Về chúng tôi</a>
+                    <a href="#">Thẻ quà tặng</a>
+                    <a href="#">Nhận giảm giá 10%</a>
+                </div>
+                <div class="flex-[0.2] flex flex-col gap-3 text-black font-normal">
+                    <p class="font-bold">Trợ giúp & Hỗ trợ</p>
+                    <a href="#">Liên hệ chúng tôi</a>
+                    <a href="#">Hướng dẫn sử dụng</a>
+                    <a href="#">Firmware</a>
+                </div>
+                <div class="flex-[0.3] flex flex-col gap-3 text-black font-normal">
+                    <p class="font-bold">Bản tin</p>
+                    <p>Đăng ký để nhận ưu đãi độc quyền và hơn thế nữa.</p>
+                    <div class="relative">
+                        <input type="text" class="w-full text-black bg-gray-100 p-2 pl-3 pr-10 rounded-md"
+                            placeholder="Email của bạn" />
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                            <img class="w-[20px]" src="./svg/right-arrow.svg" alt="arrow" loading="lazy" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/auth.js"></script>
+    <script src="./js/dataProduct.js"></script>
+    <script src="./js/initData.js"></script>
+    <script src="./js/admin-product.js"></script>
+    <script src="./js/searchListener.js"></script>
+
+</body>
+
+</html>

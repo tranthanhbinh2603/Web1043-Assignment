@@ -39,6 +39,7 @@ if (profileIcon) {
 		if (currentUser.isAdmin) {
 			dropdownHTML += `
                     <a href="./admin-user.html" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Quản lý người dùng</a>
+                    <a href="./admin-product.html" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Quản lý sản phẩm</a>
                 `;
 		}
 		dropdownHTML += `
