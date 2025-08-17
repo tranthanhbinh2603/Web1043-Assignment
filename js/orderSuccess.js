@@ -1,6 +1,7 @@
 const latestOrder = JSON.parse(localStorage.getItem("latestOrder"));
 const customerNameEl = document.getElementById("customer-name");
 const shippingAddressEl = document.getElementById("shipping-address");
+const paymentMethodEl = document.getElementById("payment-method"); // Thêm element mới
 const orderedProductsEl = document.getElementById("ordered-products");
 const priceSummaryEl = document.getElementById("price-summary");
 const currentUser = JSON.parse(localStorage.getItem("user-current"));
@@ -13,12 +14,14 @@ if (latestOrder && currentUser && customerNameEl) {
 	// 2. Display Shipping Address
 	shippingAddressEl.textContent = latestOrder.address || "Không có thông tin";
 
-	// 3. Display Ordered Products
+	// 3. Display Payment Method
+	paymentMethodEl.textContent = latestOrder.paymentMethod || "Không có thông tin";
+
+	// 4. Display Ordered Products
 	orderedProductsEl.innerHTML = ""; // Clear placeholder content
 	if (latestOrder.items && latestOrder.items.length > 0) {
 		latestOrder.items.forEach((item) => {
 			const li = document.createElement("li");
-			// Use item.quantity if available, otherwise default to 1
 			li.textContent = `${item.name} (x${item.quantity || 1})`;
 			orderedProductsEl.appendChild(li);
 		});
@@ -27,7 +30,7 @@ if (latestOrder && currentUser && customerNameEl) {
 			"<li>Không có sản phẩm nào trong đơn hàng.</li>";
 	}
 
-	// 4. Display Price Summary
+	// 5. Display Price Summary
 	priceSummaryEl.innerHTML = `
                     <div class="flex justify-between"><span>Tổng phụ:</span> <span>${latestOrder.prices.subtotal}</span></div>
                     <div class="flex justify-between text-green-600"><span>Giảm giá:</span> <span>${latestOrder.prices.discount}</span></div>

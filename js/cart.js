@@ -35,7 +35,6 @@ function renderCart() {
 	} else {
 		if (rightColumnContainer) rightColumnContainer.style.display = "block";
 		cartData.forEach((item) => {
-			// --- CẬP NHẬT: Tính toán số lượng tối đa cho input ---
 			const productInStock = products.find(
 				(p) => p.short_url === item.short_url
 			);
@@ -132,14 +131,13 @@ function addEventListeners() {
 			const oldQuantity = parseInt(e.target.oldValue);
 			const max = parseInt(e.target.max);
 
-			// Trình duyệt sẽ tự động điều chỉnh nếu giá trị vượt max, ta chỉ cần đảm bảo nó là số hợp lệ
 			if (isNaN(newQuantity) || newQuantity < 1) {
-				newQuantity = oldQuantity; // Nếu không hợp lệ, quay về giá trị cũ
+				newQuantity = oldQuantity;
 			}
 			if (newQuantity > max) {
-				newQuantity = max; // Đảm bảo không vượt max
+				newQuantity = max;
 			}
-			e.target.value = newQuantity; // Cập nhật lại input phòng trường hợp trình duyệt không xử lý
+			e.target.value = newQuantity;
 
 			const cartItemIndex = cartData.findIndex((i) => i.short_url === shortUrl);
 			const productIndex = products.findIndex((p) => p.short_url === shortUrl);
@@ -154,7 +152,6 @@ function addEventListeners() {
 			e.target.oldValue = newQuantity;
 			updateTotals();
 			saveCartAndProducts();
-			// Sau khi thay đổi, ta cần render lại giỏ hàng để cập nhật lại thuộc tính 'max' cho các input khác
 			renderCart();
 		});
 	});
@@ -187,10 +184,18 @@ if (checkoutBtn) {
 	checkoutBtn.addEventListener("click", (e) => {
 		e.preventDefault();
 		const address = document.getElementById("address").value;
+		const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked');
+
 		if (!address.trim()) {
 			alert("Vui lòng nhập địa chỉ giao hàng hoặc chọn trên bản đồ.");
 			return;
 		}
+
+		if (!selectedPaymentMethod) {
+			alert("Vui lòng chọn phương thức thanh toán.");
+			return;
+		}
+
 		if (cartData.length === 0) {
 			alert(
 				"Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm trước khi thanh toán."
@@ -203,6 +208,7 @@ if (checkoutBtn) {
 		const total = document.getElementById("total-price").textContent;
 		const orderDetails = {
 			address: address,
+			paymentMethod: selectedPaymentMethod.value,
 			items: cartData,
 			prices: { subtotal, tax, discount, total },
 		};

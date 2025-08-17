@@ -89,6 +89,23 @@
                         </div>
                     </div>
                     <div class="mb-6">
+                        <label class="block font-semibold mb-3">Phương thức thanh toán</label>
+                        <div class="space-y-2" id="payment-method-group">
+                            <label class="flex items-center p-3 border rounded-md hover:bg-gray-50 cursor-pointer">
+                                <input type="radio" name="payment-method" value="Thanh toán khi nhận hàng" class="mr-3">
+                                <span>Thanh toán khi nhận hàng (COD)</span>
+                            </label>
+                            <label class="flex items-center p-3 border rounded-md hover:bg-gray-50 cursor-pointer">
+                                <input type="radio" name="payment-method" value="Chuyển khoản ngân hàng" class="mr-3">
+                                <span>Chuyển khoản ngân hàng</span>
+                            </label>
+                            <label class="flex items-center p-3 border rounded-md hover:bg-gray-50 cursor-pointer">
+                                <input type="radio" name="payment-method" value="Ví điện tử (Momo, VNPAY)" class="mr-3">
+                                <span>Ví điện tử (Momo, VNPAY)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-6">
                         <label for="address" class="block font-semibold mb-2">Địa chỉ giao hàng</label>
                         <input type="text" id="address" placeholder="Kéo thả ghim trên bản đồ để chọn"
                             class="w-full p-2 border rounded-md focus:ring-2 focus:ring-black focus:outline-none mb-2">
