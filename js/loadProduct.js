@@ -49,11 +49,26 @@ document.addEventListener("DOMContentLoaded", function () {
 	const priceContainer = document.getElementById("product-price");
 	if (product.discountedPrice < product.originalPrice) {
 		priceContainer.innerHTML = `
-            <span class="text-3xl font-bold text-red-600">$${product.discountedPrice}</span>
-            <span class="text-xl text-gray-500 line-through ml-3">$${product.originalPrice}</span>
-        `;
+        <span class="text-3xl font-bold text-red-600">$${product.discountedPrice}</span>
+        <span class="text-xl text-gray-500 line-through ml-3">$${product.originalPrice}</span>
+    `;
 	} else {
 		priceContainer.innerHTML = `<span class="text-3xl font-bold text-gray-800">$${product.discountedPrice}</span>`;
+	}
+
+	// Populate stock status
+	const stockContainer = document.createElement("div");
+	stockContainer.id = "product-stock-status";
+	stockContainer.className = "text-lg";
+	priceContainer.parentNode.insertBefore(
+		stockContainer,
+		priceContainer.nextSibling
+	);
+
+	if (product.quantity > 10) {
+		stockContainer.innerHTML = `<p class="font-semibold text-green-600">Còn hàng</p>`;
+	} else if (product.quantity > 0) {
+		stockContainer.innerHTML = `<p class="font-semibold text-yellow-600">Còn ${product.quantity} sản phẩm!</p>`;
 	}
 
 	// Populate stars
