@@ -76,14 +76,14 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Render sections
 	renderProducts(
 		"discounted-products-container",
-		(p) => p.discountedPrice < p.originalPrice,
+		(p) => p.discountedPrice < p.originalPrice && p.quantity > 0,
 		8
 	);
 	renderProducts(
 		"keyboard-products-container",
-		(p) => p.category === "bàn phím",
+		(p) => p.category === "bàn phím" && p.quantity > 0,
 		8
 	);
-	renderProducts("mouse-products-container", (p) => p.category === "chuột", 8);
-	renderProducts("other-products-container", (p) => p.category === "khác" || p.category === "keycap", 8);
+	renderProducts("mouse-products-container", (p) => p.category === "chuột" && p.quantity > 0, 8);
+	renderProducts("other-products-container", (p) => (p.category === "khác" || p.category === "keycap") && p.quantity > 0, 8);
 });

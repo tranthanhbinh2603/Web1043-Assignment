@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	const product = products.find((p) => p.short_url === productShortUrl);
 
-	if (!product) {
+	if (!product || product.quantity === 0) {
 		document.querySelector("main").innerHTML =
-			'<p class="text-center text-red-500">Sản phẩm không tồn tại!</p>';
+			'<div class="min-h-[60vh] flex flex-col items-center justify-center"><p class="text-center text-red-500 text-2xl mb-4">Sản phẩm không tồn tại!</p><a href="./index.html" class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300">Quay về trang chủ</a></div>';
 		return;
 	}
 

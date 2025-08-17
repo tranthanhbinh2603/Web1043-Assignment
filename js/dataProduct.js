@@ -11,6 +11,7 @@ var dataProduct = [
 		originalPrice: 129.99,
 		discountedPrice: 129.99,
 		category: "bàn phím",
+		quantity: 15,
 	},
 	{
 		title: "Bàn phím số tùy chỉnh không dây Keychron Q0 Max QMK",
@@ -24,6 +25,7 @@ var dataProduct = [
 		originalPrice: 64.99,
 		discountedPrice: 64.99,
 		category: "khác",
+		quantity: 10,
 	},
 	{
 		title: "Bàn phím cơ Keychron Q6 Max",
@@ -37,6 +39,7 @@ var dataProduct = [
 		originalPrice: 219.99,
 		discountedPrice: 209.99,
 		category: "bàn phím",
+		quantity: 5,
 	},
 	{
 		title: "Bàn phím cơ Keychron K4 Max",
@@ -50,6 +53,7 @@ var dataProduct = [
 		originalPrice: 134.99,
 		discountedPrice: 134.99,
 		category: "bàn phím",
+		quantity: 8,
 	},
 	{
 		title: "Bàn phím cơ low-profile Keychron K5 Max",
@@ -63,6 +67,7 @@ var dataProduct = [
 		originalPrice: 94.99,
 		discountedPrice: 89.99,
 		category: "bàn phím",
+		quantity: 0,
 	},
 	{
 		title: "Đệm kê tay silicon Keychron",
@@ -76,6 +81,7 @@ var dataProduct = [
 		originalPrice: 9.99,
 		discountedPrice: 9.99,
 		category: "khác",
+		quantity: 30,
 	},
 	{
 		title: "Chuột không dây Keychron M3",
@@ -89,6 +95,7 @@ var dataProduct = [
 		originalPrice: 39.99,
 		discountedPrice: 35.99,
 		category: "chuột",
+		quantity: 0,
 	},
 	{
 		title: "Bàn phím số tùy chỉnh không dây Keychron Q0 Max QMK",
@@ -102,6 +109,7 @@ var dataProduct = [
 		originalPrice: 119.99,
 		discountedPrice: 119.99,
 		category: "khác",
+		quantity: 12,
 	},
 	{
 		title: "Cáp xoắn Keychron Coiled Aviator",
@@ -115,6 +123,7 @@ var dataProduct = [
 		originalPrice: 13.99,
 		discountedPrice: 13.99,
 		category: "khác",
+		quantity: 40,
 	},
 	{
 		title: "Keycap Artisan Kim loại Búp bê Daruma",
@@ -128,6 +137,7 @@ var dataProduct = [
 		originalPrice: 13.99,
 		discountedPrice: 10.99,
 		category: "keycap",
+		quantity: 0,
 	},
 	{
 		title: "Chuột không dây Keychron M5 8K",
@@ -141,6 +151,7 @@ var dataProduct = [
 		originalPrice: 89.99,
 		discountedPrice: 89.99,
 		category: "chuột",
+		quantity: 18,
 	},
 	{
 		title: "Bàn phím cơ Black Myth: Wukong Edition",
@@ -155,6 +166,7 @@ var dataProduct = [
 		originalPrice: 249.99,
 		discountedPrice: 249.99,
 		category: "bàn phím",
+		quantity: 3,
 	},
 	{
 		title: "Keychron B33",
@@ -169,6 +181,7 @@ var dataProduct = [
 		originalPrice: 249.99,
 		discountedPrice: 229.99,
 		category: "bàn phím",
+		quantity: 9,
 	},
 	{
 		short_url: "keychron-b36",
@@ -184,6 +197,7 @@ var dataProduct = [
 		originalPrice: 249.99,
 		discountedPrice: 249.99,
 		category: "bàn phím",
+		quantity: 11,
 	},
 	{
 		title: "Keychron C2 Pro 8K",
@@ -198,12 +212,14 @@ var dataProduct = [
 		originalPrice: 249.99,
 		discountedPrice: 249.99,
 		category: "bàn phím",
+		quantity: 6,
 	},
 	{
 		title: "Chuột Keychron M1 Max",
 		short_url: "keychron-m1-max",
 		sort_description: "Cảm biến quang học | 16,000 DPI",
-		description: "<p><b>Độ chính xác tối đa.</b> Chuột Keychron M1 Max được trang bị cảm biến quang học PixArt PMW3389 hàng đầu, mang lại độ chính xác và khả năng theo dõi vượt trội với DPI lên đến 16,000. Thiết kế công thái học dành cho người thuận tay phải, đảm bảo sự thoải mái trong nhiều giờ sử dụng liên tục.</p>",
+		description:
+			"<p><b>Độ chính xác tối đa.</b> Chuột Keychron M1 Max được trang bị cảm biến quang học PixArt PMW3389 hàng đầu, mang lại độ chính xác và khả năng theo dõi vượt trội với DPI lên đến 16,000. Thiết kế công thái học dành cho người thuận tay phải, đảm bảo sự thoải mái trong nhiều giờ sử dụng liên tục.</p>",
 		image_path: "./img/Product-7.webp",
 		banner_image_path: "",
 		star_rate: 4.8,
@@ -211,12 +227,14 @@ var dataProduct = [
 		originalPrice: 59.99,
 		discountedPrice: 49.99,
 		category: "chuột",
+		quantity: 22,
 	},
 	{
 		title: "Chuột công thái học Keychron M6",
 		short_url: "keychron-m6",
 		sort_description: "Thiết kế dọc | Bánh xe cuộn kép",
-		description: "<p><b>Công thái học đỉnh cao.</b> Keychron M6 định nghĩa lại sự thoải mái với thiết kế công thái học dọc, giúp giảm căng thẳng cho cổ tay và cánh tay. Được trang bị bánh xe cuộn kép (một dọc, một ngang), M6 là công cụ hoàn hảo cho các nhà thiết kế, lập trình viên và những người làm việc với bảng tính nhiều.</p>",
+		description:
+			"<p><b>Công thái học đỉnh cao.</b> Keychron M6 định nghĩa lại sự thoải mái với thiết kế công thái học dọc, giúp giảm căng thẳng cho cổ tay và cánh tay. Được trang bị bánh xe cuộn kép (một dọc, một ngang), M6 là công cụ hoàn hảo cho các nhà thiết kế, lập trình viên và những người làm việc với bảng tính nhiều.</p>",
 		image_path: "./img/Product-7.webp",
 		banner_image_path: "",
 		star_rate: 4.7,
@@ -224,12 +242,14 @@ var dataProduct = [
 		originalPrice: 79.99,
 		discountedPrice: 79.99,
 		category: "chuột",
+		quantity: 14,
 	},
 	{
 		title: "Bộ Switch Keychron Gateron G Pro 3.0 (35 Pcs)",
 		short_url: "keychron-gateron-g-pro-3",
 		sort_description: "Linear / Tactile / Clicky | Lò xo 2 tầng",
-		description: "<p><b>Nâng cấp trải nghiệm gõ của bạn.</b> Bộ switch Gateron G Pro 3.0 là lựa chọn tuyệt vời để tùy chỉnh bàn phím cơ của bạn. Với nhiều tùy chọn (Red, Brown, Blue), bạn có thể tìm thấy cảm giác gõ hoàn hảo cho mình. Lò xo hai tầng mang lại phản hồi nhất quán và âm thanh thỏa mãn.</p>",
+		description:
+			"<p><b>Nâng cấp trải nghiệm gõ của bạn.</b> Bộ switch Gateron G Pro 3.0 là lựa chọn tuyệt vời để tùy chỉnh bàn phím cơ của bạn. Với nhiều tùy chọn (Red, Brown, Blue), bạn có thể tìm thấy cảm giác gõ hoàn hảo cho mình. Lò xo hai tầng mang lại phản hồi nhất quán và âm thanh thỏa mãn.</p>",
 		image_path: "./img/Product-9.webp",
 		banner_image_path: "",
 		star_rate: 5,
@@ -237,18 +257,21 @@ var dataProduct = [
 		originalPrice: 15.99,
 		discountedPrice: 15.99,
 		category: "khác",
+		quantity: 50,
 	},
 	{
 		title: "Bộ Keycap PBT OSA Profile - 'Developer'",
 		short_url: "keycap-set-developer",
 		sort_description: "PBT Double-Shot | OSA Profile",
-		description: "<p><b>Dành cho lập trình viên.</b> Lấy cảm hứng từ các theme code editor, bộ keycap 'Developer' mang đến một vẻ ngoài sạch sẽ và chuyên nghiệp cho bàn phím của bạn. Được làm từ nhựa PBT double-shot siêu bền, các ký tự sẽ không bao giờ phai mờ. Profile OSA mang lại cảm giác gõ thoải mái và độc đáo.</p>",
+		description:
+			"<p><b>Dành cho lập trình viên.</b> Lấy cảm hứng từ các theme code editor, bộ keycap 'Developer' mang đến một vẻ ngoài sạch sẽ và chuyên nghiệp cho bàn phím của bạn. Được làm từ nhựa PBT double-shot siêu bền, các ký tự sẽ không bao giờ phai mờ. Profile OSA mang lại cảm giác gõ thoải mái và độc đáo.</p>",
 		image_path: "./img/Product-10.webp",
 		banner_image_path: "",
 		star_rate: 4.9,
 		rate_count: 32,
-		originalPrice: 59.00,
-		discountedPrice: 55.00,
+		originalPrice: 59.0,
+		discountedPrice: 55.0,
 		category: "keycap",
-	}
+		quantity: 20,
+	},
 ];
