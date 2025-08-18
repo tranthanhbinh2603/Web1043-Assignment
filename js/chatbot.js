@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		let productContext = "Here is a list of available products:\n";
 		if (products.length > 0) {
 			products.forEach((p) => {
-				productContext += `- Name: ${p.title}, Price: $${p.discountedPrice}, Category: ${p.category}\n`;
+				productContext += `- Name: ${p.title}, Price: ${p.discountedPrice}, Category: ${p.category}\n`;
 			});
 		} else {
 			productContext = "Không có thông tin về sản phẩm nào.";
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         Mục tiêu của bạn là giúp người dùng tìm được bàn phím hoàn hảo dựa trên nhu cầu của họ.
         Bạn nên trò chuyện và đưa ra các đề xuất dựa trên câu hỏi của người dùng và danh sách sản phẩm bên dưới.
         Nếu người dùng hỏi một câu hỏi chung chung, hãy trả lời trong bối cảnh bàn phím.
-        Hãy giữ câu trả lời ngắn gọn và dễ đọc. Định dạng các từ khóa quan trọng hoặc tên sản phẩm bằng thẻ in đậm (<b></b>).
+        Hãy giữ câu trả lời ngắn gọn và dễ đọc. Sử dụng Markdown để định dạng câu trả lời của bạn (in đậm, in nghiêng, danh sách).
 
         ${productContext}
 
@@ -132,7 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
 				throw new Error("Không có phản hồi. Vui lòng kiểm tra lại.");
 			}
 			const botResponse = data.candidates[0].content.parts[0].text;
-			typingIndicator.querySelector("p").innerHTML = botResponse;
+			const converter = new showdown.Converter();
+			const htmlResponse = converter.makeHtml(botResponse);
+			typingIndicator.querySelector("p").innerHTML = htmlResponse;
 		} catch (error) {
 			console.error("Error fetching Gemini response:", error);
 			const errorMessage =
