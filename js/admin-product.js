@@ -16,14 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
 	const saleCheckbox = document.getElementById("product-sale");
 	const salePriceContainer = document.getElementById("sale-price-container");
 	const addProductBtn = document.getElementById("add-product-btn");
+	const imageGrid = document.getElementById("product-image-grid");
+	const imageValueInput = document.getElementById("product-image-value");
 
 	let products = [];
 
 	// --- DATA HANDLING ---
 	const loadProducts = () => {
 		const storedProducts = localStorage.getItem("products");
-		// If 'products' isn't in localStorage, initData.js should have run and set it.
-		// We parse it directly. If it's still missing, it's an issue with initData.js
 		products = storedProducts ? JSON.parse(storedProducts) : [];
 		renderTable();
 	};
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 										}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-800">$${
+                    <div class="text-sm text-gray-800">${
 											product.originalPrice
 										}</div>
                 </td>
@@ -73,17 +73,17 @@ document.addEventListener("DOMContentLoaded", () => {
 										}">
                         ${
 													product.discountedPrice != product.originalPrice
-														? `$${product.discountedPrice}`
+														? `${product.discountedPrice}`
 														: "Không"
 												}
                     </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-4">
                     <button data-id="${
-											product.id
+											product.short_url
 										}" class="edit-btn text-indigo-600 hover:text-indigo-900">Sửa</button>
                     <button data-id="${
-											product.id
+											product.short_url
 										}" class="delete-btn text-red-600 hover:text-red-900">Xóa</button>
                 </td>
             `;
@@ -92,35 +92,61 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	// --- MODAL HANDLING ---
+	const selectImage = (imageName) => {
+		imageValueInput.value = imageName;
+		// Visually update selection
+		const allImages = imageGrid.querySelectorAll("img");
+		allImages.forEach((img) => {
+			if (img.dataset.value === imageName) {
+				img.classList.add("ring-2", "ring-blue-500");
+				img.classList.remove("border-transparent");
+			} else {
+				img.classList.remove("ring-2", "ring-blue-500");
+				img.classList.add("border-transparent");
+			}
+		});
+	};
+
 	const openModal = (product = null) => {
 		productForm.reset();
-		const imageSelect = document.getElementById("product-image");
-		imageSelect.innerHTML = "";
+		imageGrid.innerHTML = ""; // Clear previous images
 		for (let i = 1; i <= 10; i++) {
 			const imageName = `Product-${i}.webp`;
-			const option = document.createElement("option");
-			option.value = imageName;
-			option.textContent = imageName;
-			imageSelect.appendChild(option);
+			const img = document.createElement("img");
+			img.src = `./img/${imageName}`;
+			img.alt = `Product ${i}`;
+			img.dataset.value = imageName;
+			img.className =
+				"w-24 h-24 object-cover rounded-md cursor-pointer border-2 border-transparent hover:ring-2 hover:ring-blue-400";
+			imageGrid.appendChild(img);
 		}
 
 		if (product) {
 			// Edit mode
 			modalTitle.textContent = "Chỉnh sửa sản phẩm";
 			document.getElementById("product-id").value = product.id;
-			document.getElementById("product-name").value = product.name;
+			document.getElementById("product-name").value = product.title;
 			document.getElementById("product-description").value =
 				product.description;
 			document.getElementById("product-category").value = product.category;
-			document.getElementById("product-price").value = product.price;
-			saleCheckbox.checked = product.sale;
-			document.getElementById("product-sale-price").value =
-				product.salePrice || "";
-			imageSelect.value = product.image;
+			document.getElementById("product-quantity").value = product.quantity;
+			document.getElementById("product-short-url").value = product.short_url;
+			document.getElementById("product-price").value = product.originalPrice;
+
+			const isOnSale = product.discountedPrice !== product.originalPrice;
+			saleCheckbox.checked = isOnSale;
+			if (isOnSale) {
+				document.getElementById("product-sale-price").value =
+					product.discountedPrice;
+			}
+
+			const imageName = product.image_path.split("/").pop();
+			selectImage(imageName);
 		} else {
 			// Add mode
 			modalTitle.textContent = "Thêm sản phẩm mới";
-			document.getElementById("product-id").value = ""; // Clear ID for new product
+			document.getElementById("product-id").value = "";
+			imageValueInput.value = ""; // Clear image value
 		}
 
 		toggleSalePriceVisibility();
@@ -138,37 +164,54 @@ document.addEventListener("DOMContentLoaded", () => {
 	// --- CRUD OPERATIONS ---
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
+
+		if (!imageValueInput.value) {
+			alert("Vui lòng chọn một hình ảnh cho sản phẩm.");
+			return;
+		}
+
 		const productId = document.getElementById("product-id").value;
+		const originalPrice = parseFloat(
+			document.getElementById("product-price").value
+		);
+		const isOnSale = saleCheckbox.checked;
+		const salePriceInput = document.getElementById("product-sale-price");
+		const discountedPrice =
+			isOnSale && salePriceInput.value
+				? parseFloat(salePriceInput.value)
+				: originalPrice;
 
 		const productData = {
-			name: document.getElementById("product-name").value,
-			image: document.getElementById("product-image").value,
+			title: document.getElementById("product-name").value,
+			image_path: `./img/${imageValueInput.value}`,
 			description: document.getElementById("product-description").value,
 			category: document.getElementById("product-category").value,
-			price: parseFloat(document.getElementById("product-price").value),
-			sale: saleCheckbox.checked,
-			salePrice: saleCheckbox.checked
-				? parseFloat(document.getElementById("product-sale-price").value)
-				: null,
-			rating: 5, // Default value for new products
-			reviews: 0, // Default value for new products
+			quantity: parseInt(document.getElementById("product-quantity").value, 10),
+			short_url: document.getElementById("product-short-url").value,
+			originalPrice: originalPrice,
+			discountedPrice: discountedPrice,
 		};
 
 		if (productId) {
 			// Update existing product
 			const productIndex = products.findIndex((p) => p.id == productId);
 			if (productIndex !== -1) {
+				const existingProduct = products[productIndex];
 				products[productIndex] = {
-					...products[productIndex],
+					...existingProduct,
 					...productData,
-					id: parseInt(productId),
 				};
 			}
 		} else {
 			// Add new product
 			const newId =
 				products.length > 0 ? Math.max(...products.map((p) => p.id)) + 1 : 1;
-			products.push({ ...productData, id: newId });
+			products.push({
+				...productData,
+				id: newId,
+				rating: 5,
+				reviews: 0,
+			});
 		}
 
 		saveProducts();
@@ -185,15 +228,27 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	// --- EVENT LISTENERS ---
+	imageGrid.addEventListener("click", (e) => {
+		if (e.target.tagName === "IMG") {
+			const imageName = e.target.dataset.value;
+			selectImage(imageName);
+		}
+	});
+
 	productTableBody.addEventListener("click", (e) => {
 		const target = e.target;
-		const productId = parseInt(target.dataset.id, 10);
+		if (
+			target.classList.contains("edit-btn") ||
+			target.classList.contains("delete-btn")
+		) {
+			const productId = target.dataset.id;
 
-		if (target.classList.contains("edit-btn")) {
-			const product = products.find((p) => p.id === productId);
-			if (product) openModal(product);
-		} else if (target.classList.contains("delete-btn")) {
-			handleDelete(productId);
+			if (target.classList.contains("edit-btn")) {
+				const product = products.find((p) => p.short_url === productId);
+				if (product) openModal(product);
+			} else if (target.classList.contains("delete-btn")) {
+				handleDelete(productId);
+			}
 		}
 	});
 

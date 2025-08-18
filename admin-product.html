@@ -103,9 +103,10 @@
                 </div>
                 <div>
                     <label for="product-image" class="block text-sm font-medium text-gray-700">Ảnh sản phẩm</label>
-                    <select id="product-image"
-                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-                    </select>
+                    <input type="hidden" id="product-image-value">
+                    <div id="product-image-grid" class="mt-2 grid grid-cols-5 gap-4">
+                        <!-- Images will be populated by JS -->
+                    </div>
                 </div>
                 <div>
                     <label for="product-description" class="block text-sm font-medium text-gray-700">Mô tả</label>
@@ -115,7 +116,24 @@
                 </div>
                 <div>
                     <label for="product-category" class="block text-sm font-medium text-gray-700">Thể loại</label>
-                    <input type="text" id="product-category"
+                    <select id="product-category"
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        required>
+                        <option value="bàn phím">Bàn phím</option>
+                        <option value="chuột">Chuột</option>
+                        <option value="keycap">Keycap</option>
+                        <option value="khác">Khác</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="product-quantity" class="block text-sm font-medium text-gray-700">Số lượng</label>
+                    <input type="number" id="product-quantity"
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        required min="0">
+                </div>
+                <div>
+                    <label for="product-short-url" class="block text-sm font-medium text-gray-700">URL ngắn</label>
+                    <input type="text" id="product-short-url"
                         class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                         required>
                 </div>
@@ -123,7 +141,7 @@
                     <label for="product-price" class="block text-sm font-medium text-gray-700">Giá (đô)</label>
                     <input type="number" id="product-price"
                         class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                        required min="0">
+                        required min="0" step="0.01">
                 </div>
                 <div class="flex items-center">
                     <input type="checkbox" id="product-sale"
