@@ -1,4 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
+	// --- EDITOR SETUP ---
+	tinymce.init({
+		selector: "#product-description",
+		plugins: "lists link code",
+		toolbar: "undo redo | blocks | bold italic | bullist numlist | link | code",
+		menubar: false,
+		height: 300,
+		setup: function (editor) {
+			editor.on("change", function () {
+				editor.save();
+			});
+		},
+	});
+
 	// --- AUTHENTICATION ---
 	const loggedInUser = JSON.parse(localStorage.getItem("user-current"));
 	if (!loggedInUser || !loggedInUser.isAdmin) {
@@ -124,10 +138,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (product) {
 			// Edit mode
 			modalTitle.textContent = "Chỉnh sửa sản phẩm";
-						document.getElementById("product-id").value = product.short_url;
+			document.getElementById("product-id").value = product.short_url;
 			document.getElementById("product-name").value = product.title;
-			document.getElementById("product-description").value =
-				product.description;
+			tinymce.get("product-description").setContent(product.description || "");
 			document.getElementById("product-category").value = product.category;
 			document.getElementById("product-quantity").value = product.quantity;
 			document.getElementById("product-short-url").value = product.short_url;
@@ -146,6 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			// Add mode
 			modalTitle.textContent = "Thêm sản phẩm mới";
 			document.getElementById("product-id").value = "";
+			tinymce.get("product-description").setContent("");
 			imageValueInput.value = ""; // Clear image value
 		}
 
@@ -165,8 +179,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
 
+		const description = tinymce.get("product-description").getContent();
 		if (!imageValueInput.value) {
 			alert("Vui lòng chọn một hình ảnh cho sản phẩm.");
+			return;
+		}
+		if (!description.trim()) {
+			alert("Vui lòng nhập mô tả cho sản phẩm.");
 			return;
 		}
 
@@ -184,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const productData = {
 			title: document.getElementById("product-name").value,
 			image_path: `./img/${imageValueInput.value}`,
-			description: document.getElementById("product-description").value,
+			description: description,
 			category: document.getElementById("product-category").value,
 			quantity: parseInt(document.getElementById("product-quantity").value, 10),
 			short_url: document.getElementById("product-short-url").value,
@@ -215,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				sort_description: "",
 				banner_image_path: "",
 				star_rate: 5,
-				rate_count: 0,
+				rate_count: Math.floor(Math.random() * (100 - 10 + 1)) + 10,
 			});
 		}
 
