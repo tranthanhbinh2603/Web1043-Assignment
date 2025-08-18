@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-	// --- EDITOR SETUP ---
 	tinymce.init({
 		selector: "#product-description",
 		plugins: "lists link code",
@@ -12,15 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		},
 	});
-
-	// --- AUTHENTICATION ---
 	const loggedInUser = JSON.parse(localStorage.getItem("user-current"));
 	if (!loggedInUser || !loggedInUser.isAdmin) {
 		window.location.href = "./index.html";
-		return; // Stop script execution
+		return;
 	}
-
-	// --- DOM ELEMENTS ---
 	const productTableBody = document.getElementById("product-table-body");
 	const modal = document.getElementById("product-modal");
 	const modalTitle = document.getElementById("modal-title");
@@ -32,8 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const addProductBtn = document.getElementById("add-product-btn");
 	const imageGrid = document.getElementById("product-image-grid");
 	const imageValueInput = document.getElementById("product-image-value");
-
-	// --- VALIDATION ---
 	const showError = (input, message) => {
 		const inputGroup = input.closest(".input-group");
 		if (inputGroup) {
@@ -42,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				errorDisplay.innerText = message;
 			}
 		}
-		// Special handling for TinyMCE
 		if (input.id === "product-description") {
 			const editorContainer = inputGroup.querySelector(".tox");
 			if (editorContainer) {
@@ -54,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			input.classList.remove("success");
 		}
 	};
-
 	const showSuccess = (input) => {
 		const inputGroup = input.closest(".input-group");
 		if (inputGroup) {
@@ -63,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				errorDisplay.innerText = "";
 			}
 		}
-		// Special handling for TinyMCE
 		if (input.id === "product-description") {
 			const editorContainer = inputGroup.querySelector(".tox");
 			if (editorContainer) {
@@ -75,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			input.classList.remove("error");
 		}
 	};
-
 	const checkRequired = (input) => {
 		if (input.value.trim() === "") {
 			showError(input, "Vui lòng không để trống trường này.");
@@ -84,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		showSuccess(input);
 		return true;
 	};
-
 	const nameInput = document.getElementById("product-name");
 	const descriptionInput = document.getElementById("product-description");
 	const categoryInput = document.getElementById("product-category");
@@ -92,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const shortUrlInput = document.getElementById("product-short-url");
 	const priceInput = document.getElementById("product-price");
 	const salePriceInput = document.getElementById("product-sale-price");
-
 	const validateShortUrl = () => {
 		if (!checkRequired(shortUrlInput)) return false;
 		const urlValue = shortUrlInput.value.trim();
@@ -100,28 +87,27 @@ document.addEventListener("DOMContentLoaded", () => {
 			showError(shortUrlInput, "URL ngắn không được chứa khoảng trắng.");
 			return false;
 		}
-
 		const currentProductId = document.getElementById("product-id").value;
 		const isDuplicate = products.some((product) => {
-			return product.short_url === urlValue && product.short_url !== currentProductId;
+			return (
+				product.short_url === urlValue && product.short_url !== currentProductId
+			);
 		});
-
 		if (isDuplicate) {
-			showError(shortUrlInput, "URL ngắn đã tồn tại. Vui lòng chọn một URL khác.");
+			showError(
+				shortUrlInput,
+				"URL ngắn đã tồn tại. Vui lòng chọn một URL khác."
+			);
 			return false;
 		}
-
 		showSuccess(shortUrlInput);
 		return true;
 	};
-
 	const validatePrices = () => {
 		if (!checkRequired(priceInput)) return false;
-
 		const originalPrice = parseFloat(priceInput.value);
 		const salePrice = parseFloat(salePriceInput.value);
 		const isOnSale = saleCheckbox.checked;
-
 		if (isOnSale) {
 			if (!checkRequired(salePriceInput)) return false;
 			if (salePrice >= originalPrice) {
@@ -133,16 +119,14 @@ document.addEventListener("DOMContentLoaded", () => {
 		showSuccess(salePriceInput);
 		return true;
 	};
-
 	const validateImage = () => {
 		if (imageValueInput.value === "") {
-			// Find the input-group for the image grid to show the error
 			const imageGroup = imageGrid.closest(".input-group");
 			const errorDisplay = imageGroup.querySelector(".error-message");
 			if (errorDisplay) {
 				errorDisplay.innerText = "Vui lòng chọn một hình ảnh cho sản phẩm.";
 			}
-			imageGrid.classList.add("error"); // Add some visual cue if needed
+			imageGrid.classList.add("error");
 			return false;
 		} else {
 			const imageGroup = imageGrid.closest(".input-group");
@@ -154,7 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			return true;
 		}
 	};
-
 	const validateDescription = () => {
 		const content = tinymce.get("product-description").getContent();
 		if (content.trim() === "") {
@@ -164,21 +147,15 @@ document.addEventListener("DOMContentLoaded", () => {
 		showSuccess(descriptionInput);
 		return true;
 	};
-
 	let products = [];
-
-	// --- DATA HANDLING ---
 	const loadProducts = () => {
 		const storedProducts = localStorage.getItem("products");
 		products = storedProducts ? JSON.parse(storedProducts) : [];
 		renderTable();
 	};
-
 	const saveProducts = () => {
 		localStorage.setItem("products", JSON.stringify(products));
 	};
-
-	// --- RENDERING ---
 	const renderTable = () => {
 		productTableBody.innerHTML = "";
 		if (products.length === 0) {
@@ -186,7 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				'<tr><td colspan="6" class="text-center py-4">Không có sản phẩm nào.</td></tr>';
 			return;
 		}
-
 		products.forEach((product) => {
 			const row = document.createElement("tr");
 			row.className = "hover:bg-gray-50";
@@ -236,11 +212,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			productTableBody.appendChild(row);
 		});
 	};
-
-	// --- MODAL HANDLING ---
 	const selectImage = (imageName) => {
 		imageValueInput.value = imageName;
-		// Visually update selection
 		const allImages = imageGrid.querySelectorAll("img");
 		allImages.forEach((img) => {
 			if (img.dataset.value === imageName) {
@@ -252,10 +225,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	};
-
 	const openModal = (product = null) => {
 		productForm.reset();
-		imageGrid.innerHTML = ""; // Clear previous images
+		imageGrid.innerHTML = "";
 		for (let i = 1; i <= 10; i++) {
 			const imageName = `Product-${i}.webp`;
 			const img = document.createElement("img");
@@ -266,9 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				"w-24 h-24 object-cover rounded-md cursor-pointer border-2 border-transparent hover:ring-2 hover:ring-blue-400";
 			imageGrid.appendChild(img);
 		}
-
 		if (product) {
-			// Edit mode
 			modalTitle.textContent = "Chỉnh sửa sản phẩm";
 			document.getElementById("product-id").value = product.short_url;
 			document.getElementById("product-name").value = product.title;
@@ -277,41 +247,31 @@ document.addEventListener("DOMContentLoaded", () => {
 			document.getElementById("product-quantity").value = product.quantity;
 			document.getElementById("product-short-url").value = product.short_url;
 			document.getElementById("product-price").value = product.originalPrice;
-
 			const isOnSale = product.discountedPrice !== product.originalPrice;
 			saleCheckbox.checked = isOnSale;
 			if (isOnSale) {
 				document.getElementById("product-sale-price").value =
 					product.discountedPrice;
 			}
-
 			const imageName = product.image_path.split("/").pop();
 			selectImage(imageName);
 		} else {
-			// Add mode
 			modalTitle.textContent = "Thêm sản phẩm mới";
 			document.getElementById("product-id").value = "";
 			tinymce.get("product-description").setContent("");
-			imageValueInput.value = ""; // Clear image value
+			imageValueInput.value = "";
 		}
-
 		toggleSalePriceVisibility();
 		modal.classList.remove("hidden");
 	};
-
 	const closeModal = () => {
 		modal.classList.add("hidden");
 	};
-
 	const toggleSalePriceVisibility = () => {
 		salePriceContainer.style.display = saleCheckbox.checked ? "block" : "none";
 	};
-
-	// --- CRUD OPERATIONS ---
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
-
-		// --- RUN ALL VALIDATIONS ---
 		const isNameValid = checkRequired(nameInput);
 		const isImageValid = validateImage();
 		const isDescriptionValid = validateDescription();
@@ -319,8 +279,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		const isQuantityValid = checkRequired(quantityInput);
 		const isUrlValid = validateShortUrl();
 		const arePricesValid = validatePrices();
-
-		// Stop submission if any validation fails
 		if (
 			!isNameValid ||
 			!isImageValid ||
@@ -332,7 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		) {
 			return;
 		}
-
 		const description = tinymce.get("product-description").getContent();
 		const productShortUrl = document.getElementById("product-id").value;
 		const originalPrice = parseFloat(
@@ -344,7 +301,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			isOnSale && salePriceInput.value
 				? parseFloat(salePriceInput.value)
 				: originalPrice;
-
 		const productData = {
 			title: document.getElementById("product-name").value,
 			image_path: `./img/${imageValueInput.value}`,
@@ -355,9 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			originalPrice: originalPrice,
 			discountedPrice: discountedPrice,
 		};
-
 		if (productShortUrl) {
-			// Update existing product
 			const productIndex = products.findIndex(
 				(p) => p.short_url === productShortUrl
 			);
@@ -369,7 +323,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				};
 			}
 		} else {
-			// Add new product
 			products.push({
 				...productData,
 				sort_description: "",
@@ -378,12 +331,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				rate_count: Math.floor(Math.random() * (100 - 10 + 1)) + 10,
 			});
 		}
-
 		saveProducts();
 		closeModal();
 		renderTable();
 	};
-
 	const handleDelete = (productShortUrl) => {
 		if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?")) {
 			products = products.filter((p) => p.short_url !== productShortUrl);
@@ -391,8 +342,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			renderTable();
 		}
 	};
-
-	// --- EVENT LISTENERS ---
 	nameInput.addEventListener("blur", () => checkRequired(nameInput));
 	categoryInput.addEventListener("blur", () => checkRequired(categoryInput));
 	quantityInput.addEventListener("blur", () => checkRequired(quantityInput));
@@ -400,15 +349,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	priceInput.addEventListener("blur", validatePrices);
 	salePriceInput.addEventListener("blur", validatePrices);
 	tinymce.get("product-description").on("blur", validateDescription);
-
 	imageGrid.addEventListener("click", (e) => {
 		if (e.target.tagName === "IMG") {
 			const imageName = e.target.dataset.value;
 			selectImage(imageName);
-			validateImage(); // Validate after an image is clicked
+			validateImage();
 		}
 	});
-
 	productTableBody.addEventListener("click", (e) => {
 		const target = e.target;
 		if (
@@ -416,7 +363,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			target.classList.contains("delete-btn")
 		) {
 			const productId = target.dataset.id;
-
 			if (target.classList.contains("edit-btn")) {
 				const product = products.find((p) => p.short_url === productId);
 				if (product) openModal(product);
@@ -425,19 +371,15 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		}
 	});
-
 	addProductBtn.addEventListener("click", () => openModal());
 	closeModalBtn.addEventListener("click", closeModal);
 	cancelBtn.addEventListener("click", closeModal);
 	productForm.addEventListener("submit", handleFormSubmit);
 	saleCheckbox.addEventListener("change", toggleSalePriceVisibility);
-
 	window.addEventListener("mousedown", (e) => {
 		if (e.target === modal) {
 			closeModal();
 		}
 	});
-
-	// --- INITIAL LOAD ---
 	loadProducts();
 });

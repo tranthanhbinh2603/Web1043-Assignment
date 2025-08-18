@@ -1,8 +1,6 @@
-// Lấy dữ liệu sản phẩm và giỏ hàng từ localStorage
 let products = JSON.parse(localStorage.getItem("products")) || [];
 let rawCartData = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Làm sạch dữ liệu giỏ hàng để đảm bảo tính nhất quán
 let cartData = rawCartData.map((item) => {
 	let price = 0;
 	if (typeof item.price === "string") {
@@ -184,7 +182,9 @@ if (checkoutBtn) {
 	checkoutBtn.addEventListener("click", (e) => {
 		e.preventDefault();
 		const address = document.getElementById("address").value;
-		const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked');
+		const selectedPaymentMethod = document.querySelector(
+			'input[name="payment-method"]:checked'
+		);
 
 		if (!address.trim()) {
 			alert("Vui lòng nhập địa chỉ giao hàng hoặc chọn trên bản đồ.");
