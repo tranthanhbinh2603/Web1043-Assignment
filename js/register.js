@@ -96,12 +96,16 @@ document.addEventListener("DOMContentLoaded", () => {
 			const users = JSON.parse(localStorage.getItem("users")) || [];
 			users.push(newUser);
 			localStorage.setItem("users", JSON.stringify(users));
+
+			// Store email for verification page
+			sessionStorage.setItem("user_email_for_verification", newUser.email);
+
 			generalError.classList.remove("text-red-600");
 			generalError.classList.add("text-green-600");
-			generalError.innerText = "Đăng ký thành công! Đang chuyển hướng...";
+			generalError.innerText = "Đang chuyển hướng đến trang xác nhận email...";
 			setTimeout(() => {
-				window.location.href = "./login.html";
-			}, 2000);
+				window.location.href = "./verify-email.html";
+			}, 1000);
 		} else {
 			generalError.innerText = "Vui lòng kiểm tra lại các thông tin đã nhập.";
 		}

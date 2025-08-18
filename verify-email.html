@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tạo tài khoản Keychron mới để bắt đầu mua sắm và nhận các ưu đãi độc quyền." />
+    <meta name="description" content="Xác nhận địa chỉ email của bạn để hoàn tất đăng ký tài khoản Keychron.">
     <script src="https://cdn.tailwindcss.com" rel="preload" as="style"></script>
     <link rel="icon" href="./ico/ico.png" type="image/png">
     <link rel="stylesheet" href="./css/font-face.css">
     <link rel="stylesheet" href="./css/styles.css">
-    <title>Đăng ký (Demo) | Keychron Việt Nam</title>
+    <title>Xác nhận Email | Keychron Việt Nam</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 
 <body class="bg-white text-gray-900">
@@ -51,46 +52,22 @@
     <main class="container mx-auto my-12 px-4 flex items-center justify-center min-h-[60vh]">
         <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
             <div class="flex flex-col">
-                <h2 class="text-3xl font-bold mb-8 text-center">Tạo tài khoản</h2>
-                <form id="register-form" novalidate>
+                <h2 class="text-3xl font-bold mb-4 text-center">Xác nhận Email của bạn</h2>
+                <p class="text-center text-gray-600 mb-8">
+                    Một mã xác nhận đã được gửi đến <strong id="user-email">email@example.com</strong>. Vui lòng nhập mã
+                    đó vào bên dưới.
+                </p>
+                <form id="verify-form" novalidate>
                     <div class="input-group">
-                        <input type="text" placeholder=" " required class="input-field" id="reg-name">
-                        <label for="reg-name" class="input-label">Họ và tên</label>
+                        <input type="text" placeholder=" " required class="input-field" id="verify-code"
+                            inputmode="numeric" pattern="\d{6}">
+                        <label for="verify-code" class="input-label">Mã xác nhận</label>
                         <div class="error-message text-sm text-red-600 italic mt-1 h-5"></div>
                     </div>
-                    <div class="input-group">
-                        <input type="email" placeholder=" " required class="input-field" id="reg-email">
-                        <label for="reg-email" class="input-label">Email</label>
-                        <div class="error-message text-sm text-red-600 italic mt-1 h-5"></div>
-                    </div>
-                    <div class="input-group">
-                        <div class="password-container relative">
-                            <input type="password" placeholder=" " required class="input-field pr-16" id="reg-password">
-                            <label for="reg-password" class="input-label">Mật khẩu</label>
-                            <img src="./svg/show-password.svg"
-                                class="w-6 absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer toggle-password"
-                                alt="Hiện mật khẩu" loading="lazy">
-                        </div>
-                        <div class="error-message text-sm text-red-600 italic mt-1 h-5"></div>
-                    </div>
-                    <div class="input-group">
-                        <div class="password-container relative">
-                            <input type="password" placeholder=" " required class="input-field pr-16"
-                                id="reg-confirm-password">
-                            <label for="reg-confirm-password" class="input-label">Xác nhận Mật khẩu</label>
-                            <img src="./svg/show-password.svg"
-                                class="w-6 absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer toggle-password"
-                                alt="Hiện mật khẩu" loading="lazy">
-                        </div>
-                        <div class="error-message text-sm text-red-600 italic mt-1 h-5"></div>
-                    </div>
-                    <div id="register-general-error" class="text-center text-sm text-red-600 mb-4 h-5"></div>
+                    <div id="verify-general-error" class="text-center text-sm text-red-600 mb-4 h-5"></div>
                     <button
-                        class="w-full bg-black text-white py-3 rounded-md font-semibold hover:bg-gray-800 transition-colors">Đăng
-                        ký</button>
-                    <p class="mt-8 text-center text-sm text-gray-600">
-                        Đã có tài khoản? <a href="./login.html" class="font-semibold text-black hover:underline">Đăng
-                            nhập</a>
+                        class="w-full bg-black text-white py-3 rounded-md font-semibold hover:bg-gray-800 transition-colors">Xác
+                        nhận</button>
                     </p>
                 </form>
             </div>
@@ -142,18 +119,8 @@
             </div>
         </div>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentUser = JSON.parse(localStorage.getItem('user-current'));
-            if (currentUser) {
-                window.location.href = './index.html';
-                return;
-            }
-        });
-    </script>
     <script src="./js/auth.js"></script>
-    <script src="./js/passwordToggle.js"></script>
-    <script src="./js/register.js"></script>
+    <script src="./js/verify-email.js"></script>
     <script src="./js/searchListener.js"></script>
 </body>
 

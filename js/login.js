@@ -79,7 +79,7 @@ if (loginForm) {
 			setTimeout(function () {
 				localStorage.setItem("user-current", JSON.stringify(foundUser));
 				window.location.href = "./index.html";
-			}, 3000);
+			}, 1000);
 		} else {
 			if (generalError) {
 				generalError.innerText = "Email hoặc mật khẩu không chính xác.";
