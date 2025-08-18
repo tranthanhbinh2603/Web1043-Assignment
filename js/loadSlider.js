@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const productsFromLS = localStorage.getItem("products");
 	if (productsFromLS) {
 		dataProduct = JSON.parse(productsFromLS);
-		console.log("Dữ liệu đã được load:", dataProduct);
 	} else {
 		console.log('Không tìm thấy dữ liệu "products" trong LocalStorage.');
 	}
