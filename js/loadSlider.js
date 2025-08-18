@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-	if (typeof dataProduct === "undefined") {
-		console.error("Lỗi: Dữ liệu sản phẩm (dataProduct) không được định nghĩa.");
-		return;
+	let dataProduct = [];
+	const productsFromLS = localStorage.getItem("products");
+	if (productsFromLS) {
+		dataProduct = JSON.parse(productsFromLS);
+		console.log("Dữ liệu đã được load:", dataProduct);
+	} else {
+		console.log('Không tìm thấy dữ liệu "products" trong LocalStorage.');
 	}
 	const sliderData = dataProduct
 		.map((product, index) => ({ ...product, originalIndex: index }))
