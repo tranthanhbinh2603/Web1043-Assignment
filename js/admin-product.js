@@ -33,6 +33,138 @@ document.addEventListener("DOMContentLoaded", () => {
 	const imageGrid = document.getElementById("product-image-grid");
 	const imageValueInput = document.getElementById("product-image-value");
 
+	// --- VALIDATION ---
+	const showError = (input, message) => {
+		const inputGroup = input.closest(".input-group");
+		if (inputGroup) {
+			const errorDisplay = inputGroup.querySelector(".error-message");
+			if (errorDisplay) {
+				errorDisplay.innerText = message;
+			}
+		}
+		// Special handling for TinyMCE
+		if (input.id === "product-description") {
+			const editorContainer = inputGroup.querySelector(".tox");
+			if (editorContainer) {
+				editorContainer.classList.add("error");
+				editorContainer.classList.remove("success");
+			}
+		} else {
+			input.classList.add("error");
+			input.classList.remove("success");
+		}
+	};
+
+	const showSuccess = (input) => {
+		const inputGroup = input.closest(".input-group");
+		if (inputGroup) {
+			const errorDisplay = inputGroup.querySelector(".error-message");
+			if (errorDisplay) {
+				errorDisplay.innerText = "";
+			}
+		}
+		// Special handling for TinyMCE
+		if (input.id === "product-description") {
+			const editorContainer = inputGroup.querySelector(".tox");
+			if (editorContainer) {
+				editorContainer.classList.add("success");
+				editorContainer.classList.remove("error");
+			}
+		} else {
+			input.classList.add("success");
+			input.classList.remove("error");
+		}
+	};
+
+	const checkRequired = (input) => {
+		if (input.value.trim() === "") {
+			showError(input, "Vui lòng không để trống trường này.");
+			return false;
+		}
+		showSuccess(input);
+		return true;
+	};
+
+	const nameInput = document.getElementById("product-name");
+	const descriptionInput = document.getElementById("product-description");
+	const categoryInput = document.getElementById("product-category");
+	const quantityInput = document.getElementById("product-quantity");
+	const shortUrlInput = document.getElementById("product-short-url");
+	const priceInput = document.getElementById("product-price");
+	const salePriceInput = document.getElementById("product-sale-price");
+
+	const validateShortUrl = () => {
+		if (!checkRequired(shortUrlInput)) return false;
+		const urlValue = shortUrlInput.value.trim();
+		if (urlValue.includes(" ")) {
+			showError(shortUrlInput, "URL ngắn không được chứa khoảng trắng.");
+			return false;
+		}
+
+		const currentProductId = document.getElementById("product-id").value;
+		const isDuplicate = products.some((product) => {
+			return product.short_url === urlValue && product.short_url !== currentProductId;
+		});
+
+		if (isDuplicate) {
+			showError(shortUrlInput, "URL ngắn đã tồn tại. Vui lòng chọn một URL khác.");
+			return false;
+		}
+
+		showSuccess(shortUrlInput);
+		return true;
+	};
+
+	const validatePrices = () => {
+		if (!checkRequired(priceInput)) return false;
+
+		const originalPrice = parseFloat(priceInput.value);
+		const salePrice = parseFloat(salePriceInput.value);
+		const isOnSale = saleCheckbox.checked;
+
+		if (isOnSale) {
+			if (!checkRequired(salePriceInput)) return false;
+			if (salePrice >= originalPrice) {
+				showError(salePriceInput, "Giá khuyến mãi phải nhỏ hơn giá gốc.");
+				return false;
+			}
+		}
+		showSuccess(priceInput);
+		showSuccess(salePriceInput);
+		return true;
+	};
+
+	const validateImage = () => {
+		if (imageValueInput.value === "") {
+			// Find the input-group for the image grid to show the error
+			const imageGroup = imageGrid.closest(".input-group");
+			const errorDisplay = imageGroup.querySelector(".error-message");
+			if (errorDisplay) {
+				errorDisplay.innerText = "Vui lòng chọn một hình ảnh cho sản phẩm.";
+			}
+			imageGrid.classList.add("error"); // Add some visual cue if needed
+			return false;
+		} else {
+			const imageGroup = imageGrid.closest(".input-group");
+			const errorDisplay = imageGroup.querySelector(".error-message");
+			if (errorDisplay) {
+				errorDisplay.innerText = "";
+			}
+			imageGrid.classList.remove("error");
+			return true;
+		}
+	};
+
+	const validateDescription = () => {
+		const content = tinymce.get("product-description").getContent();
+		if (content.trim() === "") {
+			showError(descriptionInput, "Vui lòng nhập mô tả cho sản phẩm.");
+			return false;
+		}
+		showSuccess(descriptionInput);
+		return true;
+	};
+
 	let products = [];
 
 	// --- DATA HANDLING ---
@@ -179,16 +311,29 @@ document.addEventListener("DOMContentLoaded", () => {
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
 
-		const description = tinymce.get("product-description").getContent();
-		if (!imageValueInput.value) {
-			alert("Vui lòng chọn một hình ảnh cho sản phẩm.");
-			return;
-		}
-		if (!description.trim()) {
-			alert("Vui lòng nhập mô tả cho sản phẩm.");
+		// --- RUN ALL VALIDATIONS ---
+		const isNameValid = checkRequired(nameInput);
+		const isImageValid = validateImage();
+		const isDescriptionValid = validateDescription();
+		const isCategoryValid = checkRequired(categoryInput);
+		const isQuantityValid = checkRequired(quantityInput);
+		const isUrlValid = validateShortUrl();
+		const arePricesValid = validatePrices();
+
+		// Stop submission if any validation fails
+		if (
+			!isNameValid ||
+			!isImageValid ||
+			!isDescriptionValid ||
+			!isCategoryValid ||
+			!isQuantityValid ||
+			!isUrlValid ||
+			!arePricesValid
+		) {
 			return;
 		}
 
+		const description = tinymce.get("product-description").getContent();
 		const productShortUrl = document.getElementById("product-id").value;
 		const originalPrice = parseFloat(
 			document.getElementById("product-price").value
@@ -225,10 +370,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		} else {
 			// Add new product
-			if (products.some((p) => p.short_url === productData.short_url)) {
-				alert("URL ngắn đã tồn tại. Vui lòng chọn một URL khác.");
-				return;
-			}
 			products.push({
 				...productData,
 				sort_description: "",
@@ -252,10 +393,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	// --- EVENT LISTENERS ---
+	nameInput.addEventListener("blur", () => checkRequired(nameInput));
+	categoryInput.addEventListener("blur", () => checkRequired(categoryInput));
+	quantityInput.addEventListener("blur", () => checkRequired(quantityInput));
+	shortUrlInput.addEventListener("blur", validateShortUrl);
+	priceInput.addEventListener("blur", validatePrices);
+	salePriceInput.addEventListener("blur", validatePrices);
+	tinymce.get("product-description").on("blur", validateDescription);
+
 	imageGrid.addEventListener("click", (e) => {
 		if (e.target.tagName === "IMG") {
 			const imageName = e.target.dataset.value;
 			selectImage(imageName);
+			validateImage(); // Validate after an image is clicked
 		}
 	});
 
