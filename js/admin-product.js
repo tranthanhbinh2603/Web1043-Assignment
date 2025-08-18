@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	productForm.addEventListener("submit", handleFormSubmit);
 	saleCheckbox.addEventListener("change", toggleSalePriceVisibility);
 
-	window.addEventListener("click", (e) => {
+	window.addEventListener("mousedown", (e) => {
 		if (e.target === modal) {
 			closeModal();
 		}
