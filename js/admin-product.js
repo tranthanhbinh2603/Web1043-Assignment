@@ -61,19 +61,19 @@ document.addEventListener("DOMContentLoaded", () => {
 										}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-800">${
+                    <div class="text-sm text-gray-800">$${
 											product.originalPrice
 										}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <div class="text-sm ${
-											product.discountedPrice != product.originalPrice
+											product.discountedPrice !== product.originalPrice
 												? "text-red-600 font-bold"
 												: "text-gray-500"
 										}">
                         ${
 													product.discountedPrice != product.originalPrice
-														? `${product.discountedPrice}`
+														? `$${product.discountedPrice}`
 														: "Không"
 												}
                     </div>
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (product) {
 			// Edit mode
 			modalTitle.textContent = "Chỉnh sửa sản phẩm";
-			document.getElementById("product-id").value = product.id;
+						document.getElementById("product-id").value = product.short_url;
 			document.getElementById("product-name").value = product.title;
 			document.getElementById("product-description").value =
 				product.description;
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			return;
 		}
 
-		const productId = document.getElementById("product-id").value;
+		const productShortUrl = document.getElementById("product-id").value;
 		const originalPrice = parseFloat(
 			document.getElementById("product-price").value
 		);
@@ -192,9 +192,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			discountedPrice: discountedPrice,
 		};
 
-		if (productId) {
+		if (productShortUrl) {
 			// Update existing product
-			const productIndex = products.findIndex((p) => p.id == productId);
+			const productIndex = products.findIndex(
+				(p) => p.short_url === productShortUrl
+			);
 			if (productIndex !== -1) {
 				const existingProduct = products[productIndex];
 				products[productIndex] = {
@@ -204,13 +206,16 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		} else {
 			// Add new product
-			const newId =
-				products.length > 0 ? Math.max(...products.map((p) => p.id)) + 1 : 1;
+			if (products.some((p) => p.short_url === productData.short_url)) {
+				alert("URL ngắn đã tồn tại. Vui lòng chọn một URL khác.");
+				return;
+			}
 			products.push({
 				...productData,
-				id: newId,
-				rating: 5,
-				reviews: 0,
+				sort_description: "",
+				banner_image_path: "",
+				star_rate: 5,
+				rate_count: 0,
 			});
 		}
 
@@ -219,9 +224,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		renderTable();
 	};
 
-	const handleDelete = (productId) => {
+	const handleDelete = (productShortUrl) => {
 		if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?")) {
-			products = products.filter((p) => p.id !== productId);
+			products = products.filter((p) => p.short_url !== productShortUrl);
 			saveProducts();
 			renderTable();
 		}
