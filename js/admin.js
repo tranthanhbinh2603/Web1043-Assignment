@@ -216,8 +216,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (userIndex > -1) {
 			allUsers[userIndex].name = nameInput.value.trim();
 			allUsers[userIndex].isAdmin = adminToggle.checked;
-			if (newPassword) {
-				allUsers[userIndex].password = newPassword;
+						if (newPassword) {
+				allUsers[userIndex].password = CryptoJS.SHA256(newPassword).toString();
 			}
 			if (form.dataset.newImageData) {
 				allUsers[userIndex].image_user_data = form.dataset.newImageData;

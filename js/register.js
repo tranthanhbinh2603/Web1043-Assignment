@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const newUser = {
 				name: nameInput.value.trim(),
 				email: emailInput.value.trim(),
-				password: passwordInput.value,
+				password: CryptoJS.SHA256(passwordInput.value).toString(),
 				isAdmin: false,
 			};
 			const users = JSON.parse(localStorage.getItem("users")) || [];

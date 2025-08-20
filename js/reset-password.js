@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	const userEmailDisplay = document.getElementById("user-email");
 	const codeInput = document.getElementById("reset-code");
 	const passwordInput = document.getElementById("reset-password");
-	const confirmPasswordInput = document.getElementById("reset-confirm-password");
+	const confirmPasswordInput = document.getElementById(
+		"reset-confirm-password"
+	);
 	const generalError = document.getElementById("reset-general-error");
 
 	const userEmail = sessionStorage.getItem("user_email_for_reset");
@@ -101,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const userIndex = users.findIndex((user) => user.email === userEmail);
 
 			if (userIndex !== -1) {
-				users[userIndex].password = passwordInput.value;
+				userToUpdate.password = CryptoJS.SHA256(newPassword).toString();
 				localStorage.setItem("users", JSON.stringify(users));
 
 				// Clean up session storage

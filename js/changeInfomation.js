@@ -43,7 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	const validateOldPassword = () => {
 		if (
 			oldPasswordInput.value &&
-			oldPasswordInput.value !== currentUser.password
+			CryptoJS.SHA256(oldPasswordInput.value).toString() !==
+				currentUser.password
 		) {
 			showError(oldPasswordInput, "Mật khẩu cũ không chính xác.");
 			return false;
@@ -167,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			updatedUser.image_user_data = newImageData;
 		}
 		if (newPassword) {
-			updatedUser.password = newPassword;
+			updatedUser.password = CryptoJS.SHA256(newPassword).toString();
 		}
 		allUsers[userIndex] = updatedUser;
 		localStorage.setItem("users", JSON.stringify(allUsers));

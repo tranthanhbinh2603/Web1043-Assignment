@@ -67,8 +67,9 @@ if (loginForm) {
 		const email = emailInput.value.trim();
 		const password = passwordInput.value;
 		const users = JSON.parse(localStorage.getItem("users")) || [];
+		const hashedPassword = CryptoJS.SHA256(password).toString();
 		const foundUser = users.find(
-			(user) => user.email === email && user.password === password
+			(user) => user.email === email && user.password === hashedPassword
 		);
 		if (foundUser) {
 			if (generalError) {
