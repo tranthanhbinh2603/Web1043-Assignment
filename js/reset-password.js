@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					window.location.href = "./login.html";
 				}, 1500);
 			} else {
-				generalError.innerText = "Đã xảy ra lỗi. Không tìm thấy người dùng.";
+				generalError.innerText = "Vui lòng kiểm tra lại các thông tin đã nhập.";
 			}
 		} else {
 			generalError.innerText = "Vui lòng kiểm tra lại các thông tin đã nhập.";
