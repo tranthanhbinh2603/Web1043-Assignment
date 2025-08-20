@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const chatInput = document.getElementById("chatInput");
 	const sendMessage = document.getElementById("sendMessage");
 	const chatMessages = chatWidget.querySelector(".chat-messages");
+	let conversationHistory = [];
 
 	chatIcon.addEventListener("click", () => {
 		chatWidget.classList.toggle("active");
@@ -55,10 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		appendMessage(userMessage, "user-message");
 		chatInput.value = "";
+		conversationHistory.push(`Người dùng: ${userMessage}`);
 
-		// Show a temporary "typing" message
-		const typingIndicator = appendMessage("", "bot-message");
-
+		const typingIndicator = appendMessage("...", "bot-message");
 		getGeminiResponse(userMessage, typingIndicator);
 	}
 
@@ -68,40 +68,46 @@ document.addEventListener("DOMContentLoaded", () => {
 		messageElement.innerHTML = `<p>${message}</p>`;
 		chatMessages.appendChild(messageElement);
 		chatMessages.scrollTop = chatMessages.scrollHeight;
-		return messageElement; // Return the element to be able to remove it later
+		return messageElement;
 	}
 
 	async function getGeminiResponse(userMessage, typingIndicator) {
-		// --- BƯỚC QUAN TRỌNG ---
-		// Lấy API Key của bạn và thay thế 'YOUR_API_KEY' dưới đây
-		// Lưu ý: Tên biến API_KEY không thay đổi, chỉ cách sử dụng nó thay đổi.
 		const API_KEY = "AIzaSyB0oI_bZgSIww9ZUoANTMheJduQ3oRwTZA"; // Thay thế bằng key của bạn
-
-		// THAY ĐỔI 1: Cập nhật URL để sử dụng model 'gemini-2.0-flash' và xóa API key khỏi URL.
 		const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`;
+		const baseUrl = window.location.href.substring(
+			0,
+			window.location.href.lastIndexOf("/")
+		);
 
 		const products = JSON.parse(localStorage.getItem("products")) || [];
-		let productContext = "Here is a list of available products:\n";
+		let productContext =
+			"Đây là danh sách các sản phẩm có sẵn cùng với short_url để tạo liên kết:\n";
 		if (products.length > 0) {
 			products.forEach((p) => {
-				productContext += `- Name: ${p.title}, Price: ${p.discountedPrice}, Category: ${p.category}\n`;
+				productContext += `- Tên: ${p.title}, URL: ${baseUrl}/product.html#${p.short_url}, Giá: $${p.price}, Mô tả: ${p.description}\n`;
 			});
 		} else {
 			productContext = "Không có thông tin về sản phẩm nào.";
 		}
 
+		const historyText = conversationHistory.join("\n");
+
 		const prompt = `
         Bạn là một trợ lý AI thân thiện và hữu ích cho một cửa hàng bàn phím trực tuyến.
-        Bạn sẽ chat bằng tiếng Việt và chỉ bằng tiếng Việt
-        Mục tiêu của bạn là giúp người dùng tìm được bàn phím hoàn hảo dựa trên nhu cầu của họ.
-        Bạn nên trò chuyện và đưa ra các đề xuất dựa trên câu hỏi của người dùng và danh sách sản phẩm bên dưới.
-        Nếu người dùng hỏi một câu hỏi chung chung, hãy trả lời trong bối cảnh bàn phím.
-        Hãy giữ câu trả lời ngắn gọn và dễ đọc. Sử dụng Markdown để định dạng câu trả lời của bạn (in đậm, in nghiêng, danh sách).
+        Nhiệm vụ của bạn là trả lời người dùng bằng tiếng Việt dựa trên lịch sử cuộc trò chuyện và thông tin sản phẩm được cung cấp.
+        Khi bạn đề xuất một sản phẩm, hãy tạo một liên kết Markdown đến trang sản phẩm đó.
+        SỬ DỤNG ĐỊNH DẠNG SAU CHO LIÊN KẾT: [Tên sản phẩm đầy đủ]([URL sản phẩm]).
 
+        Lịch sử cuộc trò chuyện trước đó:
+        ${historyText}
+
+        Danh sách sản phẩm (sử dụng URL để tạo link):
         ${productContext}
 
-        Tin nhắn của người dùng: "${userMessage}"
-    `;
+        Tin nhắn mới nhất của người dùng: "${userMessage}"
+
+        Câu trả lời của bạn (chỉ trả lời tin nhắn mới nhất, không lặp lại lịch sử):
+        `;
 
 		try {
 			const response = await fetch(API_URL, {
@@ -132,6 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				throw new Error("Không có phản hồi. Vui lòng kiểm tra lại.");
 			}
 			const botResponse = data.candidates[0].content.parts[0].text;
+			conversationHistory.push(`AI: ${botResponse}`);
+
 			const converter = new showdown.Converter();
 			const htmlResponse = converter.makeHtml(botResponse);
 			typingIndicator.querySelector("p").innerHTML = htmlResponse;
@@ -142,4 +150,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			typingIndicator.querySelector("p").innerText = errorMessage;
 		}
 	}
+
+	// Load Showdown.js to render Markdown
+	const showdownScript = document.createElement("script");
+	showdownScript.src =
+		"https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js";
+	document.head.appendChild(showdownScript);
 });
