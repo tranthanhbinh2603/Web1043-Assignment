@@ -148,22 +148,90 @@ document.addEventListener("DOMContentLoaded", () => {
 		return true;
 	};
 	let products = [];
+	const PRODUCTS_PER_PAGE = 8;
+
+	const renderPagination = (currentPage, totalProducts) => {
+		const paginationContainer = document.getElementById("pagination-container");
+		paginationContainer.innerHTML = "";
+		const totalPages = Math.ceil(totalProducts / PRODUCTS_PER_PAGE);
+
+		if (totalPages <= 1) return;
+
+		const createPageLink = (
+			page,
+			text,
+			isDisabled = false,
+			isActive = false
+		) => {
+			const li = document.createElement("li");
+			const a = document.createElement("a");
+			a.href = `#page=${page}`;
+			a.textContent = text;
+			a.className = `px-3 py-2 leading-tight border border-gray-300 ${
+				isDisabled
+					? "bg-white text-gray-500 cursor-not-allowed"
+					: "bg-white text-blue-600 hover:bg-gray-100 hover:text-gray-700"
+			} ${isActive ? "bg-blue-50 text-blue-600 border-blue-300" : ""}`;
+			if (isActive) a.setAttribute("aria-current", "page");
+			li.appendChild(a);
+			return li;
+		};
+
+		const ul = document.createElement("ul");
+		ul.className = "inline-flex -space-x-px";
+
+		// Previous button
+		ul.appendChild(createPageLink(currentPage - 1, "Trước", currentPage === 1));
+
+		// Page numbers
+		for (let i = 1; i <= totalPages; i++) {
+			ul.appendChild(createPageLink(i, i, false, i === currentPage));
+		}
+
+		// Next button
+		ul.appendChild(
+			createPageLink(currentPage + 1, "Sau", currentPage === totalPages)
+		);
+
+		paginationContainer.appendChild(ul);
+
+		paginationContainer.addEventListener("click", (e) => {
+			e.preventDefault();
+			if (e.target.tagName === "A" && e.target.href) {
+				const url = new URL(e.target.href);
+				const newPage = parseInt(url.hash.split("=")[1], 10);
+				if (newPage && newPage > 0 && newPage <= totalPages) {
+					window.location.hash = `page=${newPage}`;
+					renderTable(newPage);
+					renderPagination(newPage, products.length);
+				}
+			}
+		});
+	};
+
 	const loadProducts = () => {
 		const storedProducts = localStorage.getItem("products");
 		products = storedProducts ? JSON.parse(storedProducts) : [];
-		renderTable();
+		const currentPage = parseInt(window.location.hash.split("=")[1], 10) || 1;
+		renderTable(currentPage);
+		renderPagination(currentPage, products.length);
 	};
 	const saveProducts = () => {
 		localStorage.setItem("products", JSON.stringify(products));
 	};
-	const renderTable = () => {
+	const renderTable = (page = 1) => {
 		productTableBody.innerHTML = "";
 		if (products.length === 0) {
 			productTableBody.innerHTML =
 				'<tr><td colspan="6" class="text-center py-4">Không có sản phẩm nào.</td></tr>';
 			return;
 		}
-		products.forEach((product) => {
+
+		const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
+		const endIndex = startIndex + PRODUCTS_PER_PAGE;
+		const paginatedProducts = products.slice(startIndex, endIndex);
+
+		paginatedProducts.forEach((product) => {
 			const row = document.createElement("tr");
 			row.className = "hover:bg-gray-50";
 			row.innerHTML = `

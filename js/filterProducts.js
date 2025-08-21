@@ -17,8 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	);
 	const productCount = document.getElementById("product-count");
 	const resetFiltersButton = document.getElementById("reset-filters");
+	const paginationContainer = document.getElementById("pagination-container");
 
 	let selectedCategories = [];
+	const PRODUCTS_PER_PAGE = 8;
 
 	// Handle search query from URL
 	const params = new URLSearchParams(window.location.search);
@@ -27,7 +29,49 @@ document.addEventListener("DOMContentLoaded", () => {
 		searchInput.value = decodeURIComponent(searchQuery);
 	}
 
-	const renderProducts = (productsToRender) => {
+	const renderPagination = (currentPage, totalProducts) => {
+		paginationContainer.innerHTML = "";
+		const totalPages = Math.ceil(totalProducts / PRODUCTS_PER_PAGE);
+
+		if (totalPages <= 1) return;
+
+		const createPageLink = (
+			page,
+			text,
+			isDisabled = false,
+			isActive = false
+		) => {
+			const li = document.createElement("li");
+			const a = document.createElement("a");
+			a.href = `#page=${page}`;
+			a.textContent = text;
+			a.className = `px-3 py-2 leading-tight border border-gray-300 ${
+				isDisabled
+					? "bg-white text-gray-500 cursor-not-allowed"
+					: "bg-white text-blue-600 hover:bg-gray-100 hover:text-gray-700"
+			} ${isActive ? "bg-blue-50 text-blue-600 border-blue-300" : ""}`;
+			if (isActive) a.setAttribute("aria-current", "page");
+			li.appendChild(a);
+			return li;
+		};
+
+		const ul = document.createElement("ul");
+		ul.className = "inline-flex -space-x-px";
+
+		ul.appendChild(createPageLink(currentPage - 1, "Trước", currentPage === 1));
+
+		for (let i = 1; i <= totalPages; i++) {
+			ul.appendChild(createPageLink(i, i, false, i === currentPage));
+		}
+
+		ul.appendChild(
+			createPageLink(currentPage + 1, "Sau", currentPage === totalPages)
+		);
+
+		paginationContainer.appendChild(ul);
+	};
+
+	const renderProducts = (productsToRender, page) => {
 		productContainer.innerHTML = "";
 		productCount.textContent = `Đang hiển thị ${productsToRender.length} sản phẩm.`;
 
@@ -37,7 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			return;
 		}
 
-		productsToRender.forEach((product) => {
+		const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
+		const endIndex = startIndex + PRODUCTS_PER_PAGE;
+		const paginatedProducts = productsToRender.slice(startIndex, endIndex);
+
+		paginatedProducts.forEach((product) => {
 			let starsHTML = "";
 			for (let i = 0; i < 5; i++) {
 				if (product.star_rate >= i + 1)
@@ -97,7 +145,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			return matchesSearch && matchesPrice && matchesCategory;
 		});
 
-		renderProducts(filteredProducts);
+		const currentPage = parseInt(window.location.hash.split("=")[1], 10) || 1;
+		renderProducts(filteredProducts, currentPage);
+		renderPagination(currentPage, filteredProducts.length);
 	};
 
 	const populateCategoryFilters = () => {
@@ -123,25 +173,30 @@ document.addEventListener("DOMContentLoaded", () => {
 						(cat) => cat !== e.target.value
 					);
 				}
+				window.location.hash = "#page=1";
 				filterAndRender();
 			});
 		});
 	};
 
-	// Event Listeners
-	searchInput.addEventListener("input", filterAndRender);
-	priceRange.addEventListener("input", () => {
-		priceValue.textContent = `$${priceRange.value}`;
+	const handleFilterChange = () => {
+		window.location.hash = "#page=1";
 		filterAndRender();
+	};
+
+	// Event Listeners
+	searchInput.addEventListener("input", handleFilterChange);
+	priceRange.addEventListener("input", () => {
+		priceValue.textContent = `${priceRange.value}`;
+		handleFilterChange();
 	});
 
 	resetFiltersButton.addEventListener("click", () => {
 		searchInput.value = "";
 		priceRange.value = priceRange.max;
-		priceValue.textContent = `$${priceRange.max}`;
+		priceValue.textContent = `${priceRange.max}`;
 		selectedCategories = [];
 
-		// Clear search query in URL
 		const url = new URL(window.location);
 		url.searchParams.delete("s");
 		window.history.pushState({}, "", url);
@@ -149,8 +204,12 @@ document.addEventListener("DOMContentLoaded", () => {
 		document
 			.querySelectorAll(".category-checkbox")
 			.forEach((cb) => (cb.checked = false));
+
+		window.location.hash = "#page=1";
 		filterAndRender();
 	});
+
+	window.addEventListener("hashchange", filterAndRender);
 
 	// Initial Load
 	populateCategoryFilters();
