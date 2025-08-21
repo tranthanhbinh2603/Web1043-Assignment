@@ -84,7 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			"Đây là danh sách các sản phẩm có sẵn cùng với short_url để tạo liên kết:\n";
 		if (products.length > 0) {
 			products.forEach((p) => {
-				productContext += `- Tên: ${p.title}, URL: ${baseUrl}/product.html#${p.short_url}, Giá: $${p.price}, Mô tả: ${p.description}\n`;
+				if (p.quantity > 0) {
+					productContext += `- Tên: ${p.title}, URL: ${baseUrl}/product.html#${p.short_url}, Giá: $${p.price}, Mô tả: ${p.description}\n`;
+				}
 			});
 		} else {
 			productContext = "Không có thông tin về sản phẩm nào.";
