@@ -1,13 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 	const products = JSON.parse(localStorage.getItem("products"));
-
 	if (!products || !Array.isArray(products)) {
 		console.error(
 			"Lỗi: Dữ liệu sản phẩm trong Local Storage không hợp lệ hoặc không tồn tại."
 		);
 		return;
 	}
-
 	const searchInput = document.getElementById("search-input");
 	const priceRange = document.getElementById("price-range");
 	const priceValue = document.getElementById("price-value");
@@ -18,23 +16,30 @@ document.addEventListener("DOMContentLoaded", () => {
 	const productCount = document.getElementById("product-count");
 	const resetFiltersButton = document.getElementById("reset-filters");
 	const paginationContainer = document.getElementById("pagination-container");
-
 	let selectedCategories = [];
 	const PRODUCTS_PER_PAGE = 8;
-
-	// Handle search query from URL
 	const params = new URLSearchParams(window.location.search);
 	const searchQuery = params.get("s");
 	if (searchQuery) {
 		searchInput.value = decodeURIComponent(searchQuery);
 	}
-
+	const typeQuery = params.get("type");
+	const typeToCategory = {
+		keyboard: "Bàn phím",
+		mouse: "Chuột",
+		keycap: "Keycap",
+		other: "Khác",
+	};
+	if (typeQuery && typeToCategory[typeQuery.toLowerCase()]) {
+		const category = typeToCategory[typeQuery.toLowerCase()];
+		if (!selectedCategories.includes(category)) {
+			selectedCategories.push(category);
+		}
+	}
 	const renderPagination = (currentPage, totalProducts) => {
 		paginationContainer.innerHTML = "";
 		const totalPages = Math.ceil(totalProducts / PRODUCTS_PER_PAGE);
-
 		if (totalPages <= 1) return;
-
 		const createPageLink = (
 			page,
 			text,
@@ -43,7 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		) => {
 			const li = document.createElement("li");
 			const a = document.createElement("a");
-			a.href = `#page=${page}`;
+			const url = new URL(window.location);
+			url.searchParams.set("page", page);
+			a.href = url.href;
 			a.textContent = text;
 			a.className = `px-3 py-2 leading-tight border border-gray-300 ${
 				isDisabled
@@ -51,40 +58,38 @@ document.addEventListener("DOMContentLoaded", () => {
 					: "bg-white text-blue-600 hover:bg-gray-100 hover:text-gray-700"
 			} ${isActive ? "bg-blue-50 text-blue-600 border-blue-300" : ""}`;
 			if (isActive) a.setAttribute("aria-current", "page");
+			if (!isDisabled) {
+				a.addEventListener("click", (e) => {
+					e.preventDefault();
+					window.history.pushState({ page: page }, "", url.href);
+					filterAndRender();
+				});
+			}
 			li.appendChild(a);
 			return li;
 		};
-
 		const ul = document.createElement("ul");
 		ul.className = "inline-flex -space-x-px";
-
 		ul.appendChild(createPageLink(currentPage - 1, "Trước", currentPage === 1));
-
 		for (let i = 1; i <= totalPages; i++) {
 			ul.appendChild(createPageLink(i, i, false, i === currentPage));
 		}
-
 		ul.appendChild(
 			createPageLink(currentPage + 1, "Sau", currentPage === totalPages)
 		);
-
 		paginationContainer.appendChild(ul);
 	};
-
 	const renderProducts = (productsToRender, page) => {
 		productContainer.innerHTML = "";
 		productCount.textContent = `Đang hiển thị ${productsToRender.length} sản phẩm.`;
-
 		if (productsToRender.length === 0) {
 			productContainer.innerHTML =
 				'<p class="text-gray-500 col-span-full text-center">Không tìm thấy sản phẩm nào phù hợp.</p>';
 			return;
 		}
-
 		const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
 		const endIndex = startIndex + PRODUCTS_PER_PAGE;
 		const paginatedProducts = productsToRender.slice(startIndex, endIndex);
-
 		paginatedProducts.forEach((product) => {
 			let starsHTML = "";
 			for (let i = 0; i < 5; i++) {
@@ -95,23 +100,20 @@ document.addEventListener("DOMContentLoaded", () => {
 				else
 					starsHTML += `<img loading="lazy" class="w-4 h-4" src="./svg/star-no.svg" alt="Sao rỗng">`;
 			}
-
 			let priceHTML = "";
 			if (product.discountedPrice < product.originalPrice) {
 				priceHTML = `
-                    <span class="text-lg font-bold text-red-600">$${product.discountedPrice}</span>
-                    <span class="text-sm text-gray-500 line-through ml-2">$${product.originalPrice}</span>
+                    <span class="text-lg font-bold text-red-600">${product.discountedPrice}</span>
+                    <span class="text-sm text-gray-500 line-through ml-2">${product.originalPrice}</span>
                 `;
 			} else {
-				priceHTML = `<span class="text-lg font-bold text-black">$${product.discountedPrice}</span>`;
+				priceHTML = `<span class="text-lg font-bold text-black">${product.discountedPrice}</span>`;
 			}
-
 			const productCard = document.createElement("a");
 			productCard.href = `./product.html#${product.short_url}`;
 			productCard.className =
 				"group block bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col";
 			const imagePath = product.image_path.replace("../../", "./");
-
 			productCard.innerHTML = `
                 <div class="overflow-hidden">
                     <img loading="lazy" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
@@ -131,11 +133,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			productContainer.appendChild(productCard);
 		});
 	};
-
 	const filterAndRender = () => {
 		const searchTerm = searchInput.value.toLowerCase();
 		const maxPrice = parseFloat(priceRange.value);
-
 		const filteredProducts = products.filter((product) => {
 			const matchesSearch = product.title.toLowerCase().includes(searchTerm);
 			const matchesPrice = product.discountedPrice <= maxPrice;
@@ -144,26 +144,27 @@ document.addEventListener("DOMContentLoaded", () => {
 				selectedCategories.includes(product.category);
 			return matchesSearch && matchesPrice && matchesCategory;
 		});
-
-		const currentPage = parseInt(window.location.hash.split("=")[1], 10) || 1;
+		const params = new URLSearchParams(window.location.search);
+		const currentPage = parseInt(params.get("page"), 10) || 1;
 		renderProducts(filteredProducts, currentPage);
 		renderPagination(currentPage, filteredProducts.length);
 	};
-
 	const populateCategoryFilters = () => {
 		const categories = [...new Set(products.map((p) => p.category))];
-		categoryFiltersContainer.innerHTML = ""; // Clear existing
+		categoryFiltersContainer.innerHTML = "";
 		categories.forEach((category) => {
 			const categoryId = `cat-${category.replace(/\s+/g, "-")}`;
+			const isChecked = selectedCategories.includes(category);
 			const checkboxWrapper = document.createElement("div");
 			checkboxWrapper.className = "flex items-center";
 			checkboxWrapper.innerHTML = `
-                <input type="checkbox" id="${categoryId}" value="${category}" class="h-4 w-4 rounded border-gray-300 text-black focus:ring-black category-checkbox">
+                <input type="checkbox" id="${categoryId}" value="${category}" class="h-4 w-4 rounded border-gray-300 text-black focus:ring-black category-checkbox" ${
+				isChecked ? "checked" : ""
+			}>
                 <label for="${categoryId}" class="ml-3 text-sm text-gray-600 capitalize">${category}</label>
             `;
 			categoryFiltersContainer.appendChild(checkboxWrapper);
 		});
-
 		document.querySelectorAll(".category-checkbox").forEach((checkbox) => {
 			checkbox.addEventListener("change", (e) => {
 				if (e.target.checked) {
@@ -173,45 +174,40 @@ document.addEventListener("DOMContentLoaded", () => {
 						(cat) => cat !== e.target.value
 					);
 				}
-				window.location.hash = "#page=1";
+				const url = new URL(window.location);
+				url.searchParams.set("page", "1");
+				window.history.pushState({}, "", url.href);
 				filterAndRender();
 			});
 		});
 	};
-
 	const handleFilterChange = () => {
-		window.location.hash = "#page=1";
+		const url = new URL(window.location);
+		url.searchParams.set("page", "1");
+		window.history.pushState({}, "", url.href);
 		filterAndRender();
 	};
-
-	// Event Listeners
 	searchInput.addEventListener("input", handleFilterChange);
 	priceRange.addEventListener("input", () => {
 		priceValue.textContent = `${priceRange.value}`;
 		handleFilterChange();
 	});
-
 	resetFiltersButton.addEventListener("click", () => {
 		searchInput.value = "";
 		priceRange.value = priceRange.max;
 		priceValue.textContent = `${priceRange.max}`;
 		selectedCategories = [];
-
 		const url = new URL(window.location);
 		url.searchParams.delete("s");
-		window.history.pushState({}, "", url);
-
+		url.searchParams.set("page", "1");
+		url.hash = "";
+		window.history.pushState({}, "", url.href);
 		document
 			.querySelectorAll(".category-checkbox")
 			.forEach((cb) => (cb.checked = false));
-
-		window.location.hash = "#page=1";
 		filterAndRender();
 	});
-
-	window.addEventListener("hashchange", filterAndRender);
-
-	// Initial Load
+	window.addEventListener("popstate", filterAndRender);
 	populateCategoryFilters();
 	filterAndRender();
 });
