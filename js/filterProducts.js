@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const paginationContainer = document.getElementById("pagination-container");
 
 	const PRODUCTS_PER_PAGE = 8;
+	let selectedTypes = []; // **THAY ĐỔI**: Biến để lưu các loại sản phẩm được chọn
 
 	// --- CÁC HÀM RENDER GIAO DIỆN ---
 
@@ -151,11 +152,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	/**
-	 * Tạo và hiển thị các radio button cho "Loại sản phẩm"
+	 * **THAY ĐỔI**: Tạo và hiển thị các checkbox cho "Loại sản phẩm"
 	 */
 	const populateTypeFilters = () => {
 		const productTypes = [
-			{ value: "", label: "Tất cả" },
 			{ value: "keycap", label: "Keycap" },
 			{ value: "keyboard", label: "Bàn phím" },
 			{ value: "mouse", label: "Chuột" },
@@ -163,13 +163,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		];
 
 		productTypes.forEach((type) => {
-			const typeId = `type-${type.value || "all"}`;
-			const radioWrapper = document.createElement("div");
-			radioWrapper.className = "flex items-center";
-			radioWrapper.innerHTML = `
-                <input type="radio" id="${typeId}" name="product-type" value="${type.value}" class="h-4 w-4 rounded-full border-gray-300 text-black focus:ring-black type-radio">
+			const typeId = `type-${type.value}`;
+			const checkboxWrapper = document.createElement("div");
+			checkboxWrapper.className = "flex items-center";
+			checkboxWrapper.innerHTML = `
+                <input type="checkbox" id="${typeId}" value="${type.value}" class="h-4 w-4 rounded border-gray-300 text-black focus:ring-black type-checkbox">
                 <label for="${typeId}" class="ml-3 text-sm text-gray-600">${type.label}</label>`;
-			typeFiltersContainer.appendChild(radioWrapper);
+			typeFiltersContainer.appendChild(checkboxWrapper);
 		});
 	};
 
@@ -181,17 +181,17 @@ document.addEventListener("DOMContentLoaded", () => {
 	const applyFiltersAndRender = () => {
 		const searchTerm = searchInput.value.toLowerCase();
 		const maxPrice = parseFloat(priceRange.value);
-		const selectedType =
-			document.querySelector(".type-radio:checked")?.value || "";
-
+		// **THAY ĐỔI**: Logic lọc giờ dựa vào mảng selectedTypes
 		const filteredProducts = inStockProducts.filter((product) => {
 			const productTypeInEnglish =
 				categoryToTypeMap[product.category.toLowerCase()];
 
 			const matchesSearch = product.title.toLowerCase().includes(searchTerm);
 			const matchesPrice = product.discountedPrice <= maxPrice;
+			// Nếu không có type nào được chọn, hiển thị tất cả. Nếu có, sản phẩm phải thuộc 1 trong các type đó.
 			const matchesType =
-				!selectedType || productTypeInEnglish === selectedType;
+				selectedTypes.length === 0 ||
+				selectedTypes.includes(productTypeInEnglish);
 
 			return matchesSearch && matchesPrice && matchesType;
 		});
@@ -213,24 +213,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		const params = new URLSearchParams(window.location.search);
 		const searchQuery = params.get("s") || "";
+		// **THAY ĐỔI**: Đọc nhiều type từ URL, ví dụ: ?type=keyboard,mouse
 		const typeQuery = params.get("type") || "";
+		selectedTypes = typeQuery ? typeQuery.split(",") : [];
 
 		searchInput.value = decodeURIComponent(searchQuery);
-		const radioToSelect =
-			document.querySelector(`.type-radio[value="${typeQuery}"]`) ||
-			document.getElementById("type-all");
-		if (radioToSelect) radioToSelect.checked = true;
+		// **THAY ĐỔI**: Check vào tất cả các checkbox có trong URL
+		document.querySelectorAll(".type-checkbox").forEach((checkbox) => {
+			if (selectedTypes.includes(checkbox.value)) {
+				checkbox.checked = true;
+			}
+		});
 
 		applyFiltersAndRender();
 
 		const handleFilterChange = () => {
+			// **THAY ĐỔI**: Cập nhật mảng selectedTypes dựa trên các checkbox
+			selectedTypes = Array.from(
+				document.querySelectorAll(".type-checkbox:checked")
+			).map((cb) => cb.value);
+
 			const url = new URL(window.location);
 			url.searchParams.set("page", "1");
 			url.searchParams.set("s", searchInput.value);
-			const currentSelectedType =
-				document.querySelector(".type-radio:checked")?.value || "";
-			if (currentSelectedType) {
-				url.searchParams.set("type", currentSelectedType);
+
+			// **THAY ĐỔI**: Cập nhật URL với danh sách các type, nối với nhau bằng dấu phẩy
+			if (selectedTypes.length > 0) {
+				url.searchParams.set("type", selectedTypes.join(","));
 			} else {
 				url.searchParams.delete("type");
 			}
@@ -244,8 +253,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			priceValue.textContent = `$${priceRange.value}`;
 			handleFilterChange();
 		});
-		document.querySelectorAll(".type-radio").forEach((radio) => {
-			radio.addEventListener("change", handleFilterChange);
+		// **THAY ĐỔI**: Gắn sự kiện cho các checkbox
+		document.querySelectorAll(".type-checkbox").forEach((checkbox) => {
+			checkbox.addEventListener("change", handleFilterChange);
 		});
 
 		resetFiltersButton.addEventListener("click", () => {
@@ -254,7 +264,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			searchInput.value = "";
 			priceRange.value = priceRange.max;
 			priceValue.textContent = `$${priceRange.max}`;
-			document.getElementById("type-all").checked = true;
+			// **THAY ĐỔI**: Reset mảng và bỏ check tất cả checkbox
+			selectedTypes = [];
+			document
+				.querySelectorAll(".type-checkbox")
+				.forEach((checkbox) => (checkbox.checked = false));
 
 			applyFiltersAndRender();
 		});

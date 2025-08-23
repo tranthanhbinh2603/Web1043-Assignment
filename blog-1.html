@@ -20,8 +20,13 @@
     <nav class="max-w-screen flex m-auto justify-center sticky top-0 z-50 bg-white">
         <div class="container flex flex-col text-white font-bold ">
             <div class="flex justify-between items-center pt-4 pb-4 ">
-                <div>
-                    <a href="./index.html"><img src="./img/logo.webp" alt="Keychron Logo" loading="lazy"></a>
+                <div class="flex">
+                    <button id="menu-toggle" class="md:hidden focus:outline-none">
+                        <img class="w-[32px] mt-[-2px]" src="./svg/menu.svg" alt="Danh mục" loading="lazy">
+                    </button>
+                    <div>
+                        <a href="./index.html"><img src="./img/logo.webp" alt="Keychron Logo" loading="lazy"></a>
+                    </div>
                 </div>
                 <div class="relative w-[200px] md:w-[400px] lg:w-[800px] hidden md:block">
                     <input type="text" id="searchInput" class="w-full text-black bg-gray-100 p-2 pl-10 pr-10 rounded-md"
@@ -48,11 +53,31 @@
                             class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 ring-1 ring-black ring-opacity-5 text-black font-normal text-sm">
                         </div>
                     </div>
-
                 </div>
+            </div>
+            <div id="menu" class="hidden md:flex justify-center items-center text-black gap-4 pb-3">
+                <a href="./filter.html" class="link pb-1 ">Tất cả sản phẩm</a>
+                <a href="./filter.html?type=keyboard" class="link pb-1">Bàn phím</a>
+                <a href="./filter.html?type=mouse" class="link pb-1">Chuột</a>
+                <a href="./filter.html?type=keycap" class="link pb-1">Keycap</a>
+                <a href="./filter.html?type=other" class="link pb-1">Khác</a>
             </div>
         </div>
     </nav>
+    <div id="mobile-menu-overlay" class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50 z-[90]"></div>
+    <div id="mobile-menu"
+        class="md:hidden fixed top-0 left-0 w-4/5 max-w-sm h-full bg-white shadow-md z-[100] transform -translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="flex flex-col items-center py-4 relative">
+            <button id="close-menu" class="absolute top-2 right-2 focus:outline-none">
+                <img class="w-6 h-6" src="./svg/x-mark.svg" alt="Đóng">
+            </button>
+            <a href="./filter.html" class="block py-2 ">Tất cả sản phẩm</a>
+            <a href="./filter.html?type=keyboard" class="block py-2 ">Bàn phím</a>
+            <a href="./filter.html?type=mouse" class="link pb-1">Chuột</a>
+            <a href="./filter.html?type=keycap" class="block py-2 ">Keycap</a>
+            <a href="./filter.html?type=other" class="block py-2 ">Khác</a>
+        </div>
+    </div>
     <main>
         <div class="container mt-5 mb-5">
             <div class="row justify-content-center">
