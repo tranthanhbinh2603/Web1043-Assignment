@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-	const forgotPasswordForm = document.getElementById("forgot-password-form");
+	const forgotPasswordForm = document.getElementById("forgotPassword-form");
 	if (!forgotPasswordForm) return;
 
 	const emailInput = document.getElementById("forgot-email");
