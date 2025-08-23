@@ -23,19 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (searchQuery) {
 		searchInput.value = decodeURIComponent(searchQuery);
 	}
-	const typeQuery = params.get("type");
-	const typeToCategory = {
-		keyboard: "Bàn phím",
-		mouse: "Chuột",
-		keycap: "Keycap",
-		other: "Khác",
-	};
-	if (typeQuery && typeToCategory[typeQuery.toLowerCase()]) {
-		const category = typeToCategory[typeQuery.toLowerCase()];
-		if (!selectedCategories.includes(category)) {
-			selectedCategories.push(category);
-		}
-	}
 	const renderPagination = (currentPage, totalProducts) => {
 		paginationContainer.innerHTML = "";
 		const totalPages = Math.ceil(totalProducts / PRODUCTS_PER_PAGE);
