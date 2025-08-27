@@ -184,14 +184,22 @@
                 </div>
                 <div class="flex-[0.3] flex flex-col gap-3 text-black font-normal">
                     <p class="font-bold">Bản tin</p>
-                    <p>Đăng ký để nhận ưu đãi độc quyền, những câu chuyện gốc, sự kiện và hơn thế nữa. </p>
-                    <div class="relative">
-                        <input type="text" class="w-full text-black bg-gray-100 p-2 pl-3 pr-10 rounded-md"
-                            placeholder="Email của bạn" />
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                            <img class="w-[20px]" src="./svg/right-arrow.svg" alt="voice" loading="lazy" />
-                        </div>
-                    </div>
+                    <p>Đăng ký để nhận ưu đãi độc quyền, những câu chuyện gốc, sự kiện và hơn thế nữa.</p>
+
+                    <form id="newsletter-form" class="relative">
+                        <input type="email" id="newsletter-email-input" name="user_email"
+                            class="w-full text-black bg-gray-100 p-2 pl-3 pr-10 rounded-md" placeholder="Email của bạn"
+                            required />
+
+                        <input type="hidden" name="from_name" value="Keychron Vietnam" />
+
+                        <button type="submit" id="newsletter-submit-btn"
+                            class="absolute inset-y-0 right-0 flex items-center pr-3">
+                            <img class="w-[20px]" src="./svg/right-arrow.svg" alt="Gửi" loading="lazy" />
+                        </button>
+                    </form>
+
+                    <p id="newsletter-status" class="text-sm h-4"></p>
                 </div>
             </div>
         </div>
