@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			generalError.classList.add("text-green-600");
 			generalError.innerText = "Đang chuyển hướng đến trang xác nhận email...";
 			setTimeout(() => {
-				window.location.href = "./verifyEmail.html";
+				window.location.href = "./verify-email.html";
 			}, 1000);
 		} else {
 			generalError.innerText = "Vui lòng kiểm tra lại các thông tin đã nhập.";
