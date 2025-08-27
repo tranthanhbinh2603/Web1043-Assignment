@@ -93,12 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				password: CryptoJS.SHA256(passwordInput.value).toString(),
 				isAdmin: false,
 			};
-			const users = JSON.parse(localStorage.getItem("users")) || [];
-			users.push(newUser);
-			localStorage.setItem("users", JSON.stringify(users));
 
-			// Store email for verification page
-			sessionStorage.setItem("user_email_for_verification", newUser.email);
+			sessionStorage.setItem("temp_user_data", JSON.stringify(newUser));
 
 			generalError.classList.remove("text-red-600");
 			generalError.classList.add("text-green-600");

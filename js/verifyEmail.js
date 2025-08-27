@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	const generalError = document.getElementById("verify-general-error");
 	const resendLink = document.getElementById("resend-code");
 
-	const userEmail = sessionStorage.getItem("user_email_for_verification");
+	const data = sessionStorage.getItem("temp_user_data");
+	const userEmail = data ? JSON.parse(data).email : null;
 	if (userEmail) {
 		userEmailDisplay.textContent = userEmail;
 	} else {
@@ -28,10 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		const verificationCode = Math.floor(
 			100000 + Math.random() * 900000
 		).toString();
-		console.log(verificationCode);
 		sessionStorage.setItem("verification_code", verificationCode);
 		const templateParams = {
-			to_email: email,
+			to_email: userEmail,
 			from_name: "Keychron Vietnam",
 			verification_code: verificationCode,
 		};
@@ -78,13 +78,18 @@ document.addEventListener("DOMContentLoaded", () => {
 		generalError.innerText = "";
 
 		if (checkCode()) {
+			const tempUserDataString = sessionStorage.getItem("temp_user_data");
+			if (tempUserDataString) {
+				const newUser = JSON.parse(tempUserDataString);
+				const users = JSON.parse(localStorage.getItem("users")) || [];
+				users.push(newUser);
+				localStorage.setItem("users", JSON.stringify(users));
+			}
 			generalError.classList.remove("text-red-600");
 			generalError.classList.add("text-green-600");
 			generalError.innerText =
 				"Xác nhận thành công! Đang chuyển hướng đến trang đăng nhập...";
-
-			// Clean up session storage
-			sessionStorage.removeItem("user_email_for_verification");
+			sessionStorage.removeItem("temp_user_data");
 			sessionStorage.removeItem("verification_code");
 
 			setTimeout(() => {
