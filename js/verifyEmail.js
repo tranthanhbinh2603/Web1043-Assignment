@@ -87,8 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 			generalError.classList.remove("text-red-600");
 			generalError.classList.add("text-green-600");
-			generalError.innerText =
-				"Xác nhận thành công! Đang chuyển hướng đến trang đăng nhập...";
+			generalError.innerText = "Xác nhận thành công! Đang chuyển hướng...";
 			sessionStorage.removeItem("temp_user_data");
 			sessionStorage.removeItem("verification_code");
 
